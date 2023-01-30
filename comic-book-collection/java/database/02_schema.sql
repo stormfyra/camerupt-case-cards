@@ -17,6 +17,10 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
+	email varchar(40) NOT NULL,
+    full_name varchar(40),
+    shipping_address varchar(150),
+    bio varchar(800),
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
