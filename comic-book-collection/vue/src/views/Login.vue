@@ -74,3 +74,27 @@ export default {
   }
 };
 </script>
+
+<style>
+
+  .text-center{
+    position: absolute;
+    border-radius: 12px;
+    box-shadow: 0px 20px 20px rgb(0 0 0 / 20%);
+    
+    padding: 20px;
+    width: 505px;
+    height: 701px;
+    left: 111px;
+    top: 114px;
+  }
+
+  .form-register, .form-signin{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+
+
+</style>
