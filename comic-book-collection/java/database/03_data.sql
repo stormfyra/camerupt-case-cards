@@ -1,7 +1,9 @@
 
 -- insert users table data
-INSERT INTO users (user_id, username,password_hash,role, email) VALUES (1, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'fake@fake.com');
-INSERT INTO users (user_id, username,password_hash,role, email) VALUES (3, 'admin', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','fake@fake.com');
+INSERT INTO users (user_id, username, password_hash, role, email) VALUES (1, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'fake@fake.com');
+INSERT INTO users (user_id, username, password_hash, role, email) VALUES (3, 'admin', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','fake@fake.com');
+INSERT INTO users (user_id, username, password_hash, role, email, full_name, shipping_address, bio) VALUES (2, 'testuser', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER','fake@fake.com', 'User User', '1000 User Ave NE WA', 'Hello! Im a friendly user.');
+
 ALTER SEQUENCE seq_user_id RESTART WITH 4;
 
 -- insert ??? table data
