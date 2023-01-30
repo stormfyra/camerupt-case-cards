@@ -2,7 +2,7 @@
 -- insert users table data
 INSERT INTO users (user_id, username,password_hash,role, email) VALUES (1, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'fake@fake.com');
 INSERT INTO users (user_id, username,password_hash,role, email) VALUES (3, 'admin', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','fake@fake.com');
-ALTER SEQUENCE seq_user_id RESTART WITH 3;
+ALTER SEQUENCE seq_user_id RESTART WITH 4;
 
 -- insert ??? table data
 INSERT INTO card (name, large_image, small_image) VALUES ('Charizard', 'https://images.pokemontcg.io/swsh4/25_hires.png', 'https://images.pokemontcg.io/swsh4/25.png');
