@@ -1,7 +1,7 @@
 #!/bin/bash
 export PGPASSWORD='postgres1'
 
-DATABASE=comic_book
+DATABASE=card_collection
 
 psql -U postgres -f "./01_createdb.sql" &&
 psql -U postgres -d $DATABASE -f "./02_schema.sql"  &&
