@@ -21,7 +21,8 @@ public class JdbcCollectionDao implements CollectionDao {
     public List<CardCollection> getCardCollections(String username) {
         List<CardCollection> cardCollections = new ArrayList<>();
         String sqlQuery = "SELECT collection_id, name, description, is_private, username FROM collection\n" +
-                "JOIN users ON collection.user_id = users.user_id;";
+                "JOIN users ON collection.user_id = users.user_id\n" +
+                "ORDER BY is_private;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery);
         while (results.next()) {
             CardCollection cardCollection = mapRowToCardCollection(results);
@@ -60,13 +61,26 @@ public class JdbcCollectionDao implements CollectionDao {
         }
     }
 
+    @Override
+    public boolean toggleCollectionPrivacyStatus(int id, String username, boolean privacy) {
+        String sqlQuery = "UPDATE collection SET is_private = ?\n" +
+                "WHERE collection_id = ? AND user_id =\n" +
+                "\t(SELECT user_id FROM users WHERE username = ?);";
+        int rowsChanged = jdbcTemplate.update(sqlQuery, privacy, id, username);
+        if (rowsChanged > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private CardCollection mapRowToCardCollection(SqlRowSet results) {
         CardCollection cardCollection = new CardCollection();
         cardCollection.setCollectionId(results.getInt("collection_id"));
         cardCollection.setTitle(results.getString("name"));
         cardCollection.setOwnerUsername(results.getString("username"));
         cardCollection.setDescription(results.getString("description"));
-        cardCollection.setPrivate(results.getBoolean("is_private"));
+        cardCollection.setIsPrivate(results.getBoolean("is_private"));
         return cardCollection;
     }
 
