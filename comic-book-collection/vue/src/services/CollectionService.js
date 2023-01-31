@@ -6,8 +6,8 @@ const http = axios.create({
 
 export default {
     
-    getCollectionDetails() {
-        return http.get('/collections/1')
+    getCollectionDetails(collectionId) {
+        return http.get(`/collections/${collectionId}`)
     },
 
     getAllCollections() {

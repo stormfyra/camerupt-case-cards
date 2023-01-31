@@ -55,7 +55,7 @@ const router = new Router({
       }
     },
     {
-      path: "/collections/1",
+      path: "/collections/:collectionId",
       name: "collectionDetails",
       component: CollectionDetails,
       meta: {

@@ -22,7 +22,7 @@ export default {
     },
 
     created() {
-        collectionWebService.getCollectionDetails()
+        collectionWebService.getCollectionDetails(this.$route.params.collectionId)
                             .then(response => {
                                 this.ownerUsername = response.data.ownerUsername;
                                 this.title = response.data.title;
@@ -36,5 +36,8 @@ export default {
 </script>
 
 <style scoped>
-
+card-grid {
+    display: flex;
+    justify-content: center;
+}
 </style>
