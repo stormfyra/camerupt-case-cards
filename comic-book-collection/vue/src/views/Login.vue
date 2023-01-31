@@ -80,12 +80,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
   #loginPage{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "form pic";
+
+    position: fixed;
+    top: 15%;
   }
 
   .text-center{
@@ -98,6 +101,8 @@ export default {
     display: grid;
     grid-area: form;
     justify-self: center;
+
+
 
   }
 
