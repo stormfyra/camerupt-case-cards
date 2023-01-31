@@ -80,7 +80,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 
   #loginPage{
     display: grid;
@@ -101,8 +101,6 @@ export default {
     display: grid;
     grid-area: form;
     justify-self: center;
-
-
 
   }
 
@@ -143,7 +141,27 @@ export default {
     font-weight: bold;
   }
 
-  
+  #password, #confirmPassword{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.1ch;
+    font-size: 15px;
+    color: rgb(117, 166, 223);
+  }
+
+  #password:focus{
+    outline: 0;
+    box-shadow: 0 0 0 3px #E45052;
+  }
+
+  #username:focus{
+    outline: 0;
+    box-shadow: 0 0 0 3px #E45052;
+  }
+
+  #confirmPassword:focus{
+    outline: 0;
+    box-shadow: 0 0 0 3px #E45052;
+  }
 
 
 </style>

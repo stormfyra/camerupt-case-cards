@@ -1,4 +1,5 @@
 <template>
+<div id="loginPage">
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
@@ -37,6 +38,10 @@
         Create Account
       </button>
     </form>
+  </div>
+  <div id="pokePic">
+    <img src="camerupt-removebg-preview.png" alt="pokemon picture here">
+  </div>
   </div>
 </template>
 
