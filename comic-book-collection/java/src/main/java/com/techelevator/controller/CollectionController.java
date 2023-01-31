@@ -46,4 +46,20 @@ public class CollectionController {
             return cardCollection;
         }
     }
+
+    @RequestMapping(path = "/{collectionId}/privacy", method = RequestMethod.PUT)
+    public ResponseEntity<String> toggleCollectionPrivacyStatus(Principal principal, @PathVariable int collectionId, @RequestBody CardCollection collection) {
+        String username;
+        if (principal == null) {
+            return new ResponseEntity<String>("This is not your collection.", HttpStatus.FORBIDDEN);
+        } else {
+            username = principal.getName();
+        }
+        boolean changed = collectionDao.toggleCollectionPrivacyStatus(collectionId, username, collection.isPrivate());
+        if (changed) {
+            return new ResponseEntity<String>("Privacy toggled.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("Unsuccessful.", HttpStatus.BAD_REQUEST);
+        }
+    }
 }

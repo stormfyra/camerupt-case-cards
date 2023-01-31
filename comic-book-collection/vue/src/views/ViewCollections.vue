@@ -2,10 +2,10 @@
     <div>
         <div v-if="username != '' && personalCollections.length > 0">
             <h1>Your Collections</h1>
-            <collection-grid :collections="personalCollections"></collection-grid>
+            <collection-grid :collections="personalCollections" :ownedByMe="true"></collection-grid>
         </div>
         <h1>Public Collections</h1>
-        <collection-grid :collections="publicCollections"></collection-grid>
+        <collection-grid :collections="publicCollections" :ownedByMe="false"></collection-grid>
     </div>
 </template>
 
