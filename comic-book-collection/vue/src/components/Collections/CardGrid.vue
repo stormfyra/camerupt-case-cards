@@ -44,6 +44,7 @@ export default {
     height: 280px;
     border: 2px solid black;
     border-radius: 10px;
+    margin: 10px;
 }
 #card-container {
     width: 100%;
@@ -51,7 +52,8 @@ export default {
     justify-items: center;
     align-items: center;
     background-color: #87CEEE;
-    height: 300px;
+    height: auto + 40px;
+    padding: 10px 0px;
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {

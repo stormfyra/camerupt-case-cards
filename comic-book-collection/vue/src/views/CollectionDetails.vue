@@ -1,5 +1,10 @@
 <template>
-    <card-grid :cards='cards'/>
+    <div>
+        <h1 class="collectionTitle">{{title}}</h1>
+        <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
+        <p class="collectionDescription"><em>{{description}}</em></p>
+        <card-grid :cards='cards'/>
+    </div>
 </template>
 
 <script>
@@ -39,5 +44,8 @@ export default {
 card-grid {
     display: flex;
     justify-content: center;
+}
+.collectionTitle, .collectionOwnerDeclaration, .collectionDescription {
+    text-align: center;
 }
 </style>
