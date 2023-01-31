@@ -85,6 +85,29 @@ public class JdbcUserDao implements UserDao {
         return userCreated;
     }
 
+    @Override
+    public void updateUserProfile(String email, String fullName, String shippingAddress, String bio, int userId) {
+        if (email.length() == 0) {
+            email = null;
+        }
+        if (fullName.length() == 0) {
+            fullName = null;
+        }
+        if (shippingAddress.length() == 0) {
+            shippingAddress = null;
+        }
+        if (bio.length() == 0) {
+            bio = null;
+        }
+        String sqlQuery = "UPDATE users SET\n" +
+                "\temail = ?,\n" +
+                "\tfull_name = ?,\n" +
+                "\tshipping_address = ?,\n" +
+                "\tbio = ?\n" +
+                "WHERE user_id = ?;";
+        jdbcTemplate.update(sqlQuery, email, fullName, shippingAddress, bio, userId);
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getLong("user_id"));
@@ -92,6 +115,10 @@ public class JdbcUserDao implements UserDao {
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(rs.getString("role"));
         user.setActivated(true);
+        user.setEmail(rs.getString("email"));
+        user.setFullName(rs.getString("full_name"));
+        user.setShippingAddress(rs.getString("shipping_address"));
+        user.setBio(rs.getString("bio"));
         return user;
     }
 }

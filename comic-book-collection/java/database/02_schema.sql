@@ -36,7 +36,7 @@ CREATE TABLE collection (
     user_id int,
     name varchar(50) NOT NULL,
     description varchar(250),
-    private boolean default false,
+    is_private boolean default false,
     CONSTRAINT FK_collection_user FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 

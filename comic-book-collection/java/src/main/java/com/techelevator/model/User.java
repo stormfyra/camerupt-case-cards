@@ -15,6 +15,10 @@ public class User {
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
+   private String email;
+   private String fullName;
+   private String shippingAddress;
+   private String bio;
 
    public User() { }
 
@@ -23,6 +27,17 @@ public class User {
       this.username = username;
       this.password = password;
       this.activated = true;
+   }
+
+   public User(Long id, String username, String password, String email, String fullName, String shippingAddress, String bio) {
+      this.id = id;
+      this.username = username;
+      this.password = password;
+      this.activated = true;
+      this.email = email;
+      this.fullName = fullName;
+      this.shippingAddress = shippingAddress;
+      this.bio = bio;
    }
 
    public Long getId() {
@@ -98,5 +113,37 @@ public class User {
               ", activated=" + activated +
               ", authorities=" + authorities +
               '}';
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
+   public String getFullName() {
+      return fullName;
+   }
+
+   public void setFullName(String fullName) {
+      this.fullName = fullName;
+   }
+
+   public String getShippingAddress() {
+      return shippingAddress;
+   }
+
+   public void setShippingAddress(String shippingAddress) {
+      this.shippingAddress = shippingAddress;
+   }
+
+   public String getBio() {
+      return bio;
+   }
+
+   public void setBio(String bio) {
+      this.bio = bio;
    }
 }
