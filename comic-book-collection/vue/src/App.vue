@@ -35,8 +35,37 @@ body {
     margin: 0 10%;
 }
 
+form {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    padding: 40px;
+  }
+
+  .text-center{
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0px 20px 20px rgb(0 0 0 / 20%);
+  
+  width: 505px;
+  height: 580px;
+
+  display: grid;
+  grid-area: form;
+  justify-self: center;
+
+}
+
 h1 {
   font-style: bold;
+}
+
+a {
+  color: #E45052;
+}
+
+button {
+
 }
 
 .cardImage {

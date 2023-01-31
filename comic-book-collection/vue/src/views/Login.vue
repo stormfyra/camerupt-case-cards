@@ -91,7 +91,7 @@ export default {
     top: 15%;
   }
 
-  .text-center{
+  /* .text-center{
     border-radius: 12px;
     box-shadow: 0px 20px 20px rgb(0 0 0 / 20%);
     
@@ -102,14 +102,14 @@ export default {
     grid-area: form;
     justify-self: center;
 
-  }
+  } */
 
-  .form-register, .form-signin{
+  /* .form-register, .form-signin{
     display: flex;
     gap: 20px;
     flex-direction: column;
     padding: 40px;
-  }
+  } */
 
   #pokePic{
     display: grid;
