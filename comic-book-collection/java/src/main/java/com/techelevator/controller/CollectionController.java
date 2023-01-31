@@ -22,7 +22,12 @@ public class CollectionController {
 
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<CardCollection> getCardCollections(Principal principal) {
-        String username = principal.getName();
+        String username;
+        if (principal == null) {
+            username = "";
+        } else {
+            username = principal.getName();
+        }
         return collectionDao.getCardCollections(username);
     }
 

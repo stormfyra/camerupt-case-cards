@@ -1,5 +1,12 @@
 <template>
-    <collection-grid :collections="collections"></collection-grid>
+    <div>
+        <div v-if="username != '' && personalCollections.length > 0">
+            <h1>Your Collections</h1>
+            <collection-grid :collections="personalCollections"></collection-grid>
+        </div>
+        <h1>Public Collections</h1>
+        <collection-grid :collections="publicCollections"></collection-grid>
+    </div>
 </template>
 
 <script>
@@ -12,13 +19,26 @@ export default {
     },
     data() {
         return {
-            collections: []
+            personalCollections: [],
+            publicCollections: [],
+            username: ''
         }
     },
     created() {
+        // This initialization calls the logged in user from the store and then contacts our server for all collecitons
+        // Then sorts collections into user-ownd collections and public collections 
+        this.username = this.$store.state.user.username;
         collectionService.getAllCollections()
                          .then(response => {
-                             this.collections = response.data
+                            response.data.forEach(element => {
+                                console.log(element);
+                                console.log(this.username);
+                                if (element.ownerUsername == this.username){
+                                    this.personalCollections.push(element)
+                                } else {
+                                    this.publicCollections.push(element)
+                                }
+                            });
                          });
     }
 }

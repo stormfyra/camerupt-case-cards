@@ -1,8 +1,13 @@
 <template>
     <div id="collection-container">
-        <div v-for="collection in collections" :key="collection.index"  class="collectionImage"> 
-            <h4>{{collection.title}}</h4>
-            <img src="../../../resources/backOfPokemonCard.jpg" alt="" class="cardBack">
+        <div v-for="collection in collections" :key="collection.index"  class="collectionImage">
+            <router-link class="title-holder" :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}"> 
+                    <p class="title">{{collection.title}}</p>
+                    <p> <em>Owner: {{collection.ownerUsername}}</em></p>
+            </router-link>
+            <router-link :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}">    
+                <img src="../../../resources/backOfPokemonCard.jpg" alt="" class="cardBack">
+            </router-link> 
         </div>
     </div>
 </template>
@@ -27,6 +32,9 @@ export default {
     margin: 10px;
     position: relative;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .cardBack {
     position: absolute;
@@ -36,16 +44,22 @@ export default {
     height: 280px;
     border-radius: 10px;
 }
-h4 {
+p {
+    margin: 5px;
+}
+.title-holder {
     background-color: rgb(0, 0, 0);
     color: white;
     position: absolute;
     z-index: 2;
-    width: 100%;
-    height: 60px;
+    width: 86%;
+    height: 25%;
     font-size: large;
     text-align: center;
+    border-radius: 10px;
+    border: solid  white;
 }
+
 #collection-container {
     width: 100%;
     display: grid;
