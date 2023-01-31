@@ -5,13 +5,16 @@
     <div class="nav-menu">
       <ul class="nav-list">
         <li class="nav-item">
-          <router-link to="/" class="navbar-item">Home</router-link>&nbsp;
+          <router-link :to="{ name: 'ViewCollections' }" class="navbar-item">Card Collections</router-link>&nbsp;
         </li>
         <li class="nav-item">
           <router-link to="/login" class="navbar-item">Login</router-link>&nbsp;
         </li>
         <li class="nav-item">
           <router-link to="/register" class="navbar-item">Register</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
         </li>
       </ul>
     </div>
@@ -55,11 +58,8 @@
   }
 
   .nav-list{
-    display: grid;
-    grid-template-columns: 1fr, 1fr, 1fr;
-    grid-template-areas: "home login register";
-    column-gap: 1rem;
-
+    display: flex;
+    gap: 1rem;
   }
 
 
