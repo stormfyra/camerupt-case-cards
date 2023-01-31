@@ -3,21 +3,24 @@
         <div v-for="collection in collections" :key="collection.index"  class="collectionImage">
             <router-link class="title-holder" :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}"> 
                     <p class="title">{{collection.title}}</p>
-                    <p> <em>Owner: {{collection.ownerUsername}}</em></p>
+                    <p v-if="!ownedByMe"><em>Owner: {{collection.ownerUsername}}</em></p>
             </router-link>
             <router-link :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}">    
                 <img src="../../../resources/backOfPokemonCard.jpg" alt="" class="cardBack">
-            </router-link> 
+            </router-link>
+            <router-link :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}">
+                <p class="privacyStatus" v-if="ownedByMe">{{ collection.isPrivate ? "private" : "public" }}</p>
+            </router-link>
         </div>
     </div>
 </template>
 
 <script>
-
 export default {
     name: 'CollectionGrid',
     props: [
-        'collections'
+        'collections',
+        'ownedByMe'
     ],
     
 }
@@ -46,6 +49,13 @@ export default {
 }
 p {
     margin: 5px;
+}
+.privacyStatus {
+    z-index: 3;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 .title-holder {
     background-color: rgb(0, 0, 0);

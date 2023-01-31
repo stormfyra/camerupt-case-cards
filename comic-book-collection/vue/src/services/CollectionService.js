@@ -12,5 +12,9 @@ export default {
 
     getAllCollections() {
         return http.get(`/collections`)
+    },
+
+    toggleCollectionPrivacyStatus(collectionId, collection) {
+        return http.put(`/collections/${collectionId}/privacy`, collection);
     }
 }
