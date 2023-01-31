@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar container">
-    <a href="/" class="nav-logo">Pokemon Card Collection</a>
+    <a href="/" class="nav-logo">cameruptCaseCards</a>
 
     <div class="nav-menu">
       <ul class="nav-list">
@@ -25,7 +25,7 @@
   };
 </script>
 
-<style>
+<style scoped>
   nav {
     display: flex;
     justify-content: space-between;

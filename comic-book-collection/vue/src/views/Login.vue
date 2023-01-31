@@ -1,4 +1,5 @@
 <template>
+  <div id="loginPage">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
@@ -32,8 +33,12 @@
         required
       />
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <button type="submit">Login</button>
     </form>
+  </div>
+  <div id="pokePic">
+    <img src="camerupt-removebg-preview.png" alt="pokemon picture here">
+  </div>
   </div>
 </template>
 
@@ -75,26 +80,70 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+  #loginPage{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "form pic";
+
+    position: fixed;
+    top: 15%;
+  }
 
   .text-center{
-    position: absolute;
     border-radius: 12px;
     box-shadow: 0px 20px 20px rgb(0 0 0 / 20%);
     
-    padding: 20px;
     width: 505px;
-    height: 600px;
-    left: 111px;
-    top: 200px;
+    height: 700px;
+
+    display: grid;
+    grid-area: form;
+    justify-self: center;
+
+
+
   }
 
   .form-register, .form-signin{
     display: flex;
     gap: 20px;
     flex-direction: column;
+    padding: 40px;
   }
 
+  #pokePic{
+    display: grid;
+    grid-area: pic;
+    align-items: center;
+    justify-self: center;
+    width: 120%;
+
+  }
+
+  button{
+    background-color: #E45052;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    height: 50px;
+    color: aliceblue;
+    
+  }
+
+  input{
+    border-radius: 8px;
+    height: 50px;
+  }
+
+  a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+
+  
 
 
 </style>
