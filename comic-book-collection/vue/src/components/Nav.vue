@@ -1,14 +1,21 @@
 <template>
   <nav class="navbar container">
-    <button id="home">
-    <router-link to="/" class="navbar-item">Home</router-link>
-    </button>&nbsp;
-    <button id="login" class="sign-up">
-    <router-link to="/login" class="navbar-item">Login</router-link>
-    </button>&nbsp;
-    <button id="register" class="sign-up">
-    <router-link to="/register" class="navbar-item">Register</router-link>
-    </button>
+    <a href="/" class="nav-logo">Pokemon Card Collection</a>
+
+    <div class="nav-menu">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <router-link to="/" class="navbar-item">Home</router-link>&nbsp;
+        </li>
+        <li class="nav-item">
+          <router-link to="/login" class="navbar-item">Login</router-link>&nbsp;
+        </li>
+        <li class="nav-item">
+          <router-link to="/register" class="navbar-item">Register</router-link>
+        </li>
+      </ul>
+    </div>
+
   </nav>
 </template>
 
@@ -23,17 +30,38 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
     border-bottom: solid #E45052;
-    padding-left: 30px;
-    padding-right: 30px;
-  
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 111px;
+    padding-right: 111px;
+    font-family: "Flexo-Regular",arial,sans-serif;
+    color: #E45052;
   }
 
-  .sign-up{
-    display: inline-block;
-    padding: 10px 15px;
+  a{
     text-decoration: none;
-    color: white;
+    color: #E45052;
   }
+
+  ul{
+    list-style: none;
+  }
+
+  .nav-logo{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: black;
+  }
+
+  .nav-list{
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid-template-areas: "home login register";
+    column-gap: 1rem;
+
+  }
+
+
+  
 </style>

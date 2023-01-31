@@ -84,9 +84,9 @@ export default {
     
     padding: 20px;
     width: 505px;
-    height: 701px;
+    height: 600px;
     left: 111px;
-    top: 114px;
+    top: 200px;
   }
 
   .form-register, .form-signin{
