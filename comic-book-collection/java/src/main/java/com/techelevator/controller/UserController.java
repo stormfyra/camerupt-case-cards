@@ -11,6 +11,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 public class UserController {
     private final UserDao userDao;
 
