@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
@@ -8,6 +8,7 @@ import store from '../store/index'
 import CollectionDetails from '../views/CollectionDetails.vue'
 import ViewCollections from "../views/ViewCollections.vue"
 import ProfileGrid from '../components/Edit Profile/ProfileGrid.vue'
+import ProfileView from "../views/ProfileView.vue"
 
 Vue.use(Router)
 
@@ -27,7 +28,7 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: Login,
       meta: {
         requiresAuth: false
       }
@@ -73,11 +74,18 @@ const router = new Router({
       }
     },
     {
+<<<<<<< HEAD
       path: "/edit-profile",
       name: "editProfile",
       component: ProfileGrid,
       meta: {
         /* should be true, but for dev leave it false */
+=======
+      path: "/profile",
+      name: "profile",
+      component: ProfileView,
+      meta: {
+>>>>>>> main
         requiresAuth: false
       }
     }
