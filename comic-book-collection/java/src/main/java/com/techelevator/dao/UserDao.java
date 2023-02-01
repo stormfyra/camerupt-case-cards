@@ -16,5 +16,5 @@ public interface UserDao {
 
     boolean create(String username, String password, String role);
 
-    void updateUserProfile(String email, String fullName, String shippingAddress, String bio, int userId);
+    void updateUserProfile(String email, String fullName, String shippingAddress, String bio, int userId, String profilePokemon);
 }

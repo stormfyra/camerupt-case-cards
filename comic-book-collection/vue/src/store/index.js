@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import userService from '../services/UserService'
 
 Vue.use(Vuex)
 
@@ -37,6 +38,10 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    UPDATE_PROFILE_POKEMON(state, pokemon){
+      state.user.profilePokemon = pokemon;
+      userService.updateUserBio(state.user);
     }
   }
 })

@@ -89,7 +89,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void updateUserProfile(String email, String fullName, String shippingAddress, String bio, int userId) {
+    public void updateUserProfile(String email, String fullName, String shippingAddress, String bio, int userId, String pokemonName) {
         if (email.length() == 0) {
             email = null;
         }
@@ -107,8 +107,9 @@ public class JdbcUserDao implements UserDao {
                 "\tfull_name = ?,\n" +
                 "\tshipping_address = ?,\n" +
                 "\tbio = ?\n" +
+                "\tprofile_pokemon = (SELECT image_id from profile_pokemons WHERE pokemon = ?)\n" +
                 "WHERE user_id = ?;";
-        jdbcTemplate.update(sqlQuery, email, fullName, shippingAddress, bio, userId);
+        jdbcTemplate.update(sqlQuery, email, fullName, shippingAddress, bio, userId, pokemonName);
     }
 
     private User mapRowToUser(SqlRowSet rs) {
