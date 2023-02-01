@@ -15,6 +15,7 @@ public class ProfileDto {
     private String fullName;
     private String shippingAddress;
     private String bio;
+    private String profilePokemon;
 
     public Long getId() {
         return id;
@@ -70,5 +71,13 @@ public class ProfileDto {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getProfilePokemon() {
+        return profilePokemon;
+    }
+
+    public void setProfilePokemon(String profilePokemon) {
+        this.profilePokemon = profilePokemon;
     }
 }

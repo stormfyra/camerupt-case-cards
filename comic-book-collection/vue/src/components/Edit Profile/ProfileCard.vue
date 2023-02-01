@@ -15,7 +15,7 @@
                     
                 </div>
             </div>
-            <profile-image :pokemon="pokemon"></profile-image>
+            <profile-image class="profile-image" :pokemon="pokemon"></profile-image>
             <h1>Bio</h1>
             <em><p class="bio"> {{user.bio}}</p></em>
             <h3>{{user.fullName}}</h3>
@@ -45,25 +45,14 @@ export default {
                 bio:'',
                 email: '',
                 fullName: '',
-                shippingAddress: ''
+                shippingAddress: '',
+                profilePokemon: ''
             },
-            pokemonImages: {
-                'Camerupt': '/img/camerupt.ea9cad37.png',
-                'Bulbasaur': '/img/bulbasaur.f0b06b8f.png',
-                'Squirtle': '/img/squirtle.6a3d8153.png',
-                'Charmander': '/img/charmander.603508ed.png',
-                'Pikachu': '/img/pikachu.2f64e2bf.png',
-                'Chikorita': '/img/chikorita.93ba3edf.png',
-                'Totodile': '/img/totodile.4c7b2c45.png',
-                'Cyndaquil': '/img/cyndaquil.647a8e91.png',
-                'Treecko': '/img/treecko.8890fffb.png',
-                'Mudkip': '/img/mudkip.926b74e1.png',
-                'Torchic': '/img/torchic.e9c21fc4.png'
-            }
         }
     },
     created() {
         this.user = this.$store.state.user;
+        console.log(this.user);
     }
 }
 
@@ -84,10 +73,7 @@ export default {
 
 }
 .profile-image {
-    flex-grow: 4;
-    height: 240px;
-    width: 90%;
-    margin-left: 5%;
+    align-self: center;
     border-radius: 10px;
     border: solid #D9D9D9 10px;
 }
@@ -122,6 +108,7 @@ h1 {
     align-self:unset !important;
     margin-bottom: auto;
 }
+
 
 .flexy {
     display: flex;
