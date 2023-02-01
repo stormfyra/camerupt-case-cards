@@ -31,18 +31,18 @@ export default{
 }
 
 body {
-    background-color: #F7F8F7;
-    margin: 0 10%;
+  background-color: #F7F8F7;
+  margin: 0 10%;
 }
 
 form {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    padding: 40px;
-  }
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding: 40px;
+}
 
-  .text-center{
+.text-center{
   background-color: #FFFFFF;
   border-radius: 12px;
   box-shadow: 0px 20px 20px rgb(0 0 0 / 20%);
@@ -51,7 +51,6 @@ form {
   height: 580px;
 
   display: grid;
-  grid-area: form;
   justify-self: center;
 
 }
@@ -64,25 +63,42 @@ a {
   color: #E45052;
 }
 
-button {
+input{
+  border-radius: 8px;
+  height: 50px;
+}
 
+button{
+  background-color: #E45052;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  height: 50px;
+  color: aliceblue;
+  
+}
+
+#cancel-button {
+    background-color: #ffffff;
+    border: solid 2px #E45052;
+    color: #E45052;
 }
 
 .cardImage {
-    width: 200px;
-    height: 280px;
-    border: 2px solid black;
-    border-radius: 10px;
-    margin: 10px;
+  width: 200px;
+  height: 280px;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 10px;
 }
 #card-container {
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    background-color: #87CEEE;
-    height: auto + 40px;
-    padding: 10px 0px;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: #87CEEE;
+  height: auto + 40px;
+  padding: 10px 0px;
 }
 
 </style>

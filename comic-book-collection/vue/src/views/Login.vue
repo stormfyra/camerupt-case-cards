@@ -120,21 +120,6 @@ export default {
 
   }
 
-  button{
-    background-color: #E45052;
-    border: none;
-    border-radius: 8px;
-    text-align: center;
-    height: 50px;
-    color: aliceblue;
-    
-  }
-
-  input{
-    border-radius: 8px;
-    height: 50px;
-  }
-
   a{
     text-decoration: none;
     color: black;

@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import CollectionDetails from '../views/CollectionDetails.vue'
 import ViewCollections from "../views/ViewCollections.vue"
+import ProfileGrid from '../components/Edit Profile/ProfileGrid.vue'
 
 Vue.use(Router)
 
@@ -68,6 +69,15 @@ const router = new Router({
       name: "ViewCollections",
       component: ViewCollections,
       meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/edit-profile",
+      name: "editProfile",
+      component: ProfileGrid,
+      meta: {
+        /* should be true, but for dev leave it false */
         requiresAuth: false
       }
     }
