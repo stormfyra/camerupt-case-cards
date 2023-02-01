@@ -8,13 +8,13 @@
           <router-link :to="{ name: 'ViewCollections' }" class="navbar-item">Card Collections</router-link>&nbsp;
         </li>
         <li class="nav-item">
-          <router-link to="/login" class="navbar-item">Login</router-link>&nbsp;
+          <router-link v-if="!isLoggedIn" to="/login" class="navbar-item">Login</router-link>&nbsp;
         </li>
         <li class="nav-item">
-          <router-link to="/register" class="navbar-item">Register</router-link>
+          <router-link v-if="!isLoggedIn" to="/register" class="navbar-item">Register</router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
+          <router-link v-if="isLoggedIn" :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
         </li>
       </ul>
     </div>
@@ -25,6 +25,11 @@
 <script>
   export default {
     name: 'Nav',
+    computed: {
+      isLoggedIn() {
+        return this.$store.state.user.username != null;
+      }
+    }
   };
 </script>
 
