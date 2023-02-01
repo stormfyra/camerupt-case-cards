@@ -74,18 +74,18 @@ const router = new Router({
       }
     },
     {
-<<<<<<< HEAD
       path: "/edit-profile",
       name: "editProfile",
       component: ProfileGrid,
       meta: {
         /* should be true, but for dev leave it false */
-=======
+      }
+    },
+    {
       path: "/profile",
       name: "profile",
       component: ProfileView,
       meta: {
->>>>>>> main
         requiresAuth: false
       }
     }

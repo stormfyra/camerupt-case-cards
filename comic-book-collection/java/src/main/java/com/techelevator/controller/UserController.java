@@ -36,9 +36,15 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update-profile", method = RequestMethod.PUT)
     public void updateUserProfile(Principal principal, @RequestBody User user) {
-        int userId = userDao.findIdByUsername(principal.getName());
+        String username;
+        if (principal == null) {
+            username = "";
+        } else {
+            username = principal.getName();
+        }
+        int userId = userDao.findIdByUsername(username);
         userDao.updateUserProfile(user.getEmail(), user.getFullName(), user.getShippingAddress(), user.getBio(), userId);
     }
 }
