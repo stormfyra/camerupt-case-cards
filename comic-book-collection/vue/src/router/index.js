@@ -81,8 +81,9 @@ const router = new Router({
         requiresAuth: false
       }
         /* should be true, but for dev leave it false */
+      
     },
-      {
+    {
       path: "/profile",
       name: "profile",
       component: ProfileView,

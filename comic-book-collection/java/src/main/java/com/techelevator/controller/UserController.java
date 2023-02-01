@@ -2,7 +2,9 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Authority;
+import com.techelevator.model.ProfileDto;
 import com.techelevator.model.User;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -36,9 +38,10 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT)
-    public void updateUserProfile(Principal principal, @RequestBody User user) {
-        int userId = userDao.findIdByUsername(principal.getName());
-        userDao.updateUserProfile(user.getEmail(), user.getFullName(), user.getShippingAddress(), user.getBio(), userId);
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @RequestMapping(value = "/update-profile", method = RequestMethod.PUT)
+    public void updateUserProfile(Principal principal, @RequestBody ProfileDto user) {
+        userDao.updateUserProfile(user.getEmail(), user.getFullName(), user.getShippingAddress(), user.getBio(),
+                Math.toIntExact(user.getId()));
     }
 }

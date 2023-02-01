@@ -1,5 +1,5 @@
 <template>
-    <div id="collection-container">
+    <div id="collection-container" class="text-center">
         <div v-for="collection in collections" :key="collection.index"  class="collectionImage">
             <router-link class="title-holder" :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}"> 
                     <p class="title">{{collection.title}}</p>
@@ -27,6 +27,20 @@ export default {
 </script>
 
 <style scoped>
+#collection-container {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: #879fee;
+    height: auto + 40px;
+    padding: 10px 12px;
+}
+
+.text-center {
+    height: 330px;
+}
+
 .collectionImage {
     width: 200px;
     height: 280px;
@@ -36,8 +50,7 @@ export default {
     position: relative;
     z-index: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 .cardBack {
     position: absolute;
@@ -58,27 +71,18 @@ p {
     right: 0;
 }
 .title-holder {
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.75);
     color: white;
     position: absolute;
     z-index: 2;
-    width: 86%;
+    width: 100%;
     height: 25%;
     font-size: large;
     text-align: center;
-    border-radius: 10px;
-    border: solid  white;
+    padding-top: 5px;
 }
 
-#collection-container {
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    background-color: #87CEEE;
-    height: auto + 40px;
-    padding: 10px 0px;
-}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     #collection-container {

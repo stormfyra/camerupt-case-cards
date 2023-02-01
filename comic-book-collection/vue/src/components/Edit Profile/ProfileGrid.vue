@@ -9,9 +9,9 @@
 
             <form action="">
                 <label for="username">Username</label>
-                <input id="username">
+                <input v-model="user.username" id="username">
                 <label for="bio">Bio</label>
-                <input id="bio">
+                <input v-model="user.bio" id="bio">
 
                 <label for=""><h4>Featured Cards</h4></label>
                 <div class="featured-cards">
@@ -23,12 +23,12 @@
 
                 <h4>Shipping Information</h4>
                 <label for="firstName">First Name</label>
-                <input type="text">
+                <input v-model="user.fullName" type="text">
                 <label for="lastName">Last Name</label>
                 <input type="text">
 
                 <label for="streetAddress">Street Address</label>
-                <input type="text">
+                <input v-model="user.shippingAddress" type="text">
                 <label for="city">City</label>
                 <input type="text">
                 <label for="state">State</label>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="button-div">
-                <button type="submit">Save</button>
+                <button @click="updateProfile()" type="submit">Save</button>
                 <button id="cancel-button">Cancel</button>
                 </div>
 
@@ -53,6 +53,25 @@
 </template>
 
 <script>
+import userService from "../../services/UserService"
+
+export default {
+    data() {
+        return{
+            user: {}
+        }
+    },
+    created() {
+            this.user = this.$store.state.user
+    },
+    methods: {
+        updateProfile() {
+            this.$store.commit('SET_USER', this.user)
+            console.log(this.user);
+            userService.updateUserBio(this.user)
+        }
+    }
+}
 </script>
 
 <style scoped>
