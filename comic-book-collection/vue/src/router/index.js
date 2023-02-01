@@ -79,7 +79,7 @@ const router = new Router({
       component: ProfileGrid,
       meta: {
         /* should be true, but for dev leave it false */
-        requiresAuth: false
+          requiresAuth: false
       }
     },
     {
