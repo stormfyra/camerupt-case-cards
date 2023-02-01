@@ -28,7 +28,9 @@ public class JdbcUserDao implements UserDao {
 
 	@Override
 	public User getUserById(Long userId) {
-		String sql = "SELECT * FROM users WHERE user_id = ?";
+		String sql = "SELECT * FROM users\n" +
+                "JOIN profile_pokemons ON users.profile_pokemon = profile_pokemons.image_id\n" +
+                "WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 		if(results.next()) {
 			return mapRowToUser(results);
@@ -66,7 +68,7 @@ public class JdbcUserDao implements UserDao {
         boolean userCreated = false;
 
         // create user
-        String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
+        String insertUser = "insert into users (username,password_hash,role,profile_pokemon) values(?,?,?,1)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = "ROLE_" + role.toUpperCase();
 
@@ -119,6 +121,7 @@ public class JdbcUserDao implements UserDao {
         user.setFullName(rs.getString("full_name"));
         user.setShippingAddress(rs.getString("shipping_address"));
         user.setBio(rs.getString("bio"));
+        user.setProfilePokemon(rs.getString("pokemon"));
         return user;
     }
 }

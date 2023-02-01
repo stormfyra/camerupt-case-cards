@@ -19,6 +19,7 @@ public class User {
    private String fullName;
    private String shippingAddress;
    private String bio;
+   private String profilePokemon;
 
    public User() { }
 
@@ -145,5 +146,13 @@ public class User {
 
    public void setBio(String bio) {
       this.bio = bio;
+   }
+
+   public String getProfilePokemon() {
+      return profilePokemon;
+   }
+
+   public void setProfilePokemon(String profilePokemon) {
+      this.profilePokemon = profilePokemon;
    }
 }

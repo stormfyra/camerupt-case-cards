@@ -11,6 +11,10 @@ CREATE SEQUENCE seq_user_id
   NO MINVALUE
   CACHE 1;
 
+CREATE TABLE profile_pokemons (
+    image_id SERIAL PRIMARY KEY,
+    pokemon VARCHAR(20)
+);
 
 CREATE TABLE users (
 	user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
@@ -21,6 +25,8 @@ CREATE TABLE users (
     full_name varchar(40),
     shipping_address varchar(150),
     bio varchar(800),
+    profile_pokemon int,
+    CONSTRAINT FK_users_profile_pokemons FOREIGN KEY(profile_pokemon) REFERENCES profile_pokemons(image_id),
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 

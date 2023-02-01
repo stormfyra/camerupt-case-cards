@@ -15,7 +15,7 @@
                     <img src="../../../resources/fire-logo.png" alt="logo" class="logo">
                 </div>
             </div>
-            <img class="profile-image" src="../../../resources/backOfPokemonCard.jpg" alt="">
+            <img class="profile-image" :src="pokemonImages[pokemon]" alt="">
             <h1>Bio</h1>
             <em><p class="bio"> {{user.bio}}</p></em>
             <h3>{{user.fullName}}</h3>
@@ -30,6 +30,9 @@
 <script>
 
 export default {
+    props: [
+        'pokemon'
+    ],
     data(){
         return {
             user: {
@@ -39,12 +42,24 @@ export default {
                 email: '',
                 fullName: '',
                 shippingAddress: ''
+            },
+            pokemonImages: {
+                'Camerupt': '/img/camerupt.ea9cad37.png',
+                'Bulbasaur': '/img/bulbasaur.f0b06b8f.png',
+                'Squirtle': '/img/squirtle.6a3d8153.png',
+                'Charmander': '/img/charmander.603508ed.png',
+                'Pikachu': '/img/pikachu.2f64e2bf.png',
+                'Chikorita': '/img/chikorita.93ba3edf.png',
+                'Totodile': '/img/totodile.4c7b2c45.png',
+                'Cyndaquil': '/img/cyndaquil.647a8e91.png',
+                'Treecko': '/img/treecko.8890fffb.png',
+                'Mudkip': '/img/mudkip.926b74e1.png',
+                'Torchic': '/img/torchic.e9c21fc4.png'
             }
         }
     },
     created() {
         this.user = this.$store.state.user;
-
     }
 }
 
