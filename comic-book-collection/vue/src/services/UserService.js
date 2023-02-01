@@ -7,6 +7,7 @@ const http = axios.create({
 export default {
     updateUserBio(user) {
         // delete user.authorities
+        console.log(user)
         return http.put(`/users/update-profile`, user)
     }
 }
