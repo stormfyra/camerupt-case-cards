@@ -42,7 +42,8 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        String sql = "select * from users";
+        String sql = "SELECT * FROM users\n" +
+                "JOIN profile_pokemons ON users.profile_pokemon = profile_pokemons.image_id\n";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()) {

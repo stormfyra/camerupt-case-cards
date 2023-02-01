@@ -38,23 +38,10 @@ public class UserController {
         return users;
     }
 
-<<<<<<< HEAD
-    @RequestMapping(value = "/update-profile", method = RequestMethod.PUT)
-    public void updateUserProfile(Principal principal, @RequestBody User user) {
-        String username;
-        if (principal == null) {
-            username = "";
-        } else {
-            username = principal.getName();
-        }
-        int userId = userDao.findIdByUsername(username);
-        userDao.updateUserProfile(user.getEmail(), user.getFullName(), user.getShippingAddress(), user.getBio(), userId);
-=======
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @RequestMapping(value = "/update-profile", method = RequestMethod.PUT)
     public void updateUserProfile(Principal principal, @RequestBody ProfileDto user) {
         userDao.updateUserProfile(user.getEmail(), user.getFullName(), user.getShippingAddress(), user.getBio(),
                 Math.toIntExact(user.getId()));
->>>>>>> main
     }
 }

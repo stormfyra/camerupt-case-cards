@@ -12,10 +12,10 @@
                     <p class="card">cards</p>
                     <!-- hard-coded; replace with data from database -->
                     <h1 class="card-count">347</h1>
-                    <img src="../../../resources/fire-logo.png" alt="logo" class="logo">
+                    
                 </div>
             </div>
-            <img class="profile-image" :src="pokemonImages[pokemon]" alt="">
+            <profile-image :pokemon="pokemon"></profile-image>
             <h1>Bio</h1>
             <em><p class="bio"> {{user.bio}}</p></em>
             <h3>{{user.fullName}}</h3>
@@ -28,11 +28,15 @@
 </template>
 
 <script>
+import profileImage from './ProfileImage.vue'
 
 export default {
     props: [
         'pokemon'
     ],
+    components: {
+        profileImage
+    },
     data(){
         return {
             user: {
