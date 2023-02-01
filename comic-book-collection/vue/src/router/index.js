@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import CollectionDetails from '../views/CollectionDetails.vue'
 import ViewCollections from "../views/ViewCollections.vue"
+import ProfileView from "../views/ProfileView.vue"
 
 Vue.use(Router)
 
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/collections",
       name: "ViewCollections",
       component: ViewCollections,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: ProfileView,
       meta: {
         requiresAuth: false
       }

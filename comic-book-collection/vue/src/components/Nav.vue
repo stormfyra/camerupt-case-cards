@@ -7,14 +7,17 @@
         <li class="nav-item">
           <router-link :to="{ name: 'ViewCollections' }" class="navbar-item">Card Collections</router-link>&nbsp;
         </li>
-        <li class="nav-item">
-          <router-link v-if="!isLoggedIn" to="/login" class="navbar-item">Login</router-link>&nbsp;
+        <li  v-if="!isLoggedIn" class="nav-item">
+          <router-link to="/login" class="navbar-item">Login</router-link>&nbsp;
         </li>
-        <li class="nav-item">
-          <router-link v-if="!isLoggedIn" to="/register" class="navbar-item">Register</router-link>
+        <li v-if="!isLoggedIn" class="nav-item">
+          <router-link  to="/register" class="navbar-item">Register</router-link>
         </li>
-        <li class="nav-item">
-          <router-link v-if="isLoggedIn" :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
+        <li v-if="isLoggedIn" class="nav-item">
+          <router-link :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
+        </li>
+        <li v-if="isLoggedIn" class="nav-item">
+          <router-link  :to="{ name: 'profile' }" class="navbar-item">MyProfile</router-link>
         </li>
       </ul>
     </div>
@@ -66,6 +69,7 @@
     display: flex;
     gap: 1rem;
   }
+
 
 
   
