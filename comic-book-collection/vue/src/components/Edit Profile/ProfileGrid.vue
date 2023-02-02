@@ -76,6 +76,7 @@ export default {
             this.$store.commit('SET_USER', this.user)
             console.log(this.user);
             userService.updateUserBio(this.user)
+            this.$router.push({name:'profile'})
         }
     }
 }
