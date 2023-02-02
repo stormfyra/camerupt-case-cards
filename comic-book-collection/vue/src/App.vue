@@ -30,6 +30,10 @@ export default{
   font-family: 'Montserrat', sans-serif;
 }
 
+Nav {
+  margin-bottom: 30px;
+}
+
 body {
   background-color: #F7F8F7;
   margin: 0 10%;
@@ -45,7 +49,7 @@ form {
 .text-center{
   background-color: #FFFFFF;
   border-radius: 12px;
-  box-shadow: 0px 20px 20px rgb(0 0 0 / 20%);
+  box-shadow: 0px 10px 10px rgb(0 0 0 / 20%);
   
   width: 505px;
   height: 580px;
@@ -74,7 +78,10 @@ button{
   border-radius: 8px;
   text-align: center;
   height: 50px;
-  color: aliceblue;
+  color: #f7f8f7;
+
+  font-size: 12pt;
+  font-weight: 500;
   
 }
 
@@ -91,6 +98,7 @@ button{
   border-radius: 10px;
   margin: 10px;
 }
+
 #card-container {
   width: 100%;
   display: grid;

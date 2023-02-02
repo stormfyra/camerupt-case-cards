@@ -1,5 +1,10 @@
 <template>
     <div id="collection-container" class="text-center">
+        <button class="cardImage" v-on:click="showAddForm"><h1>+</h1></button>
+        <!-- remove hideAddForm onclick; it makes the form not functional -->
+        <div id="overlay" v-on:click="hideAddForm">
+            <add-collection id="overlay-form" />
+        </div>
         <div v-for="collection in collections" :key="collection.index"  class="collectionImage">
             <router-link class="title-holder" :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}"> 
                     <p class="title">{{collection.title}}</p>
@@ -16,17 +21,28 @@
 </template>
 
 <script>
+import AddCollection from './AddCollection.vue';
 export default {
+  components: { AddCollection },
     name: 'CollectionGrid',
     props: [
         'collections',
         'ownedByMe'
     ],
-    
+    methods: {
+        showAddForm() {
+              document.getElementById("overlay").style.display = "block";
+        },
+        hideAddForm() {
+            document.getElementById("overlay").style.display = "none";
+        }
+    }
+  
 }
 </script>
 
 <style scoped>
+
 #collection-container {
     width: 100%;
     display: grid;
@@ -80,6 +96,44 @@ p {
     font-size: large;
     text-align: center;
     padding-top: 5px;
+}
+
+button{
+    background-color:#bebebe;
+    border: solid 1px;
+    width: 200px;
+    height: 280px;
+    border: 3px solid rgb(109, 109, 109);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+button > h1 {
+    font-size: 50pt;
+    font-weight: 500;
+    color: rgb(109, 109, 109);
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#overlay-form{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
 }
 
 
