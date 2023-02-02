@@ -66,12 +66,17 @@ public class CollectionController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createNewCollection(Principal principal, NewCollectionDTO newCollection) {
+    public void createNewCollection(Principal principal, @RequestBody NewCollectionDTO newCollection) {
         collectionDao.createNewCollection(newCollection);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.POST)
     public void addCardToCollection(Principal principal, @PathVariable int id, Card card) {
         collectionDao.addCardToCollection(id, card);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void deleteCollection(Principal principal, @PathVariable int id) {
+        collectionDao.deleteCollection(id, principal.getName());
     }
 }

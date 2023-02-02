@@ -98,6 +98,18 @@ public class JdbcCollectionDao implements CollectionDao {
         jdbcTemplate.update(sqlQuery, card.getCardName(), id);
     }
 
+    @Override
+    public void deleteCollection(int id, String username) {
+        String queryToDeleteCardsFromCollection = "DELETE FROM collection_card\n" +
+                "WHERE collection_id IN (SELECT collection_id FROM collection WHERE user_id = (SELECT user_id FROM users WHERE username = ?))\n" +
+                "\tAND collection_id = ?;";
+        String queryToDeleteCollection = "DELETE FROM collection\n" +
+                "WHERE collection_id = ?\n" +
+                "AND user_id = (SELECT user_id FROM users WHERE username = ?);";
+        jdbcTemplate.update(queryToDeleteCardsFromCollection, username, id);
+        jdbcTemplate.update(queryToDeleteCollection, id, username);
+    }
+
     private CardCollection mapRowToCardCollection(SqlRowSet results) {
         CardCollection cardCollection = new CardCollection();
         cardCollection.setCollectionId(results.getInt("collection_id"));

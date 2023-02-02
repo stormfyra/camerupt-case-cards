@@ -12,4 +12,5 @@ public interface CollectionDao {
     boolean toggleCollectionPrivacyStatus(int id, String username, boolean privacy);
     void createNewCollection (NewCollectionDTO newCollection);
     void addCardToCollection(int id, Card card);
+    void deleteCollection(int id, String username);
 }
