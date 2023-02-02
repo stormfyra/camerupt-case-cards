@@ -20,19 +20,19 @@
                         v-model="updatedCollection.description"
                     />
                     <div class="switch-div">
-                        <p style="display: inline-block">public</p>
+                        <p class="private-text" style="display: inline-block">public</p>
                         <label class="switch">
                             <input type="checkbox" v-model="isPrivate" />
                             <span class="slider round" />
                         </label>
-                        <p style="display: inline-block">private</p>
+                        <p class="private-text" style="display: inline-block">private</p>
                     </div>
                     <div v-for="card in this.updatedCollection.cards" :key="card.card.cardId">
                         <p>{{card.card.cardName}} (ID#: {{card.card.cardId}})</p>
                         <input type="number" v-model="card.quantity" />
                     </div>
                     <button id="submit" @click.prevent="onSubmit">Submit</button>
-                    <button type="button" id="close" v-on:click="off()">Close</button>
+                    <button @click="off">Close</button>
                     <button @click="deleteThisCollection">DELETE</button>
                 </form>
             </scrolly-viewport>
@@ -74,37 +74,47 @@ export default{
             );
         this.off();
         this.$router.go()
+      },
+      deleteThisCollection() {
+          collectionService.deleteCollection(this.$route.params.collectionId)
+          this.off()
+          this.$router.push({name: 'ViewCollections'})
+                        .then(this.$router.go())
       }
   },
 };
 </script>
 
 <style scoped>
-    .hide-form {
-        display: none;
-    }
+.hide-form {
+    display: none;
+}
 
-    .form-container {
-    max-width: 100%;
-    margin: 10px;
-    background-color: white;
-    border-radius: 10px;
-    }
+.form-container {
+max-width: 100%;
+margin: 10px;
+background-color: white;
+border-radius: 10px;
+}
 
-    input{
-    width: 90%;
-    height: 20%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-    }
+input{
+width: 90%;
+height: 20%;
+padding: 15px;
+margin: 5px 0 22px 0;
+border: none;
+background: #f1f1f1;
+}
 
-    #radioButton{
-        display: flex;
-        justify-content: space-between;
-    }
-
+#radioButton{
+    display: flex;
+    justify-content: space-between;
+}
+.switch-div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
     /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -168,7 +178,15 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.private-text {
+    text-align: center;
+}
+
 #edit-collection {
     max-height: 0%;
+}
+
+button:hover{
+    cursor: pointer;
 }
 </style>
