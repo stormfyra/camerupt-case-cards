@@ -1,5 +1,5 @@
 <template>
-    <div class="add-collection">
+    <div id="add-collection">
         <div class="form-popup" id="form">
             <form class="form-container">
                 <h1>Add A New Collection</h1>
@@ -61,15 +61,17 @@ export default{
   },
   methods: {
       off() {
-          document.getElementsByClassName("add-collection").style.display = "none";
+          this.$store.commit('CHANGE_SHOW_COLLECTION_FORM')
       },
       onSubmit() {
-          this.collection.isPrivate = this.collection.privacy == 'private'
-          delete this.collection.privacy
-          collectionService.createCollection(
+        this.collection.isPrivate = this.collection.privacy == 'private'
+        delete this.collection.privacy
+        collectionService.createCollection(
               this.collection
             );
-            this.collection.privacy = this.collection.isPrivate ? 'private' : 'public'
+        this.collection.privacy = this.collection.isPrivate ? 'private' : 'public'
+        this.off();
+        this.$router.go()
       }
   },
 //   created() {
@@ -80,6 +82,11 @@ export default{
 </script>
 
 <style scoped>
+
+.hide-form {
+    display: none;
+}
+
 .form-container {
   max-width: 100%;
   margin: 10px;

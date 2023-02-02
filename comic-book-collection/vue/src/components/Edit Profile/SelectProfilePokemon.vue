@@ -5,7 +5,6 @@
 </template>
 
 <script>
-    import userService from '../../services/UserService';
 
     export default {
         data() {
@@ -30,7 +29,6 @@
         methods: {
             updateProfilePokemon() {
                 this.$store.commit('UPDATE_PROFILE_POKEMON', this.selectedPokemon);
-                userService.updateProfilePokemon(this.selectedPokemon);
             }
         }
     }

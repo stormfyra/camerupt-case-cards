@@ -70,7 +70,8 @@ const router = new Router({
       name: "ViewCollections",
       component: ViewCollections,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
+        reload: true
       }
     },
     {

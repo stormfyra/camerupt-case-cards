@@ -1,9 +1,8 @@
 <template>
     <div id="collection-container" class="text-center">
         <button class="empty-card" v-on:click="showAddForm"><h1>+</h1></button>
-        <!-- remove hideAddForm onclick; it makes the form not functional -->
-        <div id="overlay" v-on:click="hideAddForm">
-            <add-collection id="overlay-form" />
+        <div id="overlay" v-if="$store.state.showAddCollectionForm">
+            <add-collection id="overlay-form"/>
         </div>
         <div v-for="collection in collections" :key="collection.index"  class="collectionImage">
             <router-link class="title-holder" :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}"> 
@@ -31,7 +30,7 @@ export default {
     ],
     methods: {
         showAddForm() {
-              document.getElementById("overlay").style.display = "block";
+              this.$store.commit('CHANGE_SHOW_COLLECTION_FORM');
         },
         // hideAddForm() {
         //     document.getElementById("overlay").style.display = "none";
@@ -106,7 +105,6 @@ button > h1 {
 
 #overlay {
   position: fixed;
-  display: none;
   width: 100%;
   height: 100%;
   top: 0;
@@ -114,7 +112,7 @@ button > h1 {
   right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
-  z-index: 2;
+  z-index: 5;
   cursor: pointer;
 }
 

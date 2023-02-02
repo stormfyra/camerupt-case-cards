@@ -20,5 +20,8 @@ export default {
 
     createCollection(collection) {
         return http.post('/collections', collection)
+    },
+    deleteCollection(collectionId) {
+        return http.delete(`/collections/${collectionId}`)
     }
 }
