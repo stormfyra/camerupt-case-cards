@@ -1,11 +1,13 @@
 package com.techelevator.model;
 
 public class Card {
+    private int cardId;
     private String cardName;
     private String largeImage;
     private String smallImage;
 
-    public Card(String cardName, String largeImage, String smallImage) {
+    public Card(int cardId, String cardName, String largeImage, String smallImage) {
+        this.cardId = cardId;
         this.cardName = cardName;
         this.largeImage = largeImage;
         this.smallImage = smallImage;
@@ -36,5 +38,13 @@ public class Card {
 
     public void setSmallImage(String smallImage) {
         this.smallImage = smallImage;
+    }
+
+    public int getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
     }
 }

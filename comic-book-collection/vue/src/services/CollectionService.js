@@ -14,13 +14,14 @@ export default {
         return http.get(`/collections`)
     },
 
-    toggleCollectionPrivacyStatus(collectionId, collection) {
-        return http.put(`/collections/${collectionId}/privacy`, collection);
+    updateCollection(collectionId, collection) {
+        return http.put(`/collections/${collectionId}`, collection);
     },
 
     createCollection(collection) {
         return http.post('/collections', collection)
     },
+
     deleteCollection(collectionId) {
         return http.delete(`/collections/${collectionId}`)
     }

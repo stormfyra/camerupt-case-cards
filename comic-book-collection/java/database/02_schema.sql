@@ -49,8 +49,10 @@ CREATE TABLE collection (
 CREATE TABLE collection_card (
     collection_id int ,
     card_id int,
+    quantity int DEFAULT 1,
     CONSTRAINT FK_collection_card_collection FOREIGN KEY(collection_id) REFERENCES collection(collection_id),
-    CONSTRAINT FK_collection_card_card FOREIGN KEY(card_id) REFERENCES card(card_id)
+    CONSTRAINT FK_collection_card_card FOREIGN KEY(card_id) REFERENCES card(card_id),
+    PRIMARY KEY (collection_id, card_id)
 );
 
 -- Add seed data in the 03_data.sql script file

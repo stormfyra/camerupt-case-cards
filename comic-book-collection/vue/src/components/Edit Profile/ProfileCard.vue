@@ -17,7 +17,7 @@
             </div>
             <profile-image class="profile-image" :pokemon="pokemon"></profile-image>
             <div id="nickname">
-                <p>Nickname: smitty | Prounouns:they/them</p>
+                <p>Prounouns:they/them</p>
             </div>
             <h1>Bio</h1>
             <em><p class="bio"> {{user.bio}}</p></em>

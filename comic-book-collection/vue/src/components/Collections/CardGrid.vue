@@ -1,6 +1,9 @@
 <template>
     <div id="card-container">
-        <img v-for="(card, index) in cards" :key="index" :src="card.smallImage" :alt="card.cardName" class="cardImage" />
+        <div v-for="(cardDTO, index) in cards" :key="index">
+            <img :src="cardDTO.card.smallImage" :alt="cardDTO.card.cardName" class="cardImage" />
+            <p id="cardQuantity"><strong>x{{cardDTO.quantity}}</strong></p>
+        </div>
     </div>
 </template>
 
@@ -22,6 +25,7 @@ export default {
     border-radius: 10px;
     margin: 10px;
 }
+
 #card-container {
     width: 100%;
     display: grid;
@@ -31,6 +35,16 @@ export default {
     height: auto + 40px;
     padding: 10px 0px;
 }
+
+#cardQuantity {
+    margin: 10px;
+    margin-top: -10px;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 30%;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     #card-container {
