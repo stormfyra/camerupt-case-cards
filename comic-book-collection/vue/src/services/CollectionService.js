@@ -16,5 +16,9 @@ export default {
 
     toggleCollectionPrivacyStatus(collectionId, collection) {
         return http.put(`/collections/${collectionId}/privacy`, collection);
+    },
+
+    createCollection(collection) {
+        return http.post('/collections', collection)
     }
 }

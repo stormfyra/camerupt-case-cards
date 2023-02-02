@@ -9,7 +9,14 @@
                     type="text"
                     id="title"
                     placeholder="Title"
-                    
+                    v-model="collection.title"
+                />
+                <label for="description">Description</label>
+                <input 
+                    type="text"
+                    id="description"
+                    placeholder="Description"
+                    v-model="collection.description"
                 />
                 <div id="radioButton">
                     <label for="private">Private</label>
@@ -17,15 +24,20 @@
                         type="radio"
                         id="privacy"
                         name="privacy"
+                        v-model="collection.privacy"
+                        value="private"
+                        checked
                     />
                     <label for="private">Public</label>
                     <input
                         type="radio"
                         id="privacy"
                         name="privacy"
+                        v-model="collection.privacy"
+                        value="public"
                     />
                 </div>
-                <button id="submit">Submit</button>
+                <button id="submit" @click.prevent="onSubmit">Submit</button>
                 <button type="button" id="close" v-on:click="off()">Close</button>
             </form>
         </div>
@@ -33,14 +45,37 @@
 </template>
 
 <script>
+import collectionService from '../../services/CollectionService.js'
 
 export default{
   name: 'add-collection',
+  data() {
+      return {
+          collection: {
+            title: '',
+            description: '',
+            privacy: 'private',
+            userId: this.$store.state.user.id
+          }
+      }
+  },
   methods: {
       off() {
           document.getElementsByClassName("add-collection").style.display = "none";
+      },
+      onSubmit() {
+          this.collection.isPrivate = this.collection.privacy == 'private'
+          delete this.collection.privacy
+          collectionService.createCollection(
+              this.collection
+            );
+            this.collection.privacy = this.collection.isPrivate ? 'private' : 'public'
       }
-  }
+  },
+//   created() {
+//       this.userId = this.$store.state.user.userId;
+//       console.log(this.$store.state.user)
+//   }
 };
 </script>
 

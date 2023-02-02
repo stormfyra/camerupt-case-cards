@@ -1,8 +1,7 @@
 <template>
     <div id="collection-container" class="text-center">
         <button class="cardImage" v-on:click="showAddForm"><h1>+</h1></button>
-        <!-- remove hideAddForm onclick; it makes the form not functional -->
-        <div id="overlay" v-on:click="hideAddForm">
+        <div id="overlay">
             <add-collection id="overlay-form" />
         </div>
         <div v-for="collection in collections" :key="collection.index"  class="collectionImage">
@@ -14,7 +13,7 @@
                 <img src="../../../resources/backOfPokemonCard.jpg" alt="" class="cardBack">
             </router-link>
             <router-link :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}">
-                <p class="privacyStatus" v-if="ownedByMe">{{ collection.isPrivate ? "private" : "public" }}</p>
+                <p class="privacyStatus" v-if="ownedByMe">{{ collection.private ? "private" : "public" }}</p>
             </router-link>
         </div>
     </div>
@@ -33,9 +32,9 @@ export default {
         showAddForm() {
               document.getElementById("overlay").style.display = "block";
         },
-        hideAddForm() {
-            document.getElementById("overlay").style.display = "none";
-        }
+        // hideAddForm() {
+        //     document.getElementById("overlay").style.display = "none";
+        // }
     }
   
 }
@@ -49,7 +48,7 @@ export default {
     justify-items: center;
     align-items: center;
     background-color: #879fee;
-    height: auto + 40px;
+    height: 100%;
     padding: 10px 12px;
 }
 
@@ -146,25 +145,25 @@ button > h1 {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     #collection-container {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     #collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     #collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     #collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 }
 </style>

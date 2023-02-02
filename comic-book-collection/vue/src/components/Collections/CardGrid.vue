@@ -1,7 +1,6 @@
 <template>
     <div id="card-container">
         <img v-for="(card, index) in cards" :key="index" :src="card.smallImage" :alt="card.cardName" class="cardImage" />
-        <!-- <img v-for="n in fillGrid" :key="n" src="../../../resources/backOfPokemonCard.jpg" alt="back of Pokemon card" class="cardImage" /> -->
     </div>
 </template>
 
@@ -11,30 +10,7 @@ export default {
     name: 'CardGrid',
     props: [
         "cards"
-    ],
-    computed: {
-        // fillGrid() {
-        //     let numCols = 8;
-        //     const mediaQueries = [
-        //         window.matchMedia('(min-width: 1200px)'),
-        //         window.matchMedia('(min-width: 992px)'),
-        //         window.matchMedia('(min-width: 768px)'),
-        //         window.matchMedia('(min-width: 600px)'),
-        //         window.matchMedia('(max-width: 600px)')
-        //     ];
-        //     for (let i = 0; i < mediaQueries.length; i++) {
-        //         if (mediaQueries[i].matches) {
-        //             if (i == 0) {
-        //                 break;
-        //             } else {
-        //                 numCols = 6 - i;
-        //                 break;
-        //             }
-        //         }
-        //     }
-        //     return numCols % this.cards.length;
-        // }
-    }
+    ]
 }
 </script>
 
