@@ -71,7 +71,7 @@ public class CollectionController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.POST)
-    public void addCardToColleciton(Principal principal, @PathVariable int id, Card card) {
-        collectionDao.addCardToColection(id, card);
+    public void addCardToCollection(Principal principal, @PathVariable int id, Card card) {
+        collectionDao.addCardToCollection(id, card);
     }
 }
