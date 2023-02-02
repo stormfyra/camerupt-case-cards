@@ -2,7 +2,9 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.CollectionDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.model.Card;
 import com.techelevator.model.CardCollection;
+import com.techelevator.model.NewCollectionDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,5 +63,15 @@ public class CollectionController {
         } else {
             return new ResponseEntity<String>("Unsuccessful.", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void createNewCollection(Principal principal, NewCollectionDTO newCollection) {
+        collectionDao.createNewCollection(newCollection);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
+    public void addCardToColleciton(Principal principal, @PathVariable int id, Card card) {
+        collectionDao.addCardToColection(id, card);
     }
 }

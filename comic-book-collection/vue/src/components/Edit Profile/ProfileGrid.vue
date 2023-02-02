@@ -2,10 +2,11 @@
     <div id = "profile-page">
         <div id = "edit-profile" class="text-center">
             <div class="profile-pic">
-            <h1>Edit Profile</h1><img src="profile-pic.png" id="profile-pic">
+            <h1>Edit Profile</h1><profile-image :small="false" :pokemon="$store.state.user.profilePokemon" id="profile-pic" />
             </div>
 
             <h4>Profile Information</h4>
+            <select-profile-pokemon />
 
             <form action="">
                 <label for="username">Username</label>
@@ -54,8 +55,14 @@
 
 <script>
 import userService from "../../services/UserService"
+import ProfileImage from './ProfileImage.vue'
+import SelectProfilePokemon from './SelectProfilePokemon.vue'
 
 export default {
+    components: {
+        SelectProfilePokemon,
+        ProfileImage
+    },
     data() {
         return{
             user: {}
