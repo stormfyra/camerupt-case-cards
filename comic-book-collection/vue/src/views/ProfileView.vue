@@ -1,23 +1,15 @@
 <template>
     <div>
-        <profile-card :pokemon="selectedPokemon"></profile-card>
+        <profile-page-background></profile-page-background>
     </div>
 </template>
 
 <script>
-import profileCard from "../components/Edit Profile/ProfileCard.vue"
+import ProfilePageBackground from '../components/Edit Profile/ProfilePageBackground.vue';
 
 export default {
     components: {
-        profileCard
-    },
-    data() {
-        return {
-            selectedPokemon: 'Camerupt',
-        }
-    },
-    created() {
-        this.selectedPokemon = this.$store.state.user.profilePokemon;
+        ProfilePageBackground
     }
 }
 

@@ -85,6 +85,16 @@ button{
   
 }
 
+.empty-card {
+    background-color:#bebebe;
+    border: solid 1px;
+    width: 200px;
+    height: 280px;
+    border: 3px solid rgb(109, 109, 109);
+    border-radius: 10px;
+    margin: 10px;
+}
+
 #cancel-button {
     background-color: #ffffff;
     border: solid 2px #E45052;

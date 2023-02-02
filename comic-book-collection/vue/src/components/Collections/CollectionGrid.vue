@@ -1,6 +1,6 @@
 <template>
     <div id="collection-container" class="text-center">
-        <button class="cardImage" v-on:click="showAddForm"><h1>+</h1></button>
+        <button class="empty-card" v-on:click="showAddForm"><h1>+</h1></button>
         <!-- remove hideAddForm onclick; it makes the form not functional -->
         <div id="overlay" v-on:click="hideAddForm">
             <add-collection id="overlay-form" />
@@ -96,16 +96,6 @@ p {
     font-size: large;
     text-align: center;
     padding-top: 5px;
-}
-
-button{
-    background-color:#bebebe;
-    border: solid 1px;
-    width: 200px;
-    height: 280px;
-    border: 3px solid rgb(109, 109, 109);
-    border-radius: 10px;
-    margin: 10px;
 }
 
 button > h1 {

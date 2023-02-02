@@ -16,10 +16,10 @@
 
                 <label for=""><h4>Featured Cards</h4></label>
                 <div class="featured-cards">
-                    <img src="../../../resources/backOfPokemonCard.jpg" alt="">
-                    <img src="../../../resources/backOfPokemonCard.jpg" alt="">
-                    <img src="../../../resources/backOfPokemonCard.jpg" alt="">
-                    <img src="../../../resources/backOfPokemonCard.jpg" alt="">
+                    <img src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
+                    <img src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
+                    <img src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
+                    <img src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
                 </div>
 
                 <h4>Shipping Information</h4>
