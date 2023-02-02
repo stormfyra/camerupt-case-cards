@@ -1,12 +1,13 @@
 <template>
-    <img :src="source" alt="">
+    <img :class="{ 'small' : small }" :src="source" alt="">
 </template>
 
 <script>
 
 export default {
     props: [
-        'pokemon'
+        'pokemon',
+        'small'
     ],
     data() {
         return{
@@ -28,6 +29,15 @@ img {
     width: 66%;
     min-height: 389.59px;
     min-width: 389.59px;
+}
+
+.small {
+    height: 25px;
+    width: 25px;
+    min-height: 25px;
+    min-width: 25px;
+    border-radius: 50%;
+    border: 1px solid black;
 }
 
 </style>

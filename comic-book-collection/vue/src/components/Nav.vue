@@ -16,9 +16,14 @@
         <li v-if="isLoggedIn" class="nav-item">
           <router-link :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
         </li>
-        <li v-if="isLoggedIn" class="nav-item">
-          <router-link  :to="{ name: 'profile' }" class="navbar-item">MyProfile</router-link>
-        </li>
+        <router-link  :to="{ name: 'profile' }" class="navbar-item" id="profile-link">
+          <li v-if="isLoggedIn" class="nav-item">
+            MyProfile
+          </li>
+          <li>
+            <profile-image :small="true" :pokemon="$store.state.user.profilePokemon"></profile-image>
+          </li>
+        </router-link>
       </ul>
     </div>
 
@@ -26,10 +31,14 @@
 </template>
 
 <script>
+import ProfileImage from './Edit Profile/ProfileImage.vue';
   export default {
     name: 'Nav',
+    components: {
+      ProfileImage
+    },
     computed: {
-      isLoggedIn() {
+        isLoggedIn() {
         return this.$store.state.user.username != null;
       }
     }
@@ -70,7 +79,9 @@
     gap: 1rem;
   }
 
-
-
+  #profile-link {
+    display: flex;
+    gap: 1rem;
+  }
   
 </style>
