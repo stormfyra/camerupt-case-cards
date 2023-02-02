@@ -4,13 +4,16 @@
         <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
         <p class="collectionDescription"><em>{{description}}</em></p>
         <!-- Rounded switch -->
-        <div class="switch-div" v-if="ownedByMe">
-            <p style="display: inline-block">public</p>
-            <label class="switch">
-                <input type="checkbox" v-model="isPrivate" v-on:change="togglePrivacy">
-                <span class="slider round"></span>
-            </label>
-            <p style="display: inline-block">private</p>
+        <div class="button-container">
+          <div class="switch-div" v-if="ownedByMe">
+              <p style="display: inline-block">public</p>
+              <label class="switch">
+                  <input type="checkbox" v-model="isPrivate" v-on:change="togglePrivacy">
+                  <span class="slider round"></span>
+              </label>
+              <p style="display: inline-block">private</p>
+          </div>
+          <button  v-if="ownedByMe" @click="deleteThisCollection">DELETE</button>
         </div>
         <card-grid :cards='cards'/>
     </div>
@@ -60,6 +63,13 @@ export default {
                 cards: []
             }
             collectionWebService.toggleCollectionPrivacyStatus(this.$route.params.collectionId, collection);
+        },
+        deleteThisCollection() {
+            collectionWebService.deleteCollection(this.$route.params.collectionId);
+            this.$router.push({name: 'ViewCollections'})
+                        .then(() => { this.$router.go() })
+
+
         }
     }
 }
@@ -67,6 +77,11 @@ export default {
 </script>
 
 <style scoped>
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 card-grid {
     display: flex;
     justify-content: center;

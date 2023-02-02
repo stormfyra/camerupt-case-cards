@@ -11,5 +11,10 @@ axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  watch:{
+    '$route' (to) {
+       if(to.currentRoute.meta.reload==true){window.location.reload()}
+    }
+  }
 }).$mount('#app')

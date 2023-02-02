@@ -20,7 +20,8 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    showAddCollectionForm: false,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     UPDATE_PROFILE_POKEMON(state, pokemon){
       state.user.profilePokemon = pokemon;
       userService.updateUserBio(state.user);
+    },
+    CHANGE_SHOW_COLLECTION_FORM(state){
+      state.showAddCollectionForm = !state.showAddCollectionForm;
     }
   }
 })
