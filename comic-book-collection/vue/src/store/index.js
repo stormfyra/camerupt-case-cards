@@ -22,6 +22,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     showAddCollectionForm: false,
+    showEditCollectionForm: false,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     },
     CHANGE_SHOW_COLLECTION_FORM(state){
       state.showAddCollectionForm = !state.showAddCollectionForm;
+    },
+    CHANGE_SHOW_EDIT_COLLECTION_FORM(state){
+      state.showEditCollectionForm = !state.showEditCollectionForm;
     }
   }
 })
