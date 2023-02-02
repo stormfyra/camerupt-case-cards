@@ -33,8 +33,9 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "card features";
-    width: 95%;
+    width: 100%;
     height: 95%;
+    gap: 100px;
 }
 
 .card {

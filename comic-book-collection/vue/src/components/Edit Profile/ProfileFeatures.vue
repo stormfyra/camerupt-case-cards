@@ -45,4 +45,11 @@ export default {
     width: 100px;
     height: 140px;
 }
+
+.buttons-holder{
+    display: flex;
+    gap: 10px;
+    padding-top: 50px;
+    justify-content: center;
+}
 </style>

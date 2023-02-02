@@ -16,6 +16,9 @@
                 </div>
             </div>
             <profile-image class="profile-image" :pokemon="pokemon"></profile-image>
+            <div id="nickname">
+                <p>Nickname: smitty | Prounouns:they/them</p>
+            </div>
             <h1>Bio</h1>
             <em><p class="bio"> {{user.bio}}</p></em>
             <h3>{{user.fullName}}</h3>
@@ -59,22 +62,38 @@ export default {
 </script>
 
 <style scoped>
+#nickname{
+    display: flex;
+    justify-content: center;
+    background-color: #d9d9d9;
+    border-radius: 0px 0px 10px 10px;
+    width: 91%;
+    min-width: 409px;
+    margin: auto;
+}
+
+.profile{
+    border-right: solid white;
+    box-shadow: 10px 0px 10px -2px #dedede;
+  
+}
 
 .profile-card {
     display: flex;
     flex-direction: column;
     border: solid #f5e55a 23px;
     border-radius: 20px;
-    width: 560px;
+    width: 450px;
     background-color: #FF494C;
     margin: auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     padding: 2% 5% 5% 5%;
 
 }
 .profile-image {
     align-self: center;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
     border: solid #D9D9D9 10px;
 }
 .bio {
@@ -99,7 +118,6 @@ h1 {
 .user-header {
     display: flex;
     justify-content: space-between;
-
 }
 
 /* fix meeee; go to bottom */
@@ -121,6 +139,16 @@ h1 {
 }
 .flexy > h1 {
     margin: 0 !important;
+}
+.account-type{
+    background-color: #d9d9d9;
+    border: 1px solid #444c5c;
+    border-radius: 30px;
+    padding: 8px;
+    font-size: 10pt;
+    font-style: italic;
+    font-weight: 600;
+    color: #444c5c;
 }
 
 
