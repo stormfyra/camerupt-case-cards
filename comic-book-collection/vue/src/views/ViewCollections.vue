@@ -1,39 +1,16 @@
 <template>
     <div>
         <div v-if="username != '' && personalCollections.length > 0">
+            <div class="call-to-action text-center">
+                <h1>Want to add your own collection?</h1>
+                <button><router-link to="/register">Create an account now!</router-link></button>
+            </div>
             <h1>Your Collections</h1>
             <collection-grid :collections="personalCollections" :ownedByMe="true"></collection-grid>
         </div>
         <h1>Public Collections</h1>
         <collection-grid :collections="publicCollections" :ownedByMe="false"></collection-grid>
-        <h1>Add A New Collection</h1>
-        <div class="form-popup" id="form">
-            <form class="form-container">
-                <label for="title">Title</label>
-                <input 
-                    type="text"
-                    id="title"
-                    placeholder="Title"
-                    required
-                />
-                <div id="radioButton">
-                    <label for="private">Private</label>
-                    <input
-                        type="radio"
-                        id="privacy"
-                        name="privacy"
-                    />
-                    <label for="private">Public</label>
-                    <input
-                        type="radio"
-                        id="privacy"
-                        name="privacy"
-                    />
-                </div>
-                <button id="submit">Submit</button>
-                <button id="close" onClick="off()">Close</button>
-            </form>
-        </div>
+        
     </div>
 </template>
 
@@ -81,6 +58,32 @@ export default {
   max-width: 300px;
   padding: 10px;
   background-color: white;
+}
+
+.call-to-action {
+    display: grid;
+    justify-content: left;
+
+    border: solid 5px #E45052;
+    background-color: #f7f8f7;
+    color: #E45052;
+
+    width: 100%;
+    height: auto;
+    height: auto + 40px;
+    padding: 10px 12px;
+
+    padding-left: 20px;
+    padding-bottom: 30px;
+}
+
+button {
+    width: 50%;
+}
+
+button > a {
+    color: #f7f8f7; 
+    font-weight: 500;
 }
 
 input{
