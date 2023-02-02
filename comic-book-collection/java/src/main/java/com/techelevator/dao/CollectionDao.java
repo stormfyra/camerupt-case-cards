@@ -13,4 +13,5 @@ public interface CollectionDao {
     void createNewCollection (NewCollectionDTO newCollection);
     void addCardToCollection(int id, Card card);
     void deleteCollection(int id, String username);
+    void updateCollection(String name, int id, CardCollection collection);
 }

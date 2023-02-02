@@ -110,6 +110,16 @@ public class JdbcCollectionDao implements CollectionDao {
         jdbcTemplate.update(queryToDeleteCollection, id, username);
     }
 
+    @Override
+    public void updateCollection(String name, int id, CardCollection collection) {
+        // TODO loop through cards in collection and remove or add them to database
+        String sqlQuery = "UPDATE collection \n" +
+                "SET name = ?,  description = ?, is_private = ?\n" +
+                "WHERE collection_id = ?";
+
+        jdbcTemplate.update(sqlQuery, collection.getTitle(), collection.getDescription(), collection.isPrivate(), id);
+    }
+
     private CardCollection mapRowToCardCollection(SqlRowSet results) {
         CardCollection cardCollection = new CardCollection();
         cardCollection.setCollectionId(results.getInt("collection_id"));
