@@ -2,9 +2,10 @@
   <div class="profile-features">
     <div class="feature-holder">
         <div class="buttons-holder">
-        <button>Add Friend</button>
-        <button>Message</button>
-        <button>Give Badge</button>
+            <button @click="editProfile()">Edit Profile</button>          
+            <button>Add Friend</button>
+            <button>Message</button>
+            <button>Give Badge</button>
         </div>
         <div class="featured-cards-holder">
             <h3>Featured Cards</h3>
@@ -36,11 +37,20 @@
 
 <script>
 export default {
-  name: "profile-features"
+  name: "profile-features",
+
+  methods:{
+      editProfile(){
+          this.$router.push({name:'editProfile'})
+      }
+  }
 };
 </script>
 
 <style scoped>
+button{
+    width: 20%;
+}
 .empty-card {
     width: 100px;
     height: 140px;

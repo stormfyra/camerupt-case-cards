@@ -35,7 +35,7 @@ export default {
     grid-template-areas: "card features";
     width: 100%;
     height: 95%;
-    gap: 100px;
+    gap: 50px;
 }
 
 .card {
