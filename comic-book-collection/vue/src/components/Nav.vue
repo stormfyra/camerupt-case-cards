@@ -4,6 +4,13 @@
 
     <div class="nav-menu">
       <ul class="nav-list">
+
+        <!-- testing viewing other users' profiles! -->
+        <li class="nav-item" v-for="user in users" v-bind:key="user.index">
+          <router-link :to="{ name: 'profileWithId', params: {id: user.id} }" class="navbar-item">{{user.username}}</router-link>
+        </li>
+        <!-- testing viewing other users' profiles! -->
+
         <li class="nav-item">
           <router-link :to="{ name: 'ViewCollections' }" class="navbar-item">Card Collections</router-link>&nbsp;
         </li>
@@ -18,10 +25,10 @@
         </li>
         <router-link  :to="{ name: 'profile' }" class="navbar-item" id="profile-link">
           <li v-if="isLoggedIn" class="nav-item">
-            MyProfile
+            My Profile
           </li>
           <li>
-            <profile-image :small="true" :pokemon="$store.state.user.profilePokemon"></profile-image>
+            <profile-image :small="true" :pokemon="$store.state.user.profilePokemon" v-if="isLoggedIn"></profile-image>
           </li>
         </router-link>
       </ul>
@@ -32,11 +39,32 @@
 
 <script>
 import ProfileImage from './Edit Profile/ProfileImage.vue';
+import userService from '../services/UserService'
   export default {
     name: 'Nav',
+    data() {
+      return {
+        users: []
+      }
+    },
     components: {
       ProfileImage
     },
+        created() {
+        // This initialization calls the logged in user from the store and then contacts our server for all collecitons
+        // Then sorts collections into user-ownd collections and public collections 
+        this.username = this.$store.state.user.username;
+        userService.getAllUsers()
+                         .then(response => {
+                            response.data.forEach(element => {
+                                console.log(element);
+                                console.log(this.username);
+                                if (element.ownerUsername != this.username){
+                                    this.users.push(element)
+                                }
+                            });
+                         })
+                         },
     computed: {
         isLoggedIn() {
         return this.$store.state.user.username != null;

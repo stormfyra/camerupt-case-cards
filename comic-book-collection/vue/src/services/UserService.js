@@ -9,5 +9,11 @@ export default {
         // delete user.authorities
         console.log(user)
         return http.put(`/users/update-profile`, user)
+    },
+    getUserDetails(id) {
+        return http.get(`/users/${id}`)
+    },
+    getAllUsers() {
+        return http.get(`/users`)
     }
 }
