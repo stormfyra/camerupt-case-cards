@@ -26,21 +26,9 @@ INSERT INTO collection (user_id, name, description) VALUES (3, 'Just Bulbasaur',
 INSERT INTO collection (user_id, name, description, is_private) VALUES (3, 'Set To Private',
     'This collection should be set to private', true);
 
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 1);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 2);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 3);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 1);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 2);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 3);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 1);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 2);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 3);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 1);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 2);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 3);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 1);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 2);
-INSERT INTO collection_card (collection_id, card_id) VALUES (1, 3);
+INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 1, 5);
+INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 2, 5);
+INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 3, 5);
 INSERT INTO collection_card (collection_id, card_id) VALUES (2, 3);
 INSERT INTO collection_card (collection_id, card_id) VALUES (3, 1);
 INSERT INTO collection_card (collection_id, card_id) VALUES (3, 3);

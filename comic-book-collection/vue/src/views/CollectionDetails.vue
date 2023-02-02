@@ -1,19 +1,12 @@
 <template>
     <div>
+        <edit-collection :collection="data" />
         <h1 class="collectionTitle">{{title}}</h1>
         <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
         <p class="collectionDescription"><em>{{description}}</em></p>
-        <!-- Rounded switch -->
-        <div class="button-container">
-          <div class="switch-div" v-if="ownedByMe">
-              <p style="display: inline-block">public</p>
-              <label class="switch">
-                  <input type="checkbox" v-model="isPrivate" v-on:change="togglePrivacy">
-                  <span class="slider round"></span>
-              </label>
-              <p style="display: inline-block">private</p>
-          </div>
-          <button  v-if="ownedByMe" @click="deleteThisCollection">DELETE</button>
+        <button v-on:click="showEditCollection"><h1>Edit</h1></button>
+        <div id="overlay" v-if="$store.state.showEditCollectionForm">
+            <edit-collection id="overlay-form" :collection="collection" />
         </div>
         <card-grid :cards='cards'/>
     </div>
@@ -21,15 +14,16 @@
 
 <script>
 import CardGrid from "../components/Collections/CardGrid.vue" 
+import EditCollection from '../components/Collections/EditCollection.vue'
 import collectionWebService from '../services/CollectionService'
-
 
 export default {
     components: {
         CardGrid,
+        EditCollection
     },
     data(){
-        return {
+      return {
            ownerUsername: '',
            title: '',
            description: '',
@@ -40,6 +34,15 @@ export default {
     computed: {
         ownedByMe() {
             return this.ownerUsername == this.$store.state.user.username;
+        },
+        collection() {
+          return {
+            ownerUsername: this.ownerUsername,
+            title: this.title,
+            description: this.description,
+            isPrivate: this.isPrivate,
+            cards: this.cards
+          }
         }
     },
     created() {
@@ -68,8 +71,9 @@ export default {
             collectionWebService.deleteCollection(this.$route.params.collectionId);
             this.$router.push({name: 'ViewCollections'})
                         .then(() => { this.$router.go() })
-
-
+        },
+        showEditCollection() {
+          this.$store.commit('CHANGE_SHOW_EDIT_COLLECTION_FORM')
         }
     }
 }
@@ -97,66 +101,24 @@ card-grid {
     gap: 10px;
 }
 
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 5;
+  cursor: pointer;
 }
 
-.slider:before {
+#overlay-form{
   position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
 }
 </style>

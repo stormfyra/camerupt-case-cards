@@ -2,13 +2,16 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Card;
 import com.techelevator.model.CardCollection;
+import com.techelevator.model.CardDTO;
 import com.techelevator.model.NewCollectionDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class JdbcCollectionDao implements CollectionDao {
@@ -37,11 +40,11 @@ public class JdbcCollectionDao implements CollectionDao {
     @Override
     public CardCollection getCardCollectionById(int id, String username) {
         CardCollection cardCollection = null;
-        List<Card> cards = new ArrayList<>();
+        Map<Integer, CardDTO> cards = new HashMap<>();
         String queryForCollectionDetails = "SELECT collection_id, name, description, is_private, username FROM collection\n" +
                 "JOIN users ON collection.user_id = users.user_id\n" +
                 "WHERE collection_id = ?;";
-        String queryForCards = "SELECT card.name AS name, large_image, small_image\n" +
+        String queryForCards = "SELECT card.card_id AS card_id, card.name AS name, large_image, small_image, quantity\n" +
                 "FROM collection\n" +
                 "JOIN collection_card ON collection.collection_id = collection_card.collection_id\n" +
                 "JOIN card ON collection_card.card_id = card.card_id\n" +
@@ -52,7 +55,8 @@ public class JdbcCollectionDao implements CollectionDao {
         }
         SqlRowSet cardsResults = jdbcTemplate.queryForRowSet(queryForCards, id);
         while (cardsResults.next()) {
-            cards.add(mapRowToCard(cardsResults));
+            CardDTO cardDTO = mapRowToCard(cardsResults);
+            cards.put(cardDTO.getCard().getCardId(), cardDTO);
         }
         cardCollection.setCards(cards);
         if (!cardCollection.isPrivate() || cardCollection.getOwnerUsername().equals(username)) {
@@ -120,11 +124,13 @@ public class JdbcCollectionDao implements CollectionDao {
         return cardCollection;
     }
 
-    private Card mapRowToCard(SqlRowSet results) {
+    private CardDTO mapRowToCard(SqlRowSet results) {
         Card card = new Card();
+        card.setCardId(results.getInt("card_id"));
         card.setCardName(results.getString("name"));
         card.setLargeImage(results.getString("large_image"));
         card.setSmallImage(results.getString("small_image"));
-        return card;
+        CardDTO cardDTO = new CardDTO(card, results.getInt("quantity"));
+        return cardDTO;
     }
 }
