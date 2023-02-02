@@ -75,6 +75,11 @@ public class CollectionController {
         collectionDao.addCardToCollection(id, card);
     }
 
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public void updateCollection(Principal principal, @PathVariable int id, @RequestBody CardCollection collection) {
+        collectionDao.updateCollection(principal.getName(), id, collection);
+    }
+
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void deleteCollection(Principal principal, @PathVariable int id) {
         collectionDao.deleteCollection(id, principal.getName());
