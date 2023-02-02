@@ -40,8 +40,9 @@ public class UserController {
 
     @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @RequestMapping(value = "/update-profile", method = RequestMethod.PUT)
-    public void updateUserProfile(Principal principal, @RequestBody ProfileDto user) {
+    public void updateUserProfile(@RequestBody ProfileDto user) {
         userDao.updateUserProfile(user.getEmail(), user.getFullName(), user.getShippingAddress(), user.getBio(),
                 Math.toIntExact(user.getId()), user.getProfilePokemon());
+        System.out.println(user);
     }
 }
