@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Card;
 import com.techelevator.model.CardCollection;
+import com.techelevator.model.NewCollectionDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -72,6 +73,29 @@ public class JdbcCollectionDao implements CollectionDao {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void createNewCollection(NewCollectionDTO newCollection){
+        String sqlQuery = "INSERT INTO collection (user_id, name, description, is_private)\n" +
+                "VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sqlQuery, newCollection.getUserId(), newCollection.getTitle(), newCollection.getDescription(), newCollection.isPrivate());
+    }
+
+    @Override
+    public void addCardToCollection(int id, Card card) {
+        String sqlQuery = "SELECT * FROM card\n" +
+                        "WHERE name = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, card.getCardName());
+        if (!results.next()){
+            sqlQuery = "INSERT INTO card (name, large_image, small_image)\n" +
+                    "VALUES (?,?,?)\n" +
+                    "RETURNING card_id";
+            jdbcTemplate.update(sqlQuery, card.getCardName(), card.getLargeImage(), card.getSmallImage());
+        }
+        sqlQuery = "INSERT INTO collection_card (card_id, collection_id)\n" +
+                    "VALUES ((SELECT card_id FROM card WHERE name = ?), ?);";
+        jdbcTemplate.update(sqlQuery, card.getCardName(), id);
     }
 
     private CardCollection mapRowToCardCollection(SqlRowSet results) {
