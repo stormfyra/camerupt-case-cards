@@ -1,5 +1,8 @@
 <template>
     <div id="collection-container" class="text-center">
+        <div>
+            <button onClick="on()">+</button>
+        </div>
         <div v-for="collection in collections" :key="collection.index"  class="collectionImage">
             <router-link class="title-holder" :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}"> 
                     <p class="title">{{collection.title}}</p>
@@ -27,6 +30,14 @@ export default {
 </script>
 
 <style scoped>
+
+button{
+    color: black;
+    background-color:#F7f8f7;
+    border: solid 1px;
+    width: 50px;
+}
+
 #collection-container {
     width: 100%;
     display: grid;
