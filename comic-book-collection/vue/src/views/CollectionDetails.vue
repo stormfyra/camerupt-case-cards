@@ -1,12 +1,15 @@
 <template>
     <div>
-        <edit-collection :collection="data" />
         <h1 class="collectionTitle">{{title}}</h1>
         <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
         <p class="collectionDescription"><em>{{description}}</em></p>
         <button v-on:click="showEditCollection"><h1>Edit</h1></button>
         <div id="overlay" v-if="$store.state.showEditCollectionForm">
             <edit-collection id="overlay-form" :collection="collection" />
+        </div>
+        <button @click="showAddCard">Add A card</button>
+        <div id="overlay" v-if="$store.state.showAddCardForm" >
+            <add-a-card id="overlay-form" />
         </div>
         <card-grid :cards='cards'/>
     </div>
@@ -16,11 +19,14 @@
 import CardGrid from "../components/Collections/CardGrid.vue" 
 import EditCollection from '../components/Collections/EditCollection.vue'
 import collectionWebService from '../services/CollectionService'
+import AddACard from '../components/Collections/AddACard.vue'
+
 
 export default {
     components: {
         CardGrid,
-        EditCollection
+        EditCollection,
+        AddACard
     },
     data(){
       return {
@@ -74,6 +80,9 @@ export default {
         },
         showEditCollection() {
           this.$store.commit('CHANGE_SHOW_EDIT_COLLECTION_FORM')
+        },
+        showAddCard() {
+          this.$store.commit('CHANGE_SHOW_ADD_CARD')
         }
     }
 }

@@ -71,7 +71,6 @@ const router = new Router({
       component: ViewCollections,
       meta: {
         requiresAuth: false,
-        reload: true
       }
     },
     {
