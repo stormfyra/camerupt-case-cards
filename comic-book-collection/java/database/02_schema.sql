@@ -30,6 +30,16 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+CREATE TABLE friends (
+    from_user_id int,
+    to_user_id int,
+    accepted boolean DEFAULT false,
+    CONSTRAINT FK_friends_from FOREIGN KEY (from_user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_friends_to FOREIGN KEY (to_user_id) REFERENCES users(user_id),
+    CONSTRAINT from_user_id_cannot_be_to_user_id CHECK (from_user_id != to_user_id),
+    PRIMARY KEY (from_user_id, to_user_id)
+);
+
 CREATE TABLE card (
     card_id SERIAL PRIMARY KEY,
     name varchar(30) NOT NULL,

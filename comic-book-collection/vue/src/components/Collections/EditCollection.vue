@@ -5,10 +5,9 @@
                 <form class="form-container">
                     <h1>Edit Your Collection</h1>
                     <label for="title">Title</label>
-                    <!-- title should be required, but won't close if it's set with "required" -->
                     <input 
                         type="text"
-                        id="title"
+                        name="title"
                         placeholder="Title"
                         v-model="updatedCollection.title"
                     />
@@ -22,7 +21,7 @@
                     <div class="switch-div">
                         <p class="private-text" style="display: inline-block">public</p>
                         <label class="switch">
-                            <input type="checkbox" v-model="isPrivate" />
+                            <input type="checkbox" v-model="updatedCollection.isPrivate" />
                             <span class="slider round" />
                         </label>
                         <p class="private-text" style="display: inline-block">private</p>
@@ -39,19 +38,21 @@
             <scrolly-bar axis="y"></scrolly-bar>
             <scrolly-bar axis="x"></scrolly-bar>
             </scrolly>
+
+            
     </div>
 </template>
 
 <script>
 import collectionService from '../../services/CollectionService.js'
-import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly';
+import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
 
 export default{
   name: 'edit-collection',
   components: {
       Scrolly,
       ScrollyViewport,
-      ScrollyBar
+      ScrollyBar,
   },
   data() {
       return {
