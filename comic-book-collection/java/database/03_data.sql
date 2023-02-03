@@ -13,12 +13,12 @@ INSERT INTO users (user_id, username, password_hash, role, email, full_name, shi
 ALTER SEQUENCE seq_user_id RESTART WITH 4;
 
 -- insert ??? table data
-INSERT INTO card (name, large_image, small_image) VALUES ('Charizard', 'https://images.pokemontcg.io/swsh4/25_hires.png'
-    , 'https://images.pokemontcg.io/swsh4/25.png');
-INSERT INTO card (name, large_image, small_image) VALUES ('Ampharos', 'https://images.pokemontcg.io/pl1/1.png',
-    'https://images.pokemontcg.io/pl1/1_hires.png');
-INSERT INTO card (name, large_image, small_image) VALUES ('Bulbasaur', 'https://images.pokemontcg.io/det1/1.png',
-    'https://images.pokemontcg.io/det1/1_hires.png');
+INSERT INTO card (card_id, name, large_image, small_image) VALUES ('dp3-3', 'Charizard', 'https://images.pokemontcg.io/dp3/3_hires.png',
+    'https://images.pokemontcg.io/dp3/3.png');
+INSERT INTO card (card_id, name, large_image, small_image) VALUES ('pl1-1', 'Ampharos', 'https://images.pokemontcg.io/pl1/1_hires.png',
+    'https://images.pokemontcg.io/pl1/1.png');
+INSERT INTO card (card_id, name, large_image, small_image) VALUES ('det1-1', 'Bulbasaur', 'https://images.pokemontcg.io/det1/1_hires.png',
+    'https://images.pokemontcg.io/det1/1.png');
 
 INSERT INTO collection (user_id, name, description) VALUES (1, 'Three Starters', 'A test of our database');
 INSERT INTO collection (user_id, name, description) VALUES (3, 'Just Bulbasaur',
@@ -26,12 +26,12 @@ INSERT INTO collection (user_id, name, description) VALUES (3, 'Just Bulbasaur',
 INSERT INTO collection (user_id, name, description, is_private) VALUES (3, 'Set To Private',
     'This collection should be set to private', true);
 
-INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 1, 5);
-INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 2, 5);
-INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 3, 5);
-INSERT INTO collection_card (collection_id, card_id) VALUES (2, 3);
-INSERT INTO collection_card (collection_id, card_id) VALUES (3, 1);
-INSERT INTO collection_card (collection_id, card_id) VALUES (3, 3);
+INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 'dp3-3', 5);
+INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 'pl1-1', 5);
+INSERT INTO collection_card (collection_id, card_id, quantity) VALUES (1, 'det1-1', 5);
+INSERT INTO collection_card (collection_id, card_id) VALUES (2, 'det1-1');
+INSERT INTO collection_card (collection_id, card_id) VALUES (3, 'dp3-3');
+INSERT INTO collection_card (collection_id, card_id) VALUES (3, 'det1-1');
 
 INSERT INTO profile_pokemons (pokemon) VALUES ('Bulbasaur');
 INSERT INTO profile_pokemons (pokemon) VALUES ('Squirtle');

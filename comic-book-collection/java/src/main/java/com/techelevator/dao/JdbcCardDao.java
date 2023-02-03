@@ -41,12 +41,12 @@ public class JdbcCardDao implements CardDao{
 
     @Override
     public void addACard(Card card) {
-
+        
     }
 
     private Card mapRowToCard(SqlRowSet results) {
         Card card = new Card();
-        card.setCardId(results.getInt("card_id"));
+        card.setCardId(results.getString("card_id"));
         card.setCardName(results.getString("name"));
         card.setLargeImage(results.getString("large_image"));
         card.setSmallImage(results.getString("small_image"));

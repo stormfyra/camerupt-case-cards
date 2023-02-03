@@ -9,9 +9,9 @@ public class CardCollection {
     private String title;
     private String description;
     private boolean isPrivate;
-    private Map<Integer, CardDTO> cards;
+    private Map<String, CardDTO> cards;
 
-    public CardCollection(int collectionId, String ownerUsername, String title, String description, boolean isPrivate, Map<Integer, CardDTO> cards) {
+    public CardCollection(int collectionId, String ownerUsername, String title, String description, boolean isPrivate, Map<String, CardDTO> cards) {
         this.collectionId = collectionId;
         this.ownerUsername = ownerUsername;
         this.title = title;
@@ -63,11 +63,11 @@ public class CardCollection {
         this.isPrivate = isPrivate;
     }
 
-    public Map<Integer, CardDTO> getCards() {
+    public Map<String, CardDTO> getCards() {
         return cards;
     }
 
-    public void setCards(Map<Integer, CardDTO> cards) {
+    public void setCards(Map<String, CardDTO> cards) {
         this.cards = cards;
     }
 }

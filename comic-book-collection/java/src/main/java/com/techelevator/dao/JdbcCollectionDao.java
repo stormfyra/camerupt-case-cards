@@ -40,7 +40,7 @@ public class JdbcCollectionDao implements CollectionDao {
     @Override
     public CardCollection getCardCollectionById(int id, String username) {
         CardCollection cardCollection = null;
-        Map<Integer, CardDTO> cards = new HashMap<>();
+        Map<String, CardDTO> cards = new HashMap<>();
         String queryForCollectionDetails = "SELECT collection_id, name, description, is_private, username FROM collection\n" +
                 "JOIN users ON collection.user_id = users.user_id\n" +
                 "WHERE collection_id = ?;";
@@ -136,7 +136,7 @@ public class JdbcCollectionDao implements CollectionDao {
 
     private CardDTO mapRowToCard(SqlRowSet results) {
         Card card = new Card();
-        card.setCardId(results.getInt("card_id"));
+        card.setCardId(results.getString("card_id"));
         card.setCardName(results.getString("name"));
         card.setLargeImage(results.getString("large_image"));
         card.setSmallImage(results.getString("small_image"));

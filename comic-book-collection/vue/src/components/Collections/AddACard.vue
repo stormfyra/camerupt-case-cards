@@ -3,9 +3,13 @@
     <scrolly-viewport>
         <div class="form-container">
                 <input type="text" v-model="internalSearchParamater" />
+                <label for="search-all-cards">Not finding the right card?</label>
+                <button name="search-all-cards" @click="searchAllCards">Search all cards</button>
+                <button @click="off">Close</button>
                 <div class="choose-a-card">
                     <img class="card-image" v-for="card in filteredCards" :key="card.cardId" :src="card.smallImage" />
-                </div>
+                    <img class="card-image" v-for="card in externalCards" :key="card.cardId" :src="card.images.small" />
+                </div>    
         </div>
     </scrolly-viewport>
     <scrolly-bar axis="y"></scrolly-bar>
@@ -15,6 +19,7 @@
 
 <script>
 import cardService from "../../services/CardService"
+import externalPokemonCardService from "../../services/ExternalPokemonCardService"
 import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
 
 
@@ -22,7 +27,8 @@ export default {
     data() {
         return {
             internalSearchParamater: '',
-            cards: []
+            cards: [],
+            externalCards: []
         }
     },
      components: {
@@ -43,6 +49,27 @@ export default {
                         console.log(response)
                         this.cards = response.data
                     })
+    },
+    methods: {
+        searchAllCards() {
+            externalPokemonCardService.getCardByNamePart(this.internalSearchParamater).then(response => {
+                this.externalCards = response.data.data;
+                this.filterExternalCards();
+            }).bind(this)
+        },
+        off() {
+            this.externalCards = [];
+            this.$store.commit('CHANGE_SHOW_ADD_CARD')
+        },
+        filterExternalCards() {
+            const idsWeAlreadyHave = new Set();
+            for (let i = 0; i < this.cards.length; i++) {
+                idsWeAlreadyHave.add(this.cards[i].cardId);
+            }
+            this.externalCards = this.externalCards.filter(card => {
+                return !idsWeAlreadyHave.has(card.id);
+            })
+        }
     }
 }
 </script>

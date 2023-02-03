@@ -6,6 +6,10 @@ const http = axios.create({
 
 export default {
     getAllCards(){
-        return http.get(`/cards`)
+        return http.get(`/cards`);
+    },
+
+    addCards() {
+        return http.post(`/cards`);
     }
 }

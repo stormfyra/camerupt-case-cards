@@ -41,7 +41,7 @@ CREATE TABLE friends (
 );
 
 CREATE TABLE card (
-    card_id SERIAL PRIMARY KEY,
+    card_id varchar(20) PRIMARY KEY,
     name varchar(30) NOT NULL,
     large_image varchar(200) NOT NULL,
     small_image varchar(200) NOT NULL
@@ -58,7 +58,7 @@ CREATE TABLE collection (
 
 CREATE TABLE collection_card (
     collection_id int ,
-    card_id int,
+    card_id varchar(20),
     quantity int DEFAULT 1,
     CONSTRAINT FK_collection_card_collection FOREIGN KEY(collection_id) REFERENCES collection(collection_id),
     CONSTRAINT FK_collection_card_card FOREIGN KEY(card_id) REFERENCES card(card_id),
