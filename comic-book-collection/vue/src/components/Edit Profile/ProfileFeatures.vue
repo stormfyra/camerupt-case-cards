@@ -59,7 +59,20 @@ button{
 .buttons-holder{
     display: flex;
     gap: 10px;
-    padding-top: 50px;
-    justify-content: center;
+    justify-content: left;
+    margin-bottom: 50px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+.feature-holder {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: top;
+    margin-top: 70px;
 }
 </style>

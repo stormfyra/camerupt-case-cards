@@ -4,7 +4,7 @@
         <!-- card -->
       <profile-card :pokemon="selectedPokemon" class="card"></profile-card>
       <!-- features -->
-      <profile-features></profile-features>
+      <profile-features class="features"></profile-features>
       </div>
   </div>
 </template>
@@ -56,5 +56,10 @@ export default {
 
 .card {
     grid-area: card;
+}
+
+.features {
+    grid-area: features;
+    padding-left: 3%;
 }
 </style>

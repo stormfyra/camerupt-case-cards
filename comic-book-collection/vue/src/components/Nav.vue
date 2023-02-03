@@ -7,7 +7,7 @@
 
         <!-- testing viewing other users' profiles! -->
         <li class="nav-item" v-for="user in users" v-bind:key="user.index">
-          <router-link :to="{ name: 'profileWithId', params: {id: user.id} }" class="navbar-item">{{user.username}}</router-link>
+          <a :href="$router.resolve({ name: 'profileWithId', params: {id: user.id} }).href" class="navbar-item">{{user.username}}</a>
         </li>
         <!-- testing viewing other users' profiles! -->
 
@@ -78,18 +78,18 @@ import userService from '../services/UserService'
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: solid #E45052;
+    border-bottom: solid #e93d40;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 111px;
     padding-right: 111px;
     font-family: "Flexo-Regular",arial,sans-serif;
-    color: #E45052;
+    color: #e93d40;
   }
 
   a{
     text-decoration: none;
-    color: #E45052;
+    color: #e93d40;
   }
 
   ul{

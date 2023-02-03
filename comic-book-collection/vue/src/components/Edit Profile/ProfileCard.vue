@@ -4,25 +4,37 @@
             <div class="user-header">
                 <div class="flexy">
                     <!-- hard-coded; replace with data from database -->
-                    <p class="account-type">Premium</p>
-                    <h1 class="user-name">{{user.username}}</h1>
+                    <p class="account-type">PREMIUM</p>
+                    <h2 class="user-name">{{user.username}}</h2>
                 </div>
 
                 <div class="flexy">
-                    <p class="card">cards</p>
+                    <p class="cards">cards</p>
                     <!-- hard-coded; replace with data from database -->
-                    <h1 class="card-count">347</h1>
+                    <h2 class="card-count">347</h2>
                     
                 </div>
             </div>
             <profile-image class="profile-image" :pokemon="pokemon"></profile-image>
             <div id="pronouns">
-                <p>Prounouns:they/them</p>
+                <p>Pronouns: they/them</p>
             </div>
-            <h1>Bio</h1>
+            <h2>Bio</h2>
             <em><p class="bio"> {{user.bio}}</p></em>
-            <h3>{{user.fullName}}</h3>
-            <h3>{{user.shippingAddress}}</h3>
+            <!-- to update: stats will go here -->
+            <h2>User Stats</h2>
+            <ul>
+                <li>Collected 14% of Sun &amp; Moon series</li>
+                <li>Collected 8.67% of all Poison-type Pokemon</li>
+            </ul>
+
+            <!-- to update: badges will go here -->
+            <h2>Badges</h2>
+            <div class="badge-holder">
+            <button class="empty-card"></button>
+            <button class="empty-card"></button>
+            <button class="empty-card"></button>
+            </div>
         </div>
         <div class="page">
 
@@ -73,6 +85,10 @@ export default {
     width: 91%;
     min-width: 409px;
     margin: auto;
+
+    font-size: 11pt;
+    font-weight: 600;
+    color: rgb(105, 105, 105);
 }
 
 .profile{
@@ -85,22 +101,27 @@ export default {
 .profile-card {
     display: flex;
     flex-direction: column;
-    border: solid #f5e55a 23px;
+    border: solid #f5e55a 25px;
     border-radius: 20px;
+
     width: 450px;
-    background-color: #FF494C;
+    background-color: #e93d40;
+
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 2% 5% 5% 5%;
 
+    box-shadow: 5px 5px 10px rgb(226, 225, 225);
+
 }
 .profile-image {
+    margin-top: 14px;
     align-self: center;
     border-radius: 10px 10px 0px 0px;
     border: solid #D9D9D9 10px;
 }
-.bio {
+/* .bio {
     background-color: rgb(233, 76, 49);
     border-radius: 5px;
     border: solid rgb(231, 45, 12) 3px;
@@ -109,10 +130,20 @@ h3 {
     background-color: rgb(233, 76, 49);
     border-radius: 5px;
     border: solid rgb(231, 45, 12) 3px;
+} */
+
+h2 {
+    margin-bottom: 0px;
+    margin-top: 30px;
 }
 
-h1 {
-    margin-bottom: 0px;
+ul {
+    margin: 10px 0px 0px 0px;
+    padding-left: 25px;
+}
+
+p {
+    margin-top: 8px;
 }
 
 .logo {
@@ -122,37 +153,47 @@ h1 {
 .user-header {
     display: flex;
     justify-content: space-between;
+    margin-top: 8px;
 }
 
-/* fix meeee; go to bottom */
-.card {
+.cards {
     display: flex;
-    align-self:unset !important;
-    margin-bottom: auto;
+    padding-top: 5px;
+}
+
+.empty-card {
+width: 50px;
+height: 50px;
+margin-left: 0px;
+margin-right: 15px;
 }
 
 
 .flexy {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 8px;
 }
 
 .flexy > p {
     margin: 0 !important;
 }
-.flexy > h1 {
+.flexy > h2 {
     margin: 0 !important;
 }
 .account-type{
     background-color: #d9d9d9;
-    border: 1px solid #444c5c;
+    border: 3px solid #9092A5;
     border-radius: 30px;
-    padding: 8px;
-    font-size: 10pt;
+    padding: 7px;
+    padding-right: 9px;
+    font-size: 9pt;
     font-style: italic;
     font-weight: 600;
-    color: #444c5c;
+    color: #444;
+
+    align-self: center;
 }
 
 
