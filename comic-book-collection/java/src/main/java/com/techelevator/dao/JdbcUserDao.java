@@ -27,7 +27,7 @@ public class JdbcUserDao implements UserDao {
     }
 
 	@Override
-	public User getUserById(Long userId) {
+	public User getUserById(int userId) {
 		String sql = "SELECT * FROM users\n" +
                 "JOIN profile_pokemons ON users.profile_pokemon = profile_pokemons.image_id\n" +
                 "WHERE user_id = ?";

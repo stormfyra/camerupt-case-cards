@@ -23,7 +23,7 @@
         <li v-if="isLoggedIn" class="nav-item">
           <router-link :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
         </li>
-        <router-link  :to="{ name: 'profile' }" class="navbar-item" id="profile-link">
+        <router-link  :to="{ name: 'profileWithId', params: {id: this.$store.state.user.id} }" class="navbar-item" id="profile-link">
           <li v-if="isLoggedIn" class="nav-item">
             My Profile
           </li>
@@ -54,17 +54,17 @@ import userService from '../services/UserService'
         // This initialization calls the logged in user from the store and then contacts our server for all collecitons
         // Then sorts collections into user-ownd collections and public collections 
         this.username = this.$store.state.user.username;
+        this.user = this.$store.state.user;
         userService.getAllUsers()
                          .then(response => {
                             response.data.forEach(element => {
-                                console.log(element);
-                                console.log(this.username);
                                 if (element.ownerUsername != this.username){
                                     this.users.push(element)
                                 }
                             });
-                         })
-                         },
+                         });
+        
+      },
     computed: {
         isLoggedIn() {
         return this.$store.state.user.username != null;

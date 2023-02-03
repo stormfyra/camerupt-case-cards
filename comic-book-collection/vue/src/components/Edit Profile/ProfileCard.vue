@@ -16,7 +16,7 @@
                 </div>
             </div>
             <profile-image class="profile-image" :pokemon="pokemon"></profile-image>
-            <div id="nickname">
+            <div id="pronouns">
                 <p>Prounouns:they/them</p>
             </div>
             <h1>Bio</h1>
@@ -32,6 +32,7 @@
 
 <script>
 import profileImage from './ProfileImage.vue'
+import userService from '../../services/UserService'
 
 export default {
     props: [
@@ -46,23 +47,25 @@ export default {
                 username: '',
                 imageLink: '',
                 bio:'',
-                email: '',
-                fullName: '',
-                shippingAddress: '',
                 profilePokemon: ''
             },
         }
     },
     created() {
-        this.user = this.$store.state.user;
-        console.log(this.user);
+        userService.getUserDetails(this.$route.params.id)
+                                .then(response => {
+                                    console.log(response.data);
+                                    this.user = response.data;
+
+                                });
+        //console.log(this.$route.params.id);
     }
 }
 
 </script>
 
 <style scoped>
-#nickname{
+#pronouns{
     display: flex;
     justify-content: center;
     background-color: #d9d9d9;
@@ -73,6 +76,7 @@ export default {
 }
 
 .profile{
+    padding-right: 10px;
     border-right: solid white;
     box-shadow: 10px 0px 10px -2px #dedede;
   
