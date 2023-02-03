@@ -36,8 +36,8 @@ CREATE TABLE friends (
     accepted boolean DEFAULT false,
     CONSTRAINT FK_friends_from FOREIGN KEY (from_user_id) REFERENCES users(user_id),
     CONSTRAINT FK_friends_to FOREIGN KEY (to_user_id) REFERENCES users(user_id),
-    CONSTRAINT from_user_id_cannot_be_to_user_id CHECK (from_user_id != to_user_id)
-    PRIMARY KEY (from_user_id, to_user_id);
+    CONSTRAINT from_user_id_cannot_be_to_user_id CHECK (from_user_id != to_user_id),
+    PRIMARY KEY (from_user_id, to_user_id)
 );
 
 CREATE TABLE card (

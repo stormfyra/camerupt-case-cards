@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="username != '' && personalCollections.length > 0">
-            <div class="call-to-action text-center">
+            <div class="call-to-action text-center" v-if="!isLoggedIn">
                 <h1>Want to add your own collection?</h1>
                 <button><router-link to="/register">Create an account now!</router-link></button>
             </div>
@@ -46,6 +46,11 @@ export default {
                             });
                          });
     },
+    computed: {
+        isLoggedIn() {
+        return this.$store.state.user.username != null;
+      }
+    }
 
 }
 </script>
