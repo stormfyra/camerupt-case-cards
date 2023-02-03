@@ -1,15 +1,15 @@
 package com.techelevator.model;
 
-public class ExternalApiCardImagesDto {
+public class Images {
     private String large;
     private String small;
 
-    public ExternalApiCardImagesDto(String large, String small) {
+    public Images(String large, String small) {
         this.large = large;
         this.small = small;
     }
 
-    public ExternalApiCardImagesDto() {}
+    public Images() {}
 
     public String getLarge() {
         return large;

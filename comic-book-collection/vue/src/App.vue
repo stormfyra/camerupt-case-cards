@@ -119,4 +119,8 @@ button{
   padding: 10px 0px;
 }
 
+button {
+  cursor: pointer;
+}
+
 </style>

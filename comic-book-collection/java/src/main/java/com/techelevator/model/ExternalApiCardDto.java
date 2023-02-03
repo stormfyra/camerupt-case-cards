@@ -1,12 +1,12 @@
 package com.techelevator.model;
 
 public class ExternalApiCardDto {
-    private ExternalApiCardImagesDto externalApiCardImagesDto;
+    private Images images;
     private String id;
     private String name;
 
-    public ExternalApiCardDto(ExternalApiCardImagesDto externalApiCardImagesDto, String id, String name) {
-        this.externalApiCardImagesDto = externalApiCardImagesDto;
+    public ExternalApiCardDto(Images images, String id, String name) {
+        this.images = images;
         this.id = id;
         this.name = name;
     }
@@ -14,12 +14,12 @@ public class ExternalApiCardDto {
     public ExternalApiCardDto() {
     }
 
-    public ExternalApiCardImagesDto getExternalApiCardImagesDto() {
-        return externalApiCardImagesDto;
+    public Images getImage() {
+        return images;
     }
 
-    public void setExternalApiCardImagesDto(ExternalApiCardImagesDto externalApiCardImagesDto) {
-        this.externalApiCardImagesDto = externalApiCardImagesDto;
+    public void setImage(Images images) {
+        this.images = images;
     }
 
     public String getId() {

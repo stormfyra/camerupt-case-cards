@@ -120,7 +120,6 @@ card-grid {
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
   z-index: 5;
-  cursor: pointer;
 }
 
 #overlay-form{

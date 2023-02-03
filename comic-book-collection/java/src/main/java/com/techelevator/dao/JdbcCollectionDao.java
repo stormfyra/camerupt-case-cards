@@ -1,17 +1,11 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Card;
-import com.techelevator.model.CardCollection;
-import com.techelevator.model.CardDTO;
-import com.techelevator.model.NewCollectionDTO;
+import com.techelevator.model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class JdbcCollectionDao implements CollectionDao {
@@ -40,7 +34,7 @@ public class JdbcCollectionDao implements CollectionDao {
     @Override
     public CardCollection getCardCollectionById(int id, String username) {
         CardCollection cardCollection = null;
-        Map<String, CardDTO> cards = new HashMap<>();
+        List<Card> cards = new ArrayList<>();
         String queryForCollectionDetails = "SELECT collection_id, name, description, is_private, username FROM collection\n" +
                 "JOIN users ON collection.user_id = users.user_id\n" +
                 "WHERE collection_id = ?;";
@@ -55,8 +49,8 @@ public class JdbcCollectionDao implements CollectionDao {
         }
         SqlRowSet cardsResults = jdbcTemplate.queryForRowSet(queryForCards, id);
         while (cardsResults.next()) {
-            CardDTO cardDTO = mapRowToCard(cardsResults);
-            cards.put(cardDTO.getCard().getCardId(), cardDTO);
+            Card card = mapRowToCard(cardsResults);
+            cards.add(card);
         }
         cardCollection.setCards(cards);
         if (!cardCollection.isPrivate() || cardCollection.getOwnerUsername().equals(username)) {
@@ -95,7 +89,8 @@ public class JdbcCollectionDao implements CollectionDao {
             sqlQuery = "INSERT INTO card (name, large_image, small_image)\n" +
                     "VALUES (?,?,?)\n" +
                     "RETURNING card_id";
-            jdbcTemplate.update(sqlQuery, card.getCardName(), card.getLargeImage(), card.getSmallImage());
+            jdbcTemplate.update(sqlQuery, card.getCardName(), card.getImages().getLarge(),
+                    card.getImages().getSmall());
         }
         sqlQuery = "INSERT INTO collection_card (card_id, collection_id)\n" +
                     "VALUES ((SELECT card_id FROM card WHERE name = ?), ?);";
@@ -134,13 +129,15 @@ public class JdbcCollectionDao implements CollectionDao {
         return cardCollection;
     }
 
-    private CardDTO mapRowToCard(SqlRowSet results) {
+    private Card mapRowToCard(SqlRowSet results) {
         Card card = new Card();
-        card.setCardId(results.getString("card_id"));
+        Images externalApiCardImagesDto = new Images();
+        card.setId(results.getString("card_id"));
         card.setCardName(results.getString("name"));
-        card.setLargeImage(results.getString("large_image"));
-        card.setSmallImage(results.getString("small_image"));
-        CardDTO cardDTO = new CardDTO(card, results.getInt("quantity"));
-        return cardDTO;
+        externalApiCardImagesDto.setLarge(results.getString("large_image"));
+        externalApiCardImagesDto.setSmall(results.getString("small_image"));
+        card.setImages(externalApiCardImagesDto);
+        card.setQuantity(results.getInt("quantity"));
+        return card;
     }
 }

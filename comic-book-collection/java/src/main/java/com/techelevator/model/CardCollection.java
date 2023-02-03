@@ -1,7 +1,6 @@
 package com.techelevator.model;
 
 import java.util.List;
-import java.util.Map;
 
 public class CardCollection {
     private int collectionId;
@@ -9,9 +8,10 @@ public class CardCollection {
     private String title;
     private String description;
     private boolean isPrivate;
-    private Map<String, CardDTO> cards;
+    private List<Card> cards;
 
-    public CardCollection(int collectionId, String ownerUsername, String title, String description, boolean isPrivate, Map<String, CardDTO> cards) {
+    public CardCollection(int collectionId, String ownerUsername, String title, String description, boolean isPrivate,
+                          List<Card> cards) {
         this.collectionId = collectionId;
         this.ownerUsername = ownerUsername;
         this.title = title;
@@ -63,11 +63,11 @@ public class CardCollection {
         this.isPrivate = isPrivate;
     }
 
-    public Map<String, CardDTO> getCards() {
+    public List<Card> getCards() {
         return cards;
     }
 
-    public void setCards(Map<String, CardDTO> cards) {
+    public void setCards(List<Card> cards) {
         this.cards = cards;
     }
 }

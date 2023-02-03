@@ -1,7 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Card;
-import com.techelevator.model.CardDTO;
+import com.techelevator.model.Images;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -46,10 +46,12 @@ public class JdbcCardDao implements CardDao{
 
     private Card mapRowToCard(SqlRowSet results) {
         Card card = new Card();
-        card.setCardId(results.getString("card_id"));
+        Images externalApiCardImagesDto = new Images();
+        card.setId(results.getString("card_id"));
         card.setCardName(results.getString("name"));
-        card.setLargeImage(results.getString("large_image"));
-        card.setSmallImage(results.getString("small_image"));
+        externalApiCardImagesDto.setLarge(results.getString("large_image"));
+        externalApiCardImagesDto.setSmall(results.getString("small_image"));
+        card.setImages(externalApiCardImagesDto);
         return card;
     }
 }

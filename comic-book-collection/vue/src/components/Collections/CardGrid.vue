@@ -1,8 +1,8 @@
 <template>
     <div id="card-container">
-        <div v-for="(cardDTO, index) in cards" :key="index">
-            <img :src="cardDTO.card.smallImage" :alt="cardDTO.card.cardName" class="cardImage" />
-            <p id="cardQuantity"><strong>x{{cardDTO.quantity}}</strong></p>
+        <div v-for="(card, index) in cards" :key="index">
+            <img :src="card.images.small" :alt="card.cardName" class="cardImage" />
+            <p id="cardQuantity"><strong>x{{card.quantity}}</strong></p>
         </div>
     </div>
 </template>

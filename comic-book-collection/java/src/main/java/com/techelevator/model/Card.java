@@ -1,16 +1,16 @@
 package com.techelevator.model;
 
 public class Card {
-    private String cardId;
+    private String id;
     private String cardName;
-    private String largeImage;
-    private String smallImage;
+    private Images images;
+    private int quantity;
 
-    public Card(String cardId, String cardName, String largeImage, String smallImage) {
-        this.cardId = cardId;
+    public Card(String id, String cardName, Images images, int quantity) {
+        this.id = id;
         this.cardName = cardName;
-        this.largeImage = largeImage;
-        this.smallImage = smallImage;
+        this.images = images;
+        this.quantity = quantity;
     }
 
     public Card() {
@@ -24,27 +24,27 @@ public class Card {
         this.cardName = cardName;
     }
 
-    public String getLargeImage() {
-        return largeImage;
+    public Images getImages() {
+        return images;
     }
 
-    public void setLargeImage(String largeImage) {
-        this.largeImage = largeImage;
+    public void setImages(Images images) {
+        this.images = images;
     }
 
-    public String getSmallImage() {
-        return smallImage;
+    public String getId() {
+        return id;
     }
 
-    public void setSmallImage(String smallImage) {
-        this.smallImage = smallImage;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getCardId() {
-        return cardId;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -2,9 +2,9 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.CardDao;
-import com.techelevator.dao.CollectionDao;
 import com.techelevator.model.Card;
 import com.techelevator.model.ExternalApiCardDto;
+import com.techelevator.model.Images;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,9 +29,9 @@ public class CardController {
         for (ExternalApiCardDto card : cards) {
             String name = card.getName();
             String id = card.getId();
-            String smallImage = card.getExternalApiCardImagesDto().getSmall();
-            String largeImage = card.getExternalApiCardImagesDto().getLarge();
-            cardDao.addACard(new Card(id, name, largeImage, smallImage));
+            String smallImage = card.getImage().getSmall();
+            String largeImage = card.getImage().getLarge();
+            cardDao.addACard(new Card(id, name, new Images(largeImage, smallImage), 0));
         }
     }
 }

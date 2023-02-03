@@ -7,8 +7,9 @@
                 <button name="search-all-cards" @click="searchAllCards">Search all cards</button>
                 <button @click="off">Close</button>
                 <div class="choose-a-card">
-                    <img class="card-image" v-for="card in filteredCards" :key="card.cardId" :src="card.smallImage" />
-                    <img class="card-image" v-for="card in externalCards" :key="card.cardId" :src="card.images.small" />
+                    <img class="card-image selected-card" v-for="card in selectedCards" :key="card.id" :src="card.images.small" @click="removeFromSelectedCards(card)" />
+                    <img class="card-image" v-for="card in filteredCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
+                    <img class="card-image" v-for="card in filteredExternalCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
                 </div>    
         </div>
     </scrolly-viewport>
@@ -27,19 +28,43 @@ export default {
     data() {
         return {
             internalSearchParamater: '',
-            cards: [],
-            externalCards: []
+            internalCards: [],
+            externalCards: [],
+            selectedCards: []
         }
     },
-     components: {
-      Scrolly,
-      ScrollyViewport,
-      ScrollyBar,
-     },
+    components: {
+        Scrolly,
+        ScrollyViewport,
+        ScrollyBar,
+    },
     computed: {
         filteredCards(){
-            return this.cards.filter(card => {
+            let filteredCards = this.internalCards.filter(card => {
                return card.cardName.toLowerCase().includes(this.internalSearchParamater.toLowerCase())
+            });
+            filteredCards = filteredCards.filter(card => {
+                return !this.selectedIds.has(card.id);
+            });
+            return filteredCards;
+        },
+        selectedIds() {
+            const selectedIds = new Set();
+            for (let i = 0; i < this.selectedCards.length; i++) {
+                selectedIds.add(this.selectedCards[i].id)
+            }
+            return selectedIds;
+        },
+        filteredCardIds() {
+            const idsFromFilteredCards = new Set();
+            for (let i = 0; i < this.filteredCards.length; i++) {
+                idsFromFilteredCards.add(this.filteredCards[i].id)
+            }
+            return idsFromFilteredCards;
+        },
+        filteredExternalCards() {
+            return this.externalCards.filter(card => {
+                return !this.selectedIds.has(card.id) && !this.filteredCardIds.has(card.id);
             })
         }
     },
@@ -47,7 +72,7 @@ export default {
         cardService.getAllCards()
                     .then(response => {
                         console.log(response)
-                        this.cards = response.data
+                        this.internalCards = response.data
                     })
     },
     methods: {
@@ -61,14 +86,11 @@ export default {
             this.externalCards = [];
             this.$store.commit('CHANGE_SHOW_ADD_CARD')
         },
-        filterExternalCards() {
-            const idsWeAlreadyHave = new Set();
-            for (let i = 0; i < this.cards.length; i++) {
-                idsWeAlreadyHave.add(this.cards[i].cardId);
-            }
-            this.externalCards = this.externalCards.filter(card => {
-                return !idsWeAlreadyHave.has(card.id);
-            })
+        addToSelectedCards(card) {
+            this.selectedCards.push(card);
+        },
+        removeFromSelectedCards(card) {
+            this.selectedCards.pop(card);
         }
     }
 }
@@ -96,4 +118,15 @@ export default {
     margin: 10px;
 }
 
+.selected-card {
+    border: blue 10px solid;
+}
+
+scrolly:hover {
+    cursor: default;
+}
+
+.card-image:hover{
+    cursor: pointer;
+}
 </style>
