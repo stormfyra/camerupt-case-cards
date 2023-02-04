@@ -2,7 +2,7 @@
   <div id="loginPage">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -32,7 +32,7 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link :to="{ name: 'register' }">Need an account? Click here to</router-link>
       <button type="submit">Login</button>
     </form>
   </div>
