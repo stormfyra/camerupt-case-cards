@@ -1,7 +1,12 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS card;
 DROP TABLE IF EXISTS collection;
+DROP TABLE IF EXISTS badges;
+DROP TABLE IF EXISTS badges_user_give;
+DROP TABLE IF EXISTS badges_user_has;
+DROP TABLE IF EXISTS friends;
 DROP TABLE IF EXISTS collection_card;
+DROP TABLE IF EXISTS profile_pokemons;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -28,6 +33,26 @@ CREATE TABLE users (
     profile_pokemon int,
     CONSTRAINT FK_users_profile_pokemons FOREIGN KEY(profile_pokemon) REFERENCES profile_pokemons(image_id),
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
+);
+
+CREATE TABLE badges (
+    badge_name varchar(20) PRIMARY KEY
+);
+
+CREATE TABLE badges_user_give (
+    user_id int,
+    badge_name varchar(20),
+    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_badge_name FOREIGN KEY (badge_name) REFERENCES badges(badge_name),
+    PRIMARY KEY (user_id, badge_name)
+);
+
+CREATE TABLE badges_user_has (
+    user_id int,
+    badge_name varchar(20),
+    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_badge_name FOREIGN KEY (badge_name) REFERENCES badges(badge_name),
+    PRIMARY KEY (user_id, badge_name)
 );
 
 CREATE TABLE friends (
