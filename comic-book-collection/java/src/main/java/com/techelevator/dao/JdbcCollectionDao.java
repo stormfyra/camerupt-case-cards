@@ -84,17 +84,17 @@ public class JdbcCollectionDao implements CollectionDao {
     public void addCardToCollection(int id, Card card) {
         String sqlQuery = "SELECT * FROM card\n" +
                         "WHERE name = ? ";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, card.getCardName());
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, card.getName());
         if (!results.next()){
             sqlQuery = "INSERT INTO card (name, large_image, small_image)\n" +
                     "VALUES (?,?,?)\n" +
                     "RETURNING card_id";
-            jdbcTemplate.update(sqlQuery, card.getCardName(), card.getImages().getLarge(),
+            jdbcTemplate.update(sqlQuery, card.getName(), card.getImages().getLarge(),
                     card.getImages().getSmall());
         }
         sqlQuery = "INSERT INTO collection_card (card_id, collection_id)\n" +
                     "VALUES ((SELECT card_id FROM card WHERE name = ?), ?);";
-        jdbcTemplate.update(sqlQuery, card.getCardName(), id);
+        jdbcTemplate.update(sqlQuery, card.getName(), id);
     }
 
     @Override
@@ -115,9 +115,21 @@ public class JdbcCollectionDao implements CollectionDao {
         String sqlQuery = "UPDATE collection \n" +
                 "SET name = ?,  description = ?, is_private = ?\n" +
                 "WHERE collection_id = ?";
-
         jdbcTemplate.update(sqlQuery, collection.getTitle(), collection.getDescription(), collection.isPrivate(), id);
     }
+
+    @Override
+    public void updateCollectionQuantity(int collectionId, String cardId, int quantity) {
+        String sqlQuery = "UPDATE collection_card SET quantity = ? WHERE collection_id = ? AND card_id = ?;";
+        jdbcTemplate.update(sqlQuery, quantity, collectionId, cardId);
+    }
+
+    @Override
+    public void deleteCardFromCollection(int collectionId, String cardId) {
+        String sqlQuery = "DELETE FROM collection_card WHERE collection_id = ? AND card_id = ?;";
+        jdbcTemplate.update(sqlQuery, collectionId, cardId);
+    }
+
 
     private CardCollection mapRowToCardCollection(SqlRowSet results) {
         CardCollection cardCollection = new CardCollection();
@@ -133,7 +145,7 @@ public class JdbcCollectionDao implements CollectionDao {
         Card card = new Card();
         Images externalApiCardImagesDto = new Images();
         card.setId(results.getString("card_id"));
-        card.setCardName(results.getString("name"));
+        card.setName(results.getString("name"));
         externalApiCardImagesDto.setLarge(results.getString("large_image"));
         externalApiCardImagesDto.setSmall(results.getString("small_image"));
         card.setImages(externalApiCardImagesDto);

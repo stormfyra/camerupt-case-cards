@@ -2,13 +2,13 @@ package com.techelevator.model;
 
 public class Card {
     private String id;
-    private String cardName;
+    private String name;
     private Images images;
     private int quantity;
 
-    public Card(String id, String cardName, Images images, int quantity) {
+    public Card(String id, String name, Images images, int quantity) {
         this.id = id;
-        this.cardName = cardName;
+        this.name = name;
         this.images = images;
         this.quantity = quantity;
     }
@@ -16,12 +16,12 @@ public class Card {
     public Card() {
     }
 
-    public String getCardName() {
-        return cardName;
+    public String getName() {
+        return name;
     }
 
-    public void setCardName(String cardName) {
-        this.cardName = cardName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Images getImages() {

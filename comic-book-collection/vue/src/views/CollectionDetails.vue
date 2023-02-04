@@ -3,15 +3,15 @@
         <h1 class="collectionTitle">{{title}}</h1>
         <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
         <p class="collectionDescription"><em>{{description}}</em></p>
-        <button v-on:click="showEditCollection"><h1>Edit</h1></button>
+        <button @click="showEditCollection">Edit</button>
         <div id="overlay" v-if="$store.state.showEditCollectionForm">
             <edit-collection id="overlay-form" :collection="collection" />
         </div>
         <button @click="showAddCard">Add A card</button>
         <div id="overlay" v-if="$store.state.showAddCardForm" >
-            <add-a-card id="overlay-form" />
+            <add-a-card id="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
         </div>
-        <card-grid :cards='cards'/>
+        <card-grid :cards='cards' @deletecard="deleteCard" />
     </div>
 </template>
 
@@ -49,6 +49,13 @@ export default {
             isPrivate: this.isPrivate,
             cards: this.cards
           }
+        },
+        cardIds() {
+          let cardIds = new Set();
+          for (let i = 0; i < this.cards.length; i++) {
+            cardIds.add(this.cards[i].id);
+          }
+          return cardIds;
         }
     },
     created() {
@@ -83,6 +90,18 @@ export default {
         },
         showAddCard() {
           this.$store.commit('CHANGE_SHOW_ADD_CARD')
+        },
+        addSelectedCards(selectedCards) {
+          for (let card in selectedCards) {
+            this.cards.push(card);
+          }
+          console.log(this.cards);
+
+        },
+        deleteCard(id) {
+          this.cards = this.cards.filter(card => {
+            return card.id != id;
+          })
         }
     }
 }

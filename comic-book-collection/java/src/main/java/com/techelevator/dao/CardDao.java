@@ -8,5 +8,6 @@ public interface CardDao {
 
     List<Card> getAllCards();
     Card getCardById(int id);
-    void addACard(Card card);
+
+    void addCards(List<Card> cards, int collectionId);
 }

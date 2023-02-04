@@ -9,7 +9,7 @@ export default {
         return http.get(`/cards`);
     },
 
-    addCards() {
-        return http.post(`/cards`);
+    addCards(collectionId, cards) {
+        return http.post(`/cards/${collectionId}`, cards);
     }
 }

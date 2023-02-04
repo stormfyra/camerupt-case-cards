@@ -3,6 +3,7 @@
         <scrolly :style="{ width: '600px', height: '600px' }">
             <scrolly-viewport>
                 <form class="form-container">
+                    <button id="close-edit-collection" @click="off">X</button>
                     <h1>Edit Your Collection</h1>
                     <label for="title">Title</label>
                     <input 
@@ -26,12 +27,7 @@
                         </label>
                         <p class="private-text" style="display: inline-block">private</p>
                     </div>
-                    <div v-for="card in this.updatedCollection.cards" :key="card.card.cardId">
-                        <p>{{card.card.cardName}} (ID#: {{card.card.cardId}})</p>
-                        <input type="number" v-model="card.quantity" />
-                    </div>
                     <button id="submit" @click.prevent="onSubmit">Submit</button>
-                    <button @click="off">Close</button>
                     <button @click="deleteThisCollection">DELETE</button>
                 </form>
             </scrolly-viewport>
@@ -56,7 +52,7 @@ export default{
   },
   data() {
       return {
-          updatedCollection: {}
+          updatedCollection: {},
       }
   },
   props: [
@@ -96,6 +92,7 @@ max-width: 100%;
 margin: 10px;
 background-color: white;
 border-radius: 10px;
+display: flex;
 }
 
 input{
@@ -189,5 +186,12 @@ input:checked + .slider:before {
 
 button:hover{
     cursor: pointer;
+}
+
+#close-edit-collection {
+    width: 20px;
+    height: 20px;
+    align-self: flex-end;
+    margin-right: 20px;
 }
 </style>

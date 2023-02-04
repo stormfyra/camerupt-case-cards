@@ -76,12 +76,22 @@ public class CollectionController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-    public void updateCollection(Principal principal, @PathVariable int id, @RequestBody CardCollection collection) {
+    public void updateCollectionDetails(Principal principal, @PathVariable int id, @RequestBody CardCollection collection) {
         collectionDao.updateCollection(principal.getName(), id, collection);
+    }
+
+    @RequestMapping(path = "/{collectionId}/quantity", method = RequestMethod.PUT)
+    public void updateCollectionQuantity(@PathVariable int collectionId, @RequestBody Card card) {
+        collectionDao.updateCollectionQuantity(collectionId, card.getId(), card.getQuantity());
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void deleteCollection(Principal principal, @PathVariable int id) {
         collectionDao.deleteCollection(id, principal.getName());
+    }
+
+    @RequestMapping(path = "/{collectionId}/{cardId}", method = RequestMethod.DELETE)
+    public void deleteCardFromCollection(@PathVariable int collectionId, @PathVariable String cardId) {
+        collectionDao.deleteCardFromCollection(collectionId, cardId);
     }
 }

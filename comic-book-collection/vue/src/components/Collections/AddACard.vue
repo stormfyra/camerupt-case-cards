@@ -2,10 +2,14 @@
 <scrolly :style="{ width: '750px', height: '600px' }">
     <scrolly-viewport>
         <div class="form-container">
-                <input type="text" v-model="internalSearchParamater" />
-                <label for="search-all-cards">Not finding the right card?</label>
-                <button name="search-all-cards" @click="searchAllCards">Search all cards</button>
-                <button @click="off">Close</button>
+                <button id="close-add-card" @click="off">X</button>
+                <input type="text" v-model="internalSearchParamater" id="searchbar" />
+                <div id="button-bar">
+                    <button @click="addSelectedCards">Add selected</button>
+                    <label for="search-all-cards">Not finding the right card?
+                        <button name="search-all-cards" @click="searchAllCards">Search all cards</button>
+                    </label>
+                </div>
                 <div class="choose-a-card">
                     <img class="card-image selected-card" v-for="card in selectedCards" :key="card.id" :src="card.images.small" @click="removeFromSelectedCards(card)" />
                     <img class="card-image" v-for="card in filteredCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
@@ -33,6 +37,10 @@ export default {
             selectedCards: []
         }
     },
+    props: [
+        'collectionId',
+        'collectedCardIds'
+    ],
     components: {
         Scrolly,
         ScrollyViewport,
@@ -41,11 +49,14 @@ export default {
     computed: {
         filteredCards(){
             let filteredCards = this.internalCards.filter(card => {
-               return card.cardName.toLowerCase().includes(this.internalSearchParamater.toLowerCase())
+               return card.name.toLowerCase().includes(this.internalSearchParamater.toLowerCase())
             });
             filteredCards = filteredCards.filter(card => {
                 return !this.selectedIds.has(card.id);
             });
+            filteredCards = filteredCards.filter(card => {
+                return !this.collectedCardIds.has(card.id);
+            })
             return filteredCards;
         },
         selectedIds() {
@@ -64,7 +75,7 @@ export default {
         },
         filteredExternalCards() {
             return this.externalCards.filter(card => {
-                return !this.selectedIds.has(card.id) && !this.filteredCardIds.has(card.id);
+                return !this.selectedIds.has(card.id) && !this.filteredCardIds.has(card.id) && !this.collectedCardIds.has(card.id);
             })
         }
     },
@@ -91,6 +102,12 @@ export default {
         },
         removeFromSelectedCards(card) {
             this.selectedCards.pop(card);
+        },
+        addSelectedCards() {
+            cardService.addCards(this.collectionId, this.selectedCards);
+            this.selectedCards = [];
+            this.off();
+            this.$router.go();
         }
     }
 }
@@ -108,6 +125,8 @@ export default {
     margin: 10px;
     background-color: white;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-image {
@@ -128,5 +147,22 @@ scrolly:hover {
 
 .card-image:hover{
     cursor: pointer;
+}
+
+#close-add-card {
+    width: 20px;
+    height: 20px;
+    align-self: flex-end;
+    margin-right: 20px;
+}
+
+#searchbar {
+    width: 80%;
+    align-self: center;
+}
+
+#button-bar {
+    display: flex;
+    justify-content: space-around;
 }
 </style>

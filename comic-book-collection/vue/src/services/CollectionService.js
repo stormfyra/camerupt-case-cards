@@ -24,5 +24,13 @@ export default {
 
     deleteCollection(collectionId) {
         return http.delete(`/collections/${collectionId}`)
+    },
+
+    updateQuantity(collectionId, card) {
+        return http.put(`/collections/${collectionId}/quantity`, card);
+    },
+
+    deleteCardFromCollection(collectionId, cardId) {
+        return http.delete(`/collections/${collectionId}/${cardId}`);
     }
 }

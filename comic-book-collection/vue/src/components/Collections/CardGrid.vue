@@ -2,18 +2,38 @@
     <div id="card-container">
         <div v-for="(card, index) in cards" :key="index">
             <img :src="card.images.small" :alt="card.cardName" class="cardImage" />
-            <p id="cardQuantity"><strong>x{{card.quantity}}</strong></p>
+            <div id="quantity-div">
+                <button class="change-quantity" @click="updateQuantity(card, -1)">-</button>
+                <p id="cardQuantity"><strong>x{{card.quantity}}</strong></p>
+                <button class="change-quantity" @click="updateQuantity(card, 1)">+</button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-
+import collectionService from '../../services/CollectionService';
 export default {
     name: 'CardGrid',
+    emits: ['deleteCard'],
     props: [
-        "cards"
-    ]
+        "cards",
+    ],
+    methods: {
+        updateQuantity(card, change) {
+            const newQuantity = card.quantity + change;
+            if (newQuantity < 1) {
+                collectionService.deleteCardFromCollection(this.$route.params.collectionId, card.id);
+                this.deleteCard(card);
+            } else {
+                card.quantity = newQuantity;
+                collectionService.updateQuantity(this.$route.params.collectionId, card);
+            }
+        },
+        deleteCard(card) {
+            this.$emit('deletecard', card.id);
+        }
+    }
 }
 </script>
 
@@ -37,12 +57,11 @@ export default {
 }
 
 #cardQuantity {
-    margin: 10px;
-    margin-top: -10px;
     background-color: #000000;
     color: #FFFFFF;
     text-align: center;
-    border-radius: 30%;
+    border-radius: 45%;
+    flex-grow: 1;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -74,5 +93,20 @@ export default {
     #card-container {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
+}
+
+#quantity-div {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    margin-top: -10px;
+    gap: 5px;
+    align-items: center;
+}
+
+.change-quantity {
+    height: 50%;
+    background-color: blue;
+    border-radius: 50%;
 }
 </style>
