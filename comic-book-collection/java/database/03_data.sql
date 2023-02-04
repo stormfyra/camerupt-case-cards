@@ -43,3 +43,19 @@ INSERT INTO profile_pokemons (pokemon) VALUES ('Cyndaquil');
 INSERT INTO profile_pokemons (pokemon) VALUES ('Treecko');
 INSERT INTO profile_pokemons (pokemon) VALUES ('Mudkip');
 INSERT INTO profile_pokemons (pokemon) VALUES ('Torchic');
+
+INSERT INTO badges (badge_name) VALUES ('Earth_badge');
+INSERT INTO badges (badge_name) VALUES ('Volcano_badge');
+INSERT INTO badges (badge_name) VALUES ('Marsh_badge');
+INSERT INTO badges (badge_name) VALUES ('Soul_badge');
+INSERT INTO badges (badge_name) VALUES ('Rainbow_badge');
+INSERT INTO badges (badge_name) VALUES ('Thunder_badge');
+INSERT INTO badges (badge_name) VALUES ('Cascade_badge');
+INSERT INTO badges (badge_name) VALUES ('Boulder_badge');
+
+INSERT INTO badges_user_has (user_id, badge_name) VALUES (1, 'Earth_badge');
+INSERT INTO badges_user_has (user_id, badge_name) VALUES (1, 'Volcano_badge');
+INSERT INTO badges_user_has (user_id, badge_name) VALUES (2, 'Thunder_badge');
+
+INSERT INTO badges_user_give (user_id, badge_name) VALUES (1, 'Rainbow_badge');
+INSERT INTO badges_user_has (user_id, badge_name) VALUES (1, 'Marsh_badge');
