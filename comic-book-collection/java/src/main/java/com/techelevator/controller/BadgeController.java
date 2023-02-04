@@ -19,8 +19,8 @@ public class BadgeController {
     }
 
     @RequestMapping (path = "/{id}", method = RequestMethod.GET)
-    public List<Badge> getUserBadges (@PathVariable int id) {
-        return badgeDao.getUserBadges(id);
+    public List<Badge> getUserBadges (@PathVariable String id) {
+        return badgeDao.getUserBadges(((int)Integer.parseInt(id)));
     }
 
 }

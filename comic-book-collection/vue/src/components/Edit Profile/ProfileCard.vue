@@ -30,11 +30,7 @@
 
             <!-- to update: badges will go here -->
             <h2>Badges</h2>
-            <div class="badge-holder">
-            <button class="empty-card"></button>
-            <button class="empty-card"></button>
-            <button class="empty-card"></button>
-            </div>
+            <badge-holder />
         </div>
         <div class="page">
 
@@ -45,13 +41,15 @@
 <script>
 import profileImage from './ProfileImage.vue'
 import userService from '../../services/UserService'
+import BadgeHolder from './features/BadgeHolder.vue'
 
 export default {
     props: [
-        'pokemon'
+        'pokemon',
     ],
     components: {
-        profileImage
+        profileImage,
+        BadgeHolder
     },
     data(){
         return {
@@ -68,9 +66,8 @@ export default {
                                 .then(response => {
                                     console.log(response.data);
                                     this.user = response.data;
-
                                 });
-        //console.log(this.$route.params.id);
+
     }
 }
 
@@ -194,6 +191,10 @@ margin-right: 15px;
     color: #444;
 
     align-self: center;
+}
+badge-holder {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
