@@ -15,5 +15,17 @@ export default {
     },
     getAllUsers() {
         return http.get(`/users`)
+    },
+    addFriend(friendRequest) {
+        return http.post(`/users/friend-requests`, friendRequest);
+    },
+    getFriendRequests(userId) {
+        return http.get(`/users/friend-requests/${userId}`);
+    },
+    acceptFriendRequest(friendRequest) {
+        return http.put(`/users/friend-requests`, friendRequest)
+    },
+    deleteFriendRequest(fromUser, toUser) {
+        return http.delete(`/users/friend-requests/${fromUser}/${toUser}`);
     }
 }

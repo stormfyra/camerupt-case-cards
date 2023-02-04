@@ -3,7 +3,7 @@
     <div class="feature-holder">
         <div class="buttons-holder">
             <button @click="editProfile()">Edit Profile</button>          
-            <button>Add Friend</button>
+            <button @click="addFriend">Add Friend</button>
             <button>Message</button>
             <button>Give Badge</button>
         </div>
@@ -31,19 +31,27 @@
                 <button class="empty-card"></button>
             </div>
         </div>
+        <friend-requests />
     </div>
   </div>
 </template>
 
 <script>
+import userService from '../../services/UserService'
+import FriendRequests from '../Edit Profile/features/FriendRequests.vue'
 export default {
-  name: "profile-features",
-
-  methods:{
-      editProfile(){
-          this.$router.push({name:'editProfile'})
-      }
-  }
+    name: "profile-features",
+    components: {
+        FriendRequests
+    },
+    methods:{
+        editProfile(){
+            this.$router.push({name:'editProfile'})
+        },
+        addFriend() {
+            userService.addFriend({userFrom: this.$store.state.user.id, userTo: this.$route.params.id});
+        }
+    }
 };
 </script>
 
@@ -76,3 +84,4 @@ h3 {
     margin-top: 70px;
 }
 </style>
+        FriendRequests

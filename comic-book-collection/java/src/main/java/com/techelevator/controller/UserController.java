@@ -2,9 +2,11 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Authority;
+import com.techelevator.model.FriendRequest;
 import com.techelevator.model.ProfileDto;
 import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -42,5 +44,25 @@ public class UserController {
     public void updateUserProfile(Principal principal, @RequestBody ProfileDto user) {
         userDao.updateUserProfile(user.getEmail(), user.getFullName(), user.getShippingAddress(), user.getBio(), user.getProfilePokemon(),
                 Math.toIntExact(user.getId()));
+    }
+
+    @RequestMapping(value = "/friend-requests", method = RequestMethod.POST)
+    public void sendFriendRequest(@RequestBody FriendRequest friendRequest) {
+        userDao.sendFriendRequest(friendRequest.getUserFrom(), friendRequest.getUserTo());
+    }
+
+    @RequestMapping(value = "/friend-requests", method = RequestMethod.PUT)
+    public void acceptFriendRequest(@RequestBody FriendRequest friendRequest) {
+        userDao.acceptFriendRequest(friendRequest.getUserFrom(), friendRequest.getUserTo());
+    }
+
+    @RequestMapping(value = "/friend-requests/{id}", method = RequestMethod.GET)
+    public List<User> getFriendRequests(@PathVariable int id) {
+        return userDao.getFriendRequests(id);
+    }
+
+    @RequestMapping(path = "/friend-requests/{userFrom}/{userTo}", method = RequestMethod.DELETE)
+    public void deleteFriendRequest(@PathVariable int userFrom, @PathVariable int userTo) {
+        userDao.deleteFriendRequest(userFrom, userTo);
     }
 }

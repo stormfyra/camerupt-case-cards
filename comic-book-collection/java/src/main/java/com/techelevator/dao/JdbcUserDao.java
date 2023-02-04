@@ -100,6 +100,43 @@ public class JdbcUserDao implements UserDao {
         jdbcTemplate.update(sqlQuery, email, fullName, shippingAddress, bio, profilePokemon, userId);
     }
 
+    @Override
+    public void sendFriendRequest(int idFrom, int idTo) {
+        String sqlQuery = "INSERT INTO friends (from_user_id, to_user_id)\n" +
+                "VALUES (?, ?);";
+        jdbcTemplate.update(sqlQuery, idFrom, idTo);
+    }
+
+    @Override
+    public void acceptFriendRequest(int userFrom, int userTo) {
+        String sqlQuery = "UPDATE friends SET accepted = true\n" +
+                "WHERE from_user_id = ? AND to_user_id = ?;";
+        jdbcTemplate.update(sqlQuery, userFrom, userTo);
+    }
+
+    @Override
+    public void deleteFriendRequest(int userFrom, int userTo) {
+        String sqlQuery = "DELETE FROM friends WHERE from_user_id = ? AND to_user_id = ?;";
+        jdbcTemplate.update(sqlQuery, userFrom, userTo);
+    }
+
+    @Override
+    public List<User> getFriendRequests(int id) {
+        List<User> users = new ArrayList<>();
+        String sqlQuery = "SELECT from_user_id, username FROM friends\n" +
+                "JOIN users ON from_user_id = users.user_id\n" +
+                "WHERE to_user_id = ?\n" +
+                "AND accepted = false;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, id);
+        while (results.next()) {
+            User user = new User();
+            user.setId(results.getLong("from_user_id"));
+            user.setUsername(results.getString("username"));
+            users.add(user);
+        }
+        return users;
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getLong("user_id"));
