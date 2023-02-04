@@ -11,8 +11,9 @@
 
 <script>
 import ProfileCard from './ProfileCard.vue'
-import ProfileFeatures from './ProfileFeatures.vue';
+import ProfileFeatures from './ProfileFeatures.vue'
 import UserService from '../../services/UserService'
+
 
 export default {
   name: "profile-page-background",
