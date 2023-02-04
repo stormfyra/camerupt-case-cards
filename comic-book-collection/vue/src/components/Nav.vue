@@ -5,32 +5,32 @@
     <div class="nav-menu">
       <ul class="nav-list">
 
-        <!-- testing viewing other users' profiles! -->
+        <!-- viewing other users' profiles. This is for testing; to be moved/hidden later -->
         <li class="nav-item" v-for="user in users" v-bind:key="user.index">
           <a :href="$router.resolve({ name: 'profileWithId', params: {id: user.id} }).href" class="navbar-item">{{user.username}}</a>
         </li>
-        <!-- testing viewing other users' profiles! -->
 
         <li class="nav-item">
-          <router-link :to="{ name: 'ViewCollections' }" class="navbar-item">Card Collections</router-link>&nbsp;
+          <a :href="$router.resolve({ name: 'ViewCollections'}).href" class="navbar-item">Card Collections</a>&nbsp;
         </li>
         <li  v-if="!isLoggedIn" class="nav-item">
-          <router-link to="/login" class="navbar-item">Login</router-link>&nbsp;
+          <a :href="$router.resolve({ name: 'login'}).href" class="navbar-item">Login</a>&nbsp;
         </li>
         <li v-if="!isLoggedIn" class="nav-item">
-          <router-link  to="/register" class="navbar-item">Register</router-link>
+          <router-link  :to="{ name: 'register' }" class="navbar-item">Register</router-link>
         </li>
         <li v-if="isLoggedIn" class="nav-item">
-          <router-link :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
+          <router-link  :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
         </li>
-        <router-link  :to="{ name: 'profileWithId', params: {id: this.$store.state.user.id} }" class="navbar-item" id="profile-link">
+        <!-- <router-link  :to="{ name: 'profileWithId', params: {id: this.$store.state.user.id} }" class="navbar-item" id="profile-link"> -->
+          <a :href="$router.resolve({ name: 'profileWithId', params: {id: this.$store.state.user.id} }).href"  class="navbar-item" id="profile-link">
           <li v-if="isLoggedIn" class="nav-item">
             My Profile
           </li>
           <li>
             <profile-image :small="true" :pokemon="$store.state.user.profilePokemon" v-if="isLoggedIn"></profile-image>
           </li>
-        </router-link>
+        </a>
       </ul>
     </div>
 
