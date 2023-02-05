@@ -19,13 +19,19 @@ public class BadgeController {
     }
 
     @RequestMapping (path = "/{id}", method = RequestMethod.GET)
-    public List<Badge> getUserBadges (@PathVariable String id) {
-        return badgeDao.getUserBadges(((int)Integer.parseInt(id)));
+    public List<Badge> getUserBadges (@PathVariable int id) {
+        return badgeDao.getUserBadges(id);
     }
 
     @RequestMapping (path = "/{id}/GiveBadge", method = RequestMethod.POST)
     public void giveBadgeToUser (@PathVariable int id, @RequestBody Badge badge) {
-        return badgeDao.giveUserBadge(id, badge);
+        badgeDao.giveUserBadge(id, badge);
     }
+
+    @RequestMapping (path = "/give/{id}", method = RequestMethod.GET)
+    public List<Badge> getGivableBadges (@PathVariable int id){
+       return badgeDao.getGivableBadges(id);
+    }
+
 
 }

@@ -3,9 +3,12 @@
     <div class="feature-holder">
         <div class="buttons-holder">
             <button v-if="$store.state.user.id == $route.params.id" @click="editProfile()">Edit Profile</button>          
-            <button v-if="!$store.state.user.id == $route.params.id" @click="addFriend">Add Friend</button>
-            <button v-if="!$store.state.user.id == $route.params.id">Message</button>
-            <button v-if="!$store.state.user.id == $route.params.id">Give Badge</button>
+            <button v-if="!($store.state.user.id == $route.params.id)" @click="addFriend">Add Friend</button>
+            <button v-if="!($store.state.user.id == $route.params.id)">Message</button>
+            <button v-if="!($store.state.user.id == $route.params.id)" @click="showGiveBadgeForm">Give Badge</button>
+            <div class="overlay" v-if="$store.state.showGiveBadgeForm">
+                <give-badge class="overlay-form" />
+            </div> 
         </div>
         <div class="featured-cards-holder">
             <h3>Featured Cards</h3>
@@ -43,6 +46,7 @@ import userService from '../../services/UserService'
 import FriendRequests from '../Edit Profile/features/FriendRequests.vue'
 import CollectionService from '../../services/CollectionService'
 import CollectionGrid from '../Collections/CollectionGrid.vue'
+import GiveBadge from './features/GiveBadge.vue'
 
 export default {
     name: "profile-features",
@@ -53,7 +57,8 @@ export default {
     },
     components: {
         FriendRequests,
-        CollectionGrid
+        CollectionGrid,
+        GiveBadge
     },
     methods:{
         editProfile(){
@@ -61,6 +66,9 @@ export default {
         },
         addFriend() {
             userService.addFriend({userFrom: this.$store.state.user.id, userTo: this.$route.params.id});
+        },
+        showGiveBadgeForm(){
+            this.$store.commit('CHANGE_SHOW_GIVE_BADGE_FORM');
         }
     },
     created(){

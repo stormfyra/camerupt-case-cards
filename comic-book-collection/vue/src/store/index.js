@@ -23,7 +23,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     showAddCollectionForm: false,
     showEditCollectionForm: false,
-    showAddCardForm: false
+    showAddCardForm: false,
+    showGiveBadgeForm: false,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -54,6 +55,9 @@ export default new Vuex.Store({
     },
     CHANGE_SHOW_ADD_CARD(state){
       state.showAddCardForm = !state.showAddCardForm;
+    },
+    CHANGE_SHOW_GIVE_BADGE_FORM(state){
+      state.showGiveBadgeForm = !state.showGiveBadgeForm;
     }
   }
 })

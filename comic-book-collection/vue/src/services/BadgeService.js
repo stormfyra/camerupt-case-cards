@@ -7,5 +7,13 @@ const http = axios.create({
 export default {
     getBadgesByUserId(id){
         return http.get(`/badges/${id}`)
+    },
+
+    giveUserBadge(id, badge){
+        return http.post(`/badges/${id}`, badge)
+    },
+
+    getGivableBadgesByUserId(id){
+        return http.get(`/badges/give/${id}`)
     }
 }

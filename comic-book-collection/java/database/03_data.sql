@@ -56,6 +56,9 @@ INSERT INTO badges (badge_name) VALUES ('boulderBadge');
 INSERT INTO badges_user_has (user_id, badge_name) VALUES (1, 'earthBadge');
 INSERT INTO badges_user_has (user_id, badge_name) VALUES (1, 'volcanoBadge');
 INSERT INTO badges_user_has (user_id, badge_name) VALUES (2, 'thunderBadge');
-
-INSERT INTO badges_user_give (user_id, badge_name) VALUES (1, 'rainbowBadge');
 INSERT INTO badges_user_has (user_id, badge_name) VALUES (1, 'marshBadge');
+
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'rainbowBadge');
+
+
+

@@ -1,8 +1,8 @@
 <template>
     <div :class="smallView ? 'small-collection-container' : 'collection-container'">
         <button class="empty-card" v-on:click="showAddForm" v-if="!smallView"><h1>+</h1></button>
-        <div id="overlay" v-if="$store.state.showAddCollectionForm">
-            <add-collection id="overlay-form"/>
+        <div class="overlay" v-if="$store.state.showAddCollectionForm">
+            <add-collection class="overlay-form"/>
         </div>
         <div v-for="collection in collections" :key="collection.index"  :class="smallView ? 'smallCollecitonImage' : 'collectionImage'">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}"> 
@@ -141,26 +141,6 @@ button > h1 {
     color: rgb(109, 109, 109);
 }
 
-#overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 5;
-  cursor: pointer;
-}
-
-#overlay-form{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-}
 
 
 /* Extra small devices (phones, 600px and down) */

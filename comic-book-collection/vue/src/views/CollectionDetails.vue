@@ -4,12 +4,12 @@
         <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
         <p class="collectionDescription"><em>{{description}}</em></p>
         <button v-if="ownerUsername == $store.state.user.username" @click="showEditCollection">Edit</button>
-        <div id="overlay" v-if="$store.state.showEditCollectionForm">
-            <edit-collection id="overlay-form" :collection="collection" />
+        <div class="overlay" v-if="$store.state.showEditCollectionForm">
+            <edit-collection class="overlay-form" :collection="collection" />
         </div>
         <button v-if="ownerUsername == $store.state.user.username" @click="showAddCard">Add A card</button>
-        <div id="overlay" v-if="$store.state.showAddCardForm" >
-            <add-a-card id="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
+        <div class="overlay" v-if="$store.state.showAddCardForm" >
+            <add-a-card class="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
         </div>
         <card-grid :cards='cards' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
     </div>
@@ -129,23 +129,4 @@ card-grid {
     gap: 10px;
 }
 
-#overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 5;
-}
-
-#overlay-form{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-}
 </style>
