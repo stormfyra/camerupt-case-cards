@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Card;
 import com.techelevator.model.CardSet;
+import com.techelevator.model.CardSetImages;
 import com.techelevator.model.Images;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -31,6 +32,39 @@ public class JdbcCardDao implements CardDao{
 
         while(results.next()) {
             Card card = mapRowToCard(results);
+
+            List<String> subtypes = new ArrayList<>();
+            String sqlQueryForCardSubtypes = "SELECT subtype.name AS name FROM card\n" +
+                    "JOIN card_subtype ON card.card_id = card_subtype.card_id\n" +
+                    "JOIN subtype ON card_subtype.subtype_id = subtype.id\n" +
+                    "WHERE card.card_id = ?;";
+            SqlRowSet subtypesResult = jdbcTemplate.queryForRowSet(sqlQueryForCardSubtypes, card.getId());
+            while (subtypesResult.next()) {
+                subtypes.add(subtypesResult.getString("name"));
+            }
+            card.setSubtypes(subtypes);
+
+            List<String> types = new ArrayList<>();
+            String sqlQueryForCardTypes = "SELECT type.name AS name FROM card\n" +
+                    "JOIN card_type ON card.card_id = card_type.card_id\n" +
+                    "JOIN type ON card_type.type_id = type.id\n" +
+                    "WHERE card.card_id = ?;";
+            SqlRowSet typesResult = jdbcTemplate.queryForRowSet(sqlQueryForCardTypes, card.getId());
+            while (typesResult.next()) {
+                types.add(typesResult.getString("name"));
+            }
+            card.setTypes(types);
+
+            String sqlQueryForSetDetails = "SELECT id, set.name AS name, series, printed_total, symbol_image, logo_image FROM card\n" +
+                    "JOIN card_set ON card.card_id = card_set.card_id\n" +
+                    "JOIN set ON card_set.set_id = set.id" +
+                    "WHERE card.card_id = ?;";
+            SqlRowSet setDetailsResults = jdbcTemplate.queryForRowSet(sqlQueryForSetDetails, card.getId());
+            if (setDetailsResults.next()) {
+                CardSet cardSet = mapRowToCardSet(setDetailsResults);
+                card.setCardSet(cardSet);
+            }
+
             allCards.add(card);
         }
 
@@ -130,14 +164,30 @@ public class JdbcCardDao implements CardDao{
         }
     }
 
-    private Card mapRowToCard(SqlRowSet results) {
+    public Card mapRowToCard(SqlRowSet results) {
         Card card = new Card();
-        Images externalApiCardImagesDto = new Images();
+        Images images = new Images();
         card.setId(results.getString("card_id"));
         card.setName(results.getString("name"));
-        externalApiCardImagesDto.setLarge(results.getString("large_image"));
-        externalApiCardImagesDto.setSmall(results.getString("small_image"));
-        card.setImages(externalApiCardImagesDto);
+        images.setLarge(results.getString("large_image"));
+        images.setSmall(results.getString("small_image"));
+        card.setImages(images);
+        card.setSupertype(results.getString("super_type"));
+        card.setHp(results.getInt("hp"));
+        card.setRarity(results.getString("rarity"));
         return card;
+    }
+
+    public CardSet mapRowToCardSet(SqlRowSet results) {
+        CardSet cardSet = new CardSet();
+        CardSetImages cardSetImages = new CardSetImages();
+        cardSet.setId(results.getString("id"));
+        cardSet.setName(results.getString("name"));
+        cardSet.setSeries(results.getString("series"));
+        cardSet.setPrintedTotal(results.getInt("printed_total"));
+        cardSetImages.setLogo(results.getString("logo_image"));
+        cardSetImages.setSymbol(results.getString("symbol_image"));
+        cardSet.setImages(cardSetImages);
+        return cardSet;
     }
 }

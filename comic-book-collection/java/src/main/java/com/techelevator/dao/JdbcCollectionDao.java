@@ -52,25 +52,64 @@ public class JdbcCollectionDao implements CollectionDao {
     @Override
     public CardCollection getCardCollectionById(int id, String username) {
         CardCollection cardCollection = null;
-        List<Card> cards = new ArrayList<>();
         String queryForCollectionDetails = "SELECT collection_id, name, description, is_private, username FROM collection\n" +
                 "JOIN users ON collection.user_id = users.user_id\n" +
                 "WHERE collection_id = ?;";
-        String queryForCards = "SELECT card.card_id AS card_id, card.name AS name, large_image, small_image, quantity\n" +
-                "FROM collection\n" +
-                "JOIN collection_card ON collection.collection_id = collection_card.collection_id\n" +
-                "JOIN card ON collection_card.card_id = card.card_id\n" +
-                "WHERE collection.collection_id = ?;";
         SqlRowSet collectionDetailsResults = jdbcTemplate.queryForRowSet(queryForCollectionDetails, id);
         if (collectionDetailsResults.next()) {
             cardCollection = mapRowToCardCollection(collectionDetailsResults);
         }
-        SqlRowSet cardsResults = jdbcTemplate.queryForRowSet(queryForCards, id);
-        while (cardsResults.next()) {
-            Card card = mapRowToCard(cardsResults);
-            cards.add(card);
+
+
+        String queryForCards = "SELECT card.card_id AS card_id, quantity, card.name AS name, large_image, small_image, super_type, hp, rarity\n" +
+                "FROM collection\n" +
+                "JOIN collection_card ON collection.collection_id = collection_card.collection_id\n" +
+                "JOIN card ON collection_card.card_id = card.card_id\n" +
+                "WHERE collection.collection_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(queryForCards, id);
+        List<Card> allCards = new ArrayList<>();
+        CardDao cardDao = new JdbcCardDao(jdbcTemplate);
+
+        while(results.next()) {
+            Card card = cardDao.mapRowToCard(results);
+            card.setQuantity(results.getInt("quantity"));
+
+            List<String> subtypes = new ArrayList<>();
+            String sqlQueryForCardSubtypes = "SELECT subtype.name AS name FROM card\n" +
+                    "JOIN card_subtype ON card.card_id = card_subtype.card_id\n" +
+                    "JOIN subtype ON card_subtype.subtype_id = subtype.id\n" +
+                    "WHERE card.card_id = ?;";
+            SqlRowSet subtypesResult = jdbcTemplate.queryForRowSet(sqlQueryForCardSubtypes, card.getId());
+            while (subtypesResult.next()) {
+                subtypes.add(subtypesResult.getString("name"));
+            }
+            card.setSubtypes(subtypes);
+
+            List<String> types = new ArrayList<>();
+            String sqlQueryForCardTypes = "SELECT type.name AS name FROM card\n" +
+                    "JOIN card_type ON card.card_id = card_type.card_id\n" +
+                    "JOIN type ON card_type.type_id = type.id\n" +
+                    "WHERE card.card_id = ?;";
+            SqlRowSet typesResult = jdbcTemplate.queryForRowSet(sqlQueryForCardTypes, card.getId());
+            while (typesResult.next()) {
+                types.add(typesResult.getString("name"));
+            }
+            card.setTypes(types);
+
+            String sqlQueryForSetDetails = "SELECT id, set.name AS name, series, printed_total, symbol_image, logo_image FROM card\n" +
+                    "JOIN card_set ON card.card_id = card_set.card_id\n" +
+                    "JOIN set ON card_set.set_id = set.id\n" +
+                    "WHERE card.card_id = ?;";
+            SqlRowSet setDetailsResults = jdbcTemplate.queryForRowSet(sqlQueryForSetDetails, card.getId());
+            if (setDetailsResults.next()) {
+                CardSet cardSet = cardDao.mapRowToCardSet(setDetailsResults);
+                card.setCardSet(cardSet);
+            }
+
+            allCards.add(card);
         }
-        cardCollection.setCards(cards);
+        cardCollection.setCards(allCards);
         if (!cardCollection.isPrivate() || cardCollection.getOwnerUsername().equals(username)) {
             return cardCollection;
         } else {
@@ -159,15 +198,15 @@ public class JdbcCollectionDao implements CollectionDao {
         return cardCollection;
     }
 
-    private Card mapRowToCard(SqlRowSet results) {
-        Card card = new Card();
-        Images externalApiCardImagesDto = new Images();
-        card.setId(results.getString("card_id"));
-        card.setName(results.getString("name"));
-        externalApiCardImagesDto.setLarge(results.getString("large_image"));
-        externalApiCardImagesDto.setSmall(results.getString("small_image"));
-        card.setImages(externalApiCardImagesDto);
-        card.setQuantity(results.getInt("quantity"));
-        return card;
-    }
+//    private Card mapRowToCard(SqlRowSet results) {
+//        Card card = new Card();
+//        Images externalApiCardImagesDto = new Images();
+//        card.setId(results.getString("card_id"));
+//        card.setName(results.getString("name"));
+//        externalApiCardImagesDto.setLarge(results.getString("large_image"));
+//        externalApiCardImagesDto.setSmall(results.getString("small_image"));
+//        card.setImages(externalApiCardImagesDto);
+//        card.setQuantity(results.getInt("quantity"));
+//        return card;
+//    }
 }
