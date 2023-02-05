@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS card;
 DROP TABLE IF EXISTS collection;
 DROP TABLE IF EXISTS badges;
-DROP TABLE IF EXISTS badges_user_give;
+DROP TABLE IF EXISTS badges_user_can_give;
 DROP TABLE IF EXISTS badges_user_has;
 DROP TABLE IF EXISTS friends;
 DROP TABLE IF EXISTS collection_card;
@@ -39,7 +39,7 @@ CREATE TABLE badges (
     badge_name varchar(20) PRIMARY KEY
 );
 
-CREATE TABLE badges_user_give (
+CREATE TABLE badges_user_can_give (
     user_id int,
     badge_name varchar(20),
     CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),

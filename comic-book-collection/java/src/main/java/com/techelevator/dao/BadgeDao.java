@@ -9,4 +9,6 @@ public interface BadgeDao {
     List<Badge> getUserBadges(int id);
 
     void giveUserBadge(int id, Badge badge);
+
+    List<Badge> getGivableBadges(int parseInt);
 }
