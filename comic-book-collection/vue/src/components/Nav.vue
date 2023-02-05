@@ -10,17 +10,20 @@
           <a :href="$router.resolve({ name: 'profileWithId', params: {id: user.id} }).href" class="navbar-item">{{user.username}}</a>
         </li>
 
+        <li v-if="isLoggedIn" class="nav-item">
+          <router-link :to="{ name: 'friends' }" class="navbar-item">Friends</router-link>
+        </li>
         <li class="nav-item">
           <a :href="$router.resolve({ name: 'ViewCollections'}).href" class="navbar-item">Card Collections</a>&nbsp;
         </li>
-        <li  v-if="!isLoggedIn" class="nav-item">
+        <li v-if="!isLoggedIn" class="nav-item">
           <a :href="$router.resolve({ name: 'login'}).href" class="navbar-item">Login</a>&nbsp;
         </li>
         <li v-if="!isLoggedIn" class="nav-item">
-          <router-link  :to="{ name: 'register' }" class="navbar-item">Register</router-link>
+          <router-link :to="{ name: 'register' }" class="navbar-item">Register</router-link>
         </li>
         <li v-if="isLoggedIn" class="nav-item">
-          <router-link  :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
+          <router-link :to="{ name: 'logout' }" class="navbar-item">Logout</router-link>
         </li>
         <!-- <router-link  :to="{ name: 'profileWithId', params: {id: this.$store.state.user.id} }" class="navbar-item" id="profile-link"> -->
           <a :href="$router.resolve({ name: 'profileWithId', params: {id: this.$store.state.user.id} }).href"  class="navbar-item" id="profile-link">

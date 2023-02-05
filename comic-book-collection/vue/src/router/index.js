@@ -9,6 +9,7 @@ import CollectionDetails from '../views/CollectionDetails.vue'
 import ViewCollections from "../views/ViewCollections.vue"
 import ProfileGrid from '../components/Edit Profile/ProfileGrid.vue'
 import ProfileView from "../views/ProfileView.vue"
+import FriendsView from "../views/FriendsView.vue"
 
 Vue.use(Router)
 
@@ -78,9 +79,8 @@ const router = new Router({
       name: "editProfile",
       component: ProfileGrid,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
-        /* should be true, but for dev leave it false */
       
     },
     {
@@ -97,6 +97,14 @@ const router = new Router({
       component: ProfileView,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/friends",
+      name: "friends",
+      component: FriendsView,
+      meta: {
+        requiresAuth: true
       }
     }
   ]
