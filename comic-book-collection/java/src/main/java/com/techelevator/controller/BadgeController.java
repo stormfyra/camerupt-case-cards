@@ -23,4 +23,9 @@ public class BadgeController {
         return badgeDao.getUserBadges(((int)Integer.parseInt(id)));
     }
 
+    @RequestMapping (path = "/{id}/GiveBadge", method = RequestMethod.POST)
+    public void giveBadgeToUser (@PathVariable int id, @RequestBody Badge badge) {
+        return badgeDao.giveUserBadge(id, badge);
+    }
+
 }

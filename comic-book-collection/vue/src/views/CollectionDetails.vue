@@ -11,7 +11,7 @@
         <div id="overlay" v-if="$store.state.showAddCardForm" >
             <add-a-card id="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
         </div>
-        <card-grid :cards='cards' @deletecard="deleteCard" />
+        <card-grid :cards='cards' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
     </div>
 </template>
 
