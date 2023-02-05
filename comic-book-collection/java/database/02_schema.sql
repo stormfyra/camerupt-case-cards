@@ -69,7 +69,10 @@ CREATE TABLE card (
     card_id varchar(20) PRIMARY KEY,
     name varchar(30) NOT NULL,
     large_image varchar(200) NOT NULL,
-    small_image varchar(200) NOT NULL
+    small_image varchar(200) NOT NULL,
+    super_type VARCHAR(20),
+    hp INT,
+    rarity varchar(20)
 );
 
 CREATE TABLE collection (
@@ -89,6 +92,51 @@ CREATE TABLE collection_card (
     CONSTRAINT FK_collection_card_card FOREIGN KEY(card_id) REFERENCES card(card_id),
     PRIMARY KEY (collection_id, card_id)
 );
+
+CREATE TABLE subtype (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE card_subtype (
+    card_id VARCHAR(20),
+    subtype_id INT,
+    CONSTRAINT FK_card_subtype_card_id FOREIGN KEY(card_id) REFERENCES card(card_id),
+    CONSTRAINT FK_card_subtype_subtype_id FOREIGN KEY(subtype_id) REFERENCES subtype(id),
+    PRIMARY KEY (card_id, subtype_id)
+);
+
+CREATE TABLE type (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(20) UNIQUE NOT NULL
+);
+
+CREATE TABLE card_type (
+    card_id VARCHAR(20),
+    type_id INT,
+    CONSTRAINT FK_card_type_card_id FOREIGN KEY(card_id) REFERENCES card(card_id),
+    CONSTRAINT FK_card_type_type_id FOREIGN KEY(type_id) REFERENCES type(id),
+    PRIMARY KEY (card_id, type_id)
+);
+
+CREATE TABLE set (
+    id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(50),
+    series VARCHAR(50),
+    printed_total INT,
+    symbol_image VARCHAR(200),
+    logo_image VARCHAR(200)
+);
+
+CREATE TABLE card_set (
+    card_id VARCHAR(20),
+    set_id VARCHAR(20),
+    CONSTRAINT FK_card_set_card_id FOREIGN KEY(card_id) REFERENCES card(card_id),
+    CONSTRAINT FK_card_set_set_id FOREIGN KEY(set_id) REFERENCES set(id),
+    PRIMARY KEY (card_id, set_id)
+);
+
+
 
 -- Add seed data in the 03_data.sql script file
 

@@ -33,6 +33,4 @@ public class BadgeController {
     public void giveUserBadge(@PathVariable String toUserId, @PathVariable int fromUserId, @RequestBody Badge badge){
         badgeDao.giveUserBadge(Integer.parseInt(toUserId), fromUserId, badge.getBadgeName());
     }
-
-
 }
