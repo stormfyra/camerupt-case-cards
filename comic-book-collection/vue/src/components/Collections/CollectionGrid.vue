@@ -60,6 +60,7 @@ export default {
     align-items: top;
     height: auto;
     flex-wrap: wrap;
+    padding: 10px;
 }
 
 

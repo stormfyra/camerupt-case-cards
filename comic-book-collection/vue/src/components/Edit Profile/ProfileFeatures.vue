@@ -18,7 +18,9 @@
         </div>
         <div class="public-collections">
             <h3>Public Collections</h3>
-            <collection-grid :smallView="true" :collections="publicCollections"></collection-grid>
+            <div class="featured-cards">
+                <collection-grid :smallView="true" :collections="publicCollections"></collection-grid>
+            </div>
         </div>
         <div class="friends">
             <h3>Friends</h3>
