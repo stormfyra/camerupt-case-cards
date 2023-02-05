@@ -2,7 +2,7 @@
   <div class="profile-page-background">
       <div class="friends-container">
         <!-- grids -->
-      <friends-grid></friends-grid>
+      <friends-grid :users='users' :smallView='true'></friends-grid>
       </div>
   </div>
 </template>
@@ -16,12 +16,9 @@ export default {
     components: {
         FriendsGrid
     },
-    props: [
-        'users'
-    ],
     data() {
     return {
-        
+        users: []
     }
     },
     created() {
@@ -29,14 +26,12 @@ export default {
         UserService.getAllUsers()
                     .then(response => {
                         // profile card details
-                        this.username = response.data.username;
-                        this.bio = response.data.bio;
-                        this.profilePokemon = response.data.profilePokemon;
+                        this.users = response.data;
 
                         // add pronouns, stats, and badges
 
                         // add profile feature content: featured cards, public collections, and friends
-                    })
+                    });
     }
 };
 </script>

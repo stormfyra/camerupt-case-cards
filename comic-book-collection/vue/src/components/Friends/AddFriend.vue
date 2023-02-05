@@ -3,13 +3,13 @@
         <div class="form-popup" id="form">
             <form class="form-container">
                 <h1>Add A New Friend</h1>
-                <label for="id">Friend ID</label>
+                <label for="username">Username</label>
                 <!-- nothing works right now, this is for testing; implement adding a new friend -->
                 <input 
                     type="text"
-                    id="id"
+                    username="username"
                     placeholder="id"
-                    v-model="collection.title"
+                    v-model="friends.username"
                 />
                 <button id="submit" @click.prevent="onSubmit">Submit</button>
                 <button type="button" id="close" v-on:click="off()">Close</button>
