@@ -2,7 +2,7 @@
   <div class="profile-features">
     <div class="feature-holder">
         <div class="buttons-holder">
-            <button @click="editProfile()">Edit Profile</button>          
+            <button v-if="$store.state.user.id == $route.params.id" @click="editProfile()">Edit Profile</button>          
             <button @click="addFriend">Add Friend</button>
             <button>Message</button>
             <button>Give Badge</button>
@@ -31,7 +31,10 @@
                 <button class="empty-card"></button>
             </div>
         </div>
-        <friend-requests />
+        <div v-if="$store.state.user.id == $route.params.id">
+            <h3>Pending Friend Requests</h3>
+            <friend-requests />
+        </div>
     </div>
   </div>
 </template>

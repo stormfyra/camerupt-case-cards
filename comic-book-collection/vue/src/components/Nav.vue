@@ -24,11 +24,12 @@
         </li>
         <!-- <router-link  :to="{ name: 'profileWithId', params: {id: this.$store.state.user.id} }" class="navbar-item" id="profile-link"> -->
           <a :href="$router.resolve({ name: 'profileWithId', params: {id: this.$store.state.user.id} }).href"  class="navbar-item" id="profile-link">
-          <li v-if="isLoggedIn" class="nav-item">
-            My Profile
-          </li>
-          <li>
-            <profile-image :small="true" :pokemon="$store.state.user.profilePokemon" v-if="isLoggedIn"></profile-image>
+
+          <li id="logged-in-user-info" v-if="isLoggedIn">
+            <div id="profile-holder-navbar">
+              <p>{{$store.state.user.username}}</p>
+            </div>
+            <profile-image :small="true" :pokemon="$store.state.user.profilePokemon"></profile-image>
           </li>
         </a>
       </ul>
@@ -81,8 +82,7 @@ import userService from '../services/UserService'
     border-bottom: solid #e93d40;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 111px;
-    padding-right: 111px;
+    padding-right: 10%;
     font-family: "Flexo-Regular",arial,sans-serif;
     color: #e93d40;
   }
@@ -106,10 +106,35 @@ import userService from '../services/UserService'
     display: flex;
     gap: 1rem;
   }
+  li {
+    border-left: solid #e93d40 2px;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+  }
+
+  li:first-child {
+    border-left: none;
+  }
 
   #profile-link {
     display: flex;
     gap: 1rem;
+  }
+
+  #logged-in-user-info {
+    display: flex;
+    border-left: solid #e93d40 2px;
+    justify-content: flex-end;
+  }
+
+  #profile-holder-navbar {
+    color: black;
+    font-size: small;
+  }
+
+  p {
+    margin-right: 5px;
   }
   
 </style>

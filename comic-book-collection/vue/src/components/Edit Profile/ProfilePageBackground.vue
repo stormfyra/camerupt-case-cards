@@ -36,7 +36,7 @@ export default {
                         // profile card details
                         this.username = response.data.username;
                         this.bio = response.data.bio;
-                        this.profilePokemon = response.data.profilePokemon;
+                        this.selectedPokemon = response.data.profilePokemon;
 
                         // add pronouns, stats, and badges
 

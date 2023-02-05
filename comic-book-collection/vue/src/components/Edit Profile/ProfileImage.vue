@@ -32,10 +32,10 @@ img {
 }
 
 .small {
-    height: 25px;
-    width: 25px;
-    min-height: 25px;
-    min-width: 25px;
+    min-height: 40px;
+    min-width: 40px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     border: 1px solid black;
 }
