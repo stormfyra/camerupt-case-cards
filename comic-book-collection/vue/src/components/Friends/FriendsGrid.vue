@@ -3,11 +3,12 @@
         <!-- add friend button + overlay -->
         <button class="empty-card" v-on:click="showAddForm"><h1>+</h1></button>
         <div id="overlay" v-if="$store.state.showAddCollectionForm">
-            <add-collection id="overlay-form"/>
+            <add-friend id="overlay-form"/>
         </div>
 
         <!-- display all friends; TO-DO: change to the user's friends -->
         <div v-for="user in users" v-bind:key="user.index" class="collectionImage">
+            <div>jeepers</div>
             <button class="empty-card">
                 <router-link class="title-holder" :to="{name: 'profileWithId', params: {id: user.id}}"> 
                     <p class="title">{{user.username}}</p>
@@ -19,12 +20,17 @@
 </template>
 
 <script>
+import AddFriend from './AddFriend.vue';
+
 export default {
     name: 'FriendsView',
     // TO-DO: change to friends
     props: [
         'users'
     ],
+    components: {
+        AddFriend
+    },
     methods: {
         //TO-DO: change to add friends form
         showAddForm() {

@@ -1,6 +1,6 @@
 <template>
   <div class="profile-page-background">
-      <div class="text-center page">
+      <div class="friends-container">
         <!-- grids -->
       <friends-grid></friends-grid>
       </div>
@@ -17,11 +17,11 @@ export default {
         FriendsGrid
     },
     props: [
-
+        'users'
     ],
     data() {
     return {
-        selectedPokemon: 'Camerupt',
+        
     }
     },
     created() {
