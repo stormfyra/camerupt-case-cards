@@ -35,6 +35,11 @@ public class JdbcBadgeDao implements BadgeDao{
         return badges;
     }
 
+    @Override
+    public void giveUserBadge(int id, Badge badge) {
+
+    }
+
     private Badge mapRowToBadge(SqlRowSet results) {
         return new Badge(results.getString("badge_name"));
     }
