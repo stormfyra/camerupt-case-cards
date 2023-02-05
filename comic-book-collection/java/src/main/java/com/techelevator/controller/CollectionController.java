@@ -33,6 +33,11 @@ public class CollectionController {
         return collectionDao.getCardCollections(username);
     }
 
+    @RequestMapping(path = "/user-collections/{id}", method = RequestMethod.GET)
+    public List<CardCollection> getUserCardCollections(Principal principal, @PathVariable int id) {
+        return collectionDao.getUserCardCollections(id);
+    }
+
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Object getCollectionById(Principal principal, @PathVariable int id) {
         String username;

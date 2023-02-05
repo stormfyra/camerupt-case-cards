@@ -18,10 +18,7 @@
         </div>
         <div class="public-collections">
             <h3>Public Collections</h3>
-            <div class="featured-cards">
-                <button class="empty-card"></button>
-                <button class="empty-card"></button>
-            </div>
+            <collection-grid :smallView="true" :collections="publicCollections"></collection-grid>
         </div>
         <div class="friends">
             <h3>Friends</h3>
@@ -42,10 +39,19 @@
 <script>
 import userService from '../../services/UserService'
 import FriendRequests from '../Edit Profile/features/FriendRequests.vue'
+import CollectionService from '../../services/CollectionService'
+import CollectionGrid from '../Collections/CollectionGrid.vue'
+
 export default {
     name: "profile-features",
+    data() {
+        return {
+            publicCollections: {}
+        }
+    },
     components: {
-        FriendRequests
+        FriendRequests,
+        CollectionGrid
     },
     methods:{
         editProfile(){
@@ -54,6 +60,10 @@ export default {
         addFriend() {
             userService.addFriend({userFrom: this.$store.state.user.id, userTo: this.$route.params.id});
         }
+    },
+    created(){
+        CollectionService.getPublicCollectionsByUserId(this.$route.params.id)
+                        .then(response => this.publicCollections = response.data)
     }
 };
 </script>

@@ -32,5 +32,9 @@ export default {
 
     deleteCardFromCollection(collectionId, cardId) {
         return http.delete(`/collections/${collectionId}/${cardId}`);
+    },
+
+    getPublicCollectionsByUserId(id) {
+        return http.get(`/collections/user-collections/${id}`)
     }
 }

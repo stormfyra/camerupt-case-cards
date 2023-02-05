@@ -32,6 +32,24 @@ public class JdbcCollectionDao implements CollectionDao {
     }
 
     @Override
+    public List<CardCollection> getUserCardCollections(int id) {
+        List<CardCollection> cardCollections = new ArrayList<>();
+        String sqlQuery = "SELECT collection_id, name, description, is_private, username FROM collection\n" +
+                "JOIN users ON collection.user_id = users.user_id\n" +
+                "WHERE users.user_id = ?" +
+                "ORDER BY is_private;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, id);
+        while (results.next()) {
+            CardCollection cardCollection = mapRowToCardCollection(results);
+            if (!cardCollection.isPrivate()) {
+                cardCollections.add(cardCollection);
+            }
+
+        }
+        return cardCollections;
+    }
+
+    @Override
     public CardCollection getCardCollectionById(int id, String username) {
         CardCollection cardCollection = null;
         List<Card> cards = new ArrayList<>();

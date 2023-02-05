@@ -3,9 +3,9 @@
         <div v-for="(card, index) in cards" :key="index">
             <img :src="card.images.small" :alt="card.cardName" class="cardImage" />
             <div id="quantity-div">
-                <button class="change-quantity" @click="updateQuantity(card, -1)">-</button>
+                <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, -1)">-</button>
                 <p id="cardQuantity"><strong>x{{card.quantity}}</strong></p>
-                <button class="change-quantity" @click="updateQuantity(card, 1)">+</button>
+                <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, 1)">+</button>
             </div>
         </div>
     </div>
@@ -18,6 +18,7 @@ export default {
     emits: ['deleteCard'],
     props: [
         "cards",
+        "ownedByMe"
     ],
     methods: {
         updateQuantity(card, change) {
