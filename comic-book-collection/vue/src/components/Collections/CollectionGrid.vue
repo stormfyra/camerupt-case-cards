@@ -63,7 +63,6 @@ export default {
     padding: 10px;
 }
 
-
 .collectionImage {
     width: 200px;
     height: 280px;

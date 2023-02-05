@@ -3,11 +3,11 @@
         <h1 class="collectionTitle">{{title}}</h1>
         <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
         <p class="collectionDescription"><em>{{description}}</em></p>
-        <button @click="showEditCollection">Edit</button>
+        <button v-if="ownerUsername == $store.state.user.username" @click="showEditCollection">Edit</button>
         <div id="overlay" v-if="$store.state.showEditCollectionForm">
             <edit-collection id="overlay-form" :collection="collection" />
         </div>
-        <button @click="showAddCard">Add A card</button>
+        <button v-if="ownerUsername == $store.state.user.username" @click="showAddCard">Add A card</button>
         <div id="overlay" v-if="$store.state.showAddCardForm" >
             <add-a-card id="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
         </div>

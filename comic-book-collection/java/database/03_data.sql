@@ -5,10 +5,10 @@ INSERT INTO profile_pokemons (pokemon) VALUES ('Camerupt');
 INSERT INTO users (user_id, username, password_hash, role, email, profile_pokemon) VALUES (1, 'user',
     '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'fake@fake.com', 1);
 INSERT INTO users (user_id, username, password_hash, role, email, profile_pokemon) VALUES (3, 'admin',
-    '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','fake@fake.com', 1);
+    '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','fake@fake.com', 2);
 INSERT INTO users (user_id, username, password_hash, role, email, full_name, shipping_address, bio, profile_pokemon)
     VALUES (2, 'testuser', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER','fake@fake.com',
-    'User User', '1000 User Ave NE WA', 'Hello! Im a friendly user.', 1);
+    'User User', '1000 User Ave NE WA', 'Hello! Im a friendly user.', 4);
 
 ALTER SEQUENCE seq_user_id RESTART WITH 4;
 
