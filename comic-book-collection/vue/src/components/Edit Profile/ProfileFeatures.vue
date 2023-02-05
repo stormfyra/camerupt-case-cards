@@ -3,9 +3,9 @@
     <div class="feature-holder">
         <div class="buttons-holder">
             <button v-if="$store.state.user.id == $route.params.id" @click="editProfile()">Edit Profile</button>          
-            <button @click="addFriend">Add Friend</button>
-            <button>Message</button>
-            <button>Give Badge</button>
+            <button v-if="!$store.state.user.id == $route.params.id" @click="addFriend">Add Friend</button>
+            <button v-if="!$store.state.user.id == $route.params.id">Message</button>
+            <button v-if="!$store.state.user.id == $route.params.id">Give Badge</button>
         </div>
         <div class="featured-cards-holder">
             <h3>Featured Cards</h3>
