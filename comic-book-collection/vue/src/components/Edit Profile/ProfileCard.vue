@@ -30,7 +30,7 @@
 
             <!-- to update: badges will go here -->
             <h2>Badges</h2>
-            <badge-holder />
+            <badge-holder :badges='badges'/>
         </div>
         <div class="page">
 
@@ -46,6 +46,7 @@ import BadgeHolder from './features/BadgeHolder.vue'
 export default {
     props: [
         'pokemon',
+        'badges'
     ],
     components: {
         profileImage,

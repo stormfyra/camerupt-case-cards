@@ -1,28 +1,31 @@
 <template>
     <div>
-        <img v-for="badge in badges" :key="badge.id" :src="badgeSource(badge)" :alt="badge.badgeName" class="badge">
+        <img v-for="badge in badges" :key="badge.id" :src="badgeSource(badge)" :alt="badge" class="badge">
     </div>
     
 </template>
 
 <script>
-import BadgeService from '../../../services/BadgeService'
+// import BadgeService from '../../../services/BadgeService'
 
 export default {
-    data() {
-        return{
-            badges: []
-        }
-    },
-    created() {
-        BadgeService.getBadgesByUserId(this.$route.params.id)
-                    .then(response => {
-                        this.badges =(JSON.parse(JSON.stringify(response.data)));
-                    });           
-    },
+    // data() {
+    //     return{
+    //         badges: []
+    //     }
+    // },
+    props: [
+        'badges'
+    ],
+    // created() {
+    //     BadgeService.getBadgesByUserId(this.$route.params.id)
+    //                 .then(response => {
+    //                     this.badges =(JSON.parse(JSON.stringify(response.data)));
+    //                 });           
+    // },
     methods: {
         badgeSource(badge) {
-            return require(`../../../../resources/${badge.badgeName}.png`)
+            return require(`../../../../resources/${badge}.png`)
         }
     }
     

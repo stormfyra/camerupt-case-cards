@@ -49,8 +49,9 @@ export default {
 
 #card-container {
     width: 100%;
-    display: grid;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     align-items: center;
     background-color: #87CEEE;
     height: auto + 40px;

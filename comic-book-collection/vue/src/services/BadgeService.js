@@ -9,11 +9,11 @@ export default {
         return http.get(`/badges/${id}`)
     },
 
-    giveUserBadge(id, badge){
-        return http.post(`/badges/${id}`, badge)
-    },
-
     getGivableBadgesByUserId(id){
         return http.get(`/badges/give/${id}`)
+    },
+
+    giveUserBadge(toUserId, fromUserId, badge){
+        return http.post(`/badges/give/${toUserId}/${fromUserId}`, {badgeName: badge})
     }
 }

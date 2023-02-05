@@ -2,9 +2,9 @@
   <div class="profile-page-background">
       <div class="text-center page">
         <!-- card -->
-      <profile-card :pokemon="selectedPokemon" class="card"></profile-card>
+      <profile-card :pokemon="selectedPokemon" :badges="badges" class="card"></profile-card>
       <!-- features -->
-      <profile-features class="features"></profile-features>
+      <profile-features class="features" :badges="badges"></profile-features>
       </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
 import ProfileCard from './ProfileCard.vue'
 import ProfileFeatures from './ProfileFeatures.vue'
 import UserService from '../../services/UserService'
+import BadgeService from '../../services/BadgeService'
 
 
 export default {
@@ -27,6 +28,7 @@ export default {
     data() {
     return {
         selectedPokemon: 'Camerupt',
+        badges: []
     }
     },
     created() {
@@ -41,7 +43,11 @@ export default {
                         // add pronouns, stats, and badges
 
                         // add profile feature content: featured cards, public collections, and friends
-                    })
+                    });
+        BadgeService.getBadgesByUserId(this.$route.params.id)
+                    .then(response => {
+                        this.badges =(JSON.parse(JSON.stringify(response.data)));
+                    }); 
     }
 };
 </script>

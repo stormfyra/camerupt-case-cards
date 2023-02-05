@@ -7,7 +7,7 @@
             <button v-if="!($store.state.user.id == $route.params.id)">Message</button>
             <button v-if="!($store.state.user.id == $route.params.id)" @click="showGiveBadgeForm">Give Badge</button>
             <div class="overlay" v-if="$store.state.showGiveBadgeForm">
-                <give-badge class="overlay-form" />
+                <give-badge class="overlay-form" :badgesUserHas='badges' />
             </div> 
         </div>
         <div class="featured-cards-holder">
@@ -55,6 +55,9 @@ export default {
             publicCollections: {}
         }
     },
+    props: [
+        'badges'
+    ],
     components: {
         FriendRequests,
         CollectionGrid,
