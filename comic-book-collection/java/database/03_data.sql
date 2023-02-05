@@ -58,7 +58,28 @@ INSERT INTO badges_user_has (user_id, badge_name) VALUES (1, 'volcanoBadge');
 INSERT INTO badges_user_has (user_id, badge_name) VALUES (2, 'thunderBadge');
 INSERT INTO badges_user_has (user_id, badge_name) VALUES (1, 'marshBadge');
 
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'earthBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'volcanoBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'marshBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'soulBadge');
 INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'rainbowBadge');
-
-
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'thunderBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'cascadeBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (1, 'boulderBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (2, 'earthBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (2, 'volcanoBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (2, 'marshBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (2, 'soulBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (2, 'rainbowBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (2, 'thunderBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (2, 'cascadeBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (2, 'boulderBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (3, 'earthBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (3, 'volcanoBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (3, 'marshBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (3, 'soulBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (3, 'rainbowBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (3, 'thunderBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (3, 'cascadeBadge');
+INSERT INTO badges_user_can_give (user_id, badge_name) VALUES (3, 'boulderBadge');
 

@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface BadgeDao {
 
-    List<Badge> getUserBadges(int id);
+    List<String> getUserBadges(int id);
 
-    void giveUserBadge(int id, Badge badge);
+    void giveUserBadge(int toUserId, int fromUserId, String badgeName);
 
-    List<Badge> getGivableBadges(int parseInt);
+    List<String> getGivableBadges(int parseInt);
 }
