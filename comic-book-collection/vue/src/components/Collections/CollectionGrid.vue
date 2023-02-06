@@ -5,14 +5,14 @@
             <add-collection class="overlay-form"/>
         </div>
         <div v-for="collection in collections" :key="collection.index"  :class="smallView ? 'smallCollecitonImage' : 'collectionImage'">
-            <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}"> 
-                    <p class="title">{{collection.title}}</p>
-                    <p v-if="!ownedByMe && !smallView"><em>Owner: {{collection.ownerUsername}}</em></p>
+            <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
+                <p class="title">{{collection.title}}</p>
+                <p v-if="!ownedByMe && !smallView"><em>Owner: {{collection.ownerUsername}}</em></p>
             </router-link>
-            <router-link :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}">    
+            <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">    
                 <img src="../../../resources/backOfPokemonCard.jpg" alt="" :class="smallView ? 'smallCardBack' : 'cardBack'">
             </router-link>
-            <router-link :to="{name: 'collectionDetails', params: {collectionId: collection.collectionId}}">
+            <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">
                 <p class="privacyStatus" v-if="ownedByMe">{{ collection.private ? "private" : "public" }}</p>
             </router-link>
         </div>

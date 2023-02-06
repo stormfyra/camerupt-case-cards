@@ -51,6 +51,9 @@ export default new Vuex.Store({
     CHANGE_SHOW_COLLECTION_FORM(state){
       state.showAddCollectionForm = !state.showAddCollectionForm;
     },
+    CHANGE_SHOW_DELETE_COLLECTION(state){
+      state.showAddCardForm = !state.showAddCardForm;
+    },
     CHANGE_SHOW_EDIT_COLLECTION_FORM(state){
       state.showEditCollectionForm = !state.showEditCollectionForm;
     },
