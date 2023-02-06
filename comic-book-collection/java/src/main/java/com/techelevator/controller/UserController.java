@@ -5,8 +5,6 @@ import com.techelevator.model.Authority;
 import com.techelevator.model.FriendRequest;
 import com.techelevator.model.ProfileDto;
 import com.techelevator.model.User;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -21,6 +19,11 @@ public class UserController {
 
     public UserController(UserDao userDao) {
         this.userDao = userDao;
+    }
+
+    @RequestMapping(value = "/get-id/{username}", method = RequestMethod.GET)
+    public int findIdByUserName(@PathVariable String username) {
+        return userDao.findIdByUsername(username);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
