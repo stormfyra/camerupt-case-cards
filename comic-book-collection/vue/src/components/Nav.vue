@@ -76,6 +76,8 @@ import ProfileImage from './Edit Profile/ProfileImage.vue';
     padding-bottom: 10px;
     font-family: "Flexo-Regular",arial,sans-serif;
     color: #e93d40;
+
+    font-size: small;
   }
 
   a{
@@ -94,8 +96,8 @@ import ProfileImage from './Edit Profile/ProfileImage.vue';
   }
 
   .profile-icon-holder {
-  width: 40px; /*any size*/
-  height: 40px; /*any size*/
+  width: 45px; /*any size*/
+  height: 45px; /*any size*/
 }
 
 .profile-icon {

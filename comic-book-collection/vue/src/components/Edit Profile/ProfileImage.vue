@@ -16,7 +16,7 @@ export default {
     },
     computed: {
         source() {
-           return require('../../../resources/' + this.pokemon.toLowerCase() + '.png')
+           return require('../../../resources/pokemon/' + this.pokemon.toLowerCase() + '.png')
         }
     }
 }
