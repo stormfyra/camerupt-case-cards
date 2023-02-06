@@ -117,7 +117,13 @@ export default {
     align-self: center;
     border-radius: 10px 10px 0px 0px;
     border: solid #D9D9D9 10px;
+
 }
+
+img {
+    min-height: 100%;
+}
+
 /* .bio {
     background-color: rgb(233, 76, 49);
     border-radius: 5px;
@@ -128,6 +134,10 @@ h3 {
     border-radius: 5px;
     border: solid rgb(231, 45, 12) 3px;
 } */
+
+button {
+    font-size: 10pt !important;
+}
 
 h2 {
     margin-bottom: 0px;
