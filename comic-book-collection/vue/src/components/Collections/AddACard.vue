@@ -88,10 +88,7 @@ export default {
     },
     methods: {
         searchAllCards() {
-            externalPokemonCardService.getCardByNamePart(this.internalSearchParamater).then(response => {
-                this.externalCards = response.data.data;
-                this.filterExternalCards();
-            }).bind(this)
+            externalPokemonCardService.getCardByNamePart(this.internalSearchParamater).then(response => this.externalCards = response.data.data);
         },
         off() {
             this.externalCards = [];
