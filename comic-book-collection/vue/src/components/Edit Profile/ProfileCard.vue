@@ -1,166 +1,126 @@
 <template>
-    <div class="profile">
         <div class="profile-card">
             <div class="user-header">
                 <div class="flexy">
                     <!-- hard-coded; replace with data from database -->
-                    <p class="account-type">{{user.isPremium ? "Premium" : "Standard"}}</p>
-                    <h2 class="user-name">{{user.username}}</h2>
+                    <p v-if="!small" class="account-type">{{user.isPremium ? "Premium" : "Standard"}}</p>
+                    <h2 class="user-name flexFont">{{user.username}}</h2>
                 </div>
 
                 <div class="flexy">
-                    <p class="cards">cards</p>
+                    <p v-if="!small" class="cards  flexFont">cards</p>
                     <!-- hard-coded; replace with data from database -->
-                    <h2 class="card-count">347</h2>
+                    <h2 v-if="!small" class="card-count flexFont">347</h2>
                     
                 </div>
             </div>
-            <profile-image class="profile-image" :small="false" :pokemon="user.profilePokemon"></profile-image>
-            <div id="pronouns">
-                <p v-if="user.pronouns">Pronouns: {{user.pronouns}}</p>
+            <div id="profile-image-and-pronouns">
+                <profile-image class="profile-image" :small="false" :pokemon="user.profilePokemon"></profile-image>
+                <div id="pronouns">
+                    <p v-if="user.pronouns">Pronouns: {{user.pronouns}}</p>
+                </div>
             </div>
-            <h2>Bio</h2>
-            <em><p class="bio"> {{user.bio}}</p></em>
+            <h2 v-if="!small">Bio</h2>
+            <em v-if="!small"><p class="bio"> {{user.bio}}</p></em>
             <!-- to update: stats will go here -->
-            <h2>User Stats</h2>
-            <ul>
+            <h2 v-if="!small">User Stats</h2>
+            <ul v-if="!small">
                 <li>Collected 14% of Sun &amp; Moon series</li>
                 <li>Collected 8.67% of all Poison-type Pokemon</li>
             </ul>
 
             <!-- to update: badges will go here -->
-            <h2>Badges</h2>
-            <badge-holder :badges='badges'/>
+            <h2 v-if="!small">Badges</h2>
+            <badge-holder class="badge-holder" :badges='badges'/>
         </div>
-        <div class="page">
-
-        </div>
-    </div>
 </template>
 
 <script>
 import profileImage from './ProfileImage.vue'
-import userService from '../../services/UserService'
 import BadgeHolder from './features/BadgeHolder.vue'
+import BadgeService from '../../services/BadgeService'
+
 
 export default {
     props: [
-        'badges'
+        'user',
+        'small'
     ],
+    data() {
+        return {
+            badges: []
+        }
+    },
     components: {
         profileImage,
         BadgeHolder
     },
-    data(){
-        return {
-            user: {
-                username: '',
-                imageLink: '',
-                bio:'',
-                profilePokemon: ''
-            },
-        }
-    },
     created() {
-        userService.getUserDetails(this.$route.params.id)
-                                .then(response => {
-                                    console.log(response.data);
-                                    this.user = response.data;
-                                });
-
+        BadgeService.getBadgesByUserId(this.user.id)
+                    .then(response => {
+                        this.badges =(JSON.parse(JSON.stringify(response.data)));
+                    });
     }
 }
 
 </script>
 
 <style scoped>
-#pronouns{
+#profile-image-and-pronouns {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     background-color: #d9d9d9;
-    border-radius: 0px 0px 10px 10px;
-    width: 91%;
-    min-width: 409px;
-    margin: auto;
+    border-radius: .5em;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    align-self: center;
+    margin-top: 2%;
+}
 
+#pronouns{
+    width: 100%;
     font-size: 11pt;
+    text-align: center;
     font-weight: 600;
     color: rgb(105, 105, 105);
 }
 
-.profile{
-    padding-right: 10px;
-    border-right: solid white;
-    box-shadow: 10px 0px 10px -2px #dedede;
-  
-}
 
 .profile-card {
     display: flex;
     flex-direction: column;
-    border: solid #f5e55a 25px;
-    border-radius: 20px;
-
-    width: 450px;
+    border: solid #f5e55a 1em;
+    border-radius: 1em;
+    width: 80%;
+    aspect-ratio: 3 / 2;
     background-color: #e93d40;
-
     margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 5%;
+    margin-bottom: 5%;
     padding: 2% 5% 5% 5%;
-
-    box-shadow: 5px 5px 10px rgb(226, 225, 225);
-
-}
-.profile-image {
-    margin-top: 14px;
-    align-self: center;
-    border-radius: 10px 10px 0px 0px;
-    border: solid #D9D9D9 10px;
-
-}
-
-img {
-    min-height: 100%;
-}
-
-/* .bio {
-    background-color: rgb(233, 76, 49);
-    border-radius: 5px;
-    border: solid rgb(231, 45, 12) 3px;
-}
-h3 {
-    background-color: rgb(233, 76, 49);
-    border-radius: 5px;
-    border: solid rgb(231, 45, 12) 3px;
-} */
-
-button {
-    font-size: 10pt !important;
 }
 
 h2 {
-    margin-bottom: 0px;
-    margin-top: 30px;
+    margin-bottom: 0;
+    margin-top: 5%;
 }
 
 ul {
-    margin: 10px 0px 0px 0px;
-    padding-left: 25px;
+    margin: 2% 0 0 0;
+    padding-left: 8%;
 }
 
 p {
-    margin-top: 8px;
-}
-
-.logo {
-    width: 40px;
+    margin-top: 2%;
+    margin-bottom: 1%;
 }
 
 .user-header {
     display: flex;
     justify-content: space-between;
-    margin-top: 8px;
+    margin-top: 2%;
 }
 
 .cards {
@@ -168,19 +128,11 @@ p {
     padding-top: 5px;
 }
 
-.empty-card {
-width: 50px;
-height: 50px;
-margin-left: 0px;
-margin-right: 15px;
-}
-
-
 .flexy {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 4%;
 }
 
 .flexy > p {
@@ -191,20 +143,19 @@ margin-right: 15px;
 }
 .account-type{
     background-color: #d9d9d9;
-    border: 3px solid #9092A5;
-    border-radius: 30px;
-    padding: 7px;
-    padding-right: 9px;
-    font-size: 9pt;
+    border: .25em solid #9092A5;
+    border-radius: 1em;
+    padding: 3%;
+    font-size: .75em;
     font-style: italic;
     font-weight: 600;
     color: #444;
-
     align-self: center;
 }
-badge-holder {
+.badge-holder {
     display: flex;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 

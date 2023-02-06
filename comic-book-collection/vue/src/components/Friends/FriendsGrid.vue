@@ -1,14 +1,16 @@
 <template>
     <div :class="'collection-container text-center'">
         <!-- display the user's friends -->
-        <div v-for="user in filteredFriends" v-bind:key="user.index" :class="'collectionImage'">
-            <friend-card :user="user"></friend-card>
+        <div v-for="user in filteredFriends" v-bind:key="user.index">
+            <router-link :to="{name: 'profileWithId', params: {id: user.id}}" :class="'collectionImage'">
+                <profile-card :user='user' :small='true' ></profile-card>
+            </router-link>
         </div>
     </div>
 </template>
 
 <script>
-import FriendCard from './FriendCard.vue'
+import ProfileCard from '../Edit Profile/ProfileCard.vue'
 
 export default {
     name: 'FriendsView',
@@ -18,7 +20,7 @@ export default {
         'pokemon'
     ],
     components: {
-        FriendCard
+        ProfileCard
     },
     computed: {
         filteredFriends() {
@@ -126,6 +128,9 @@ button > h1 {
     font-size: 50pt;
     font-weight: 500;
     color: rgb(109, 109, 109);
+}
+.profile-card {
+    min-height: 85%;
 }
 
 
