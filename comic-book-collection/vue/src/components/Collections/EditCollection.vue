@@ -180,10 +180,6 @@ input:checked + .slider:before {
     text-align: center;
 }
 
-#edit-collection {
-    max-height: 0%;
-}
-
 button:hover{
     cursor: pointer;
 }

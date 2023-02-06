@@ -15,7 +15,7 @@
                     
                 </div>
             </div>
-            <profile-image class="profile-image" :pokemon="user.profilePokemon"></profile-image>
+            <profile-image class="profile-image" :small="false" :pokemon="user.profilePokemon"></profile-image>
             <div id="pronouns">
                 <p>Pronouns: they/them</p>
             </div>

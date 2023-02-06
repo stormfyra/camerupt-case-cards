@@ -57,7 +57,7 @@ public class JdbcCardDao implements CardDao{
 
             String sqlQueryForSetDetails = "SELECT id, set.name AS name, series, printed_total, symbol_image, logo_image FROM card\n" +
                     "JOIN card_set ON card.card_id = card_set.card_id\n" +
-                    "JOIN set ON card_set.set_id = set.id" +
+                    "JOIN set ON card_set.set_id = set.id\n" +
                     "WHERE card.card_id = ?;";
             SqlRowSet setDetailsResults = jdbcTemplate.queryForRowSet(sqlQueryForSetDetails, card.getId());
             if (setDetailsResults.next()) {
@@ -134,6 +134,8 @@ public class JdbcCardDao implements CardDao{
                 }
 
                 jdbcTemplate.update(addToCollectionQuery, collectionId, cardId);
+            } else {
+                jdbcTemplate.update(addToCollectionQuery, collectionId, card.getId());
             }
         }
     }

@@ -6,23 +6,13 @@
 </template>
 
 <script>
-// import BadgeService from '../../../services/BadgeService'
+
 
 export default {
-    // data() {
-    //     return{
-    //         badges: []
-    //     }
-    // },
+
     props: [
         'badges'
     ],
-    // created() {
-    //     BadgeService.getBadgesByUserId(this.$route.params.id)
-    //                 .then(response => {
-    //                     this.badges =(JSON.parse(JSON.stringify(response.data)));
-    //                 });           
-    // },
     methods: {
         badgeSource(badge) {
             return require(`../../../../resources/${badge}.png`)

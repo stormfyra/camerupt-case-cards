@@ -1,5 +1,5 @@
 <template>
-    <img :class="{ 'small' : small }" :src="source" alt="">
+    <img :class="{ 'small' : small }" :src="source()" alt="">
 </template>
 
 <script>
@@ -9,16 +9,12 @@ export default {
         'pokemon',
         'small'
     ],
-    data() {
-        return{
-            imageSource: ''
-        }
-    },
-    computed: {
+    methods: {
         source() {
            return require('../../../resources/pokemon/' + this.pokemon.toLowerCase() + '.png')
         }
-    }
+    },
+
 }
 </script>
 
