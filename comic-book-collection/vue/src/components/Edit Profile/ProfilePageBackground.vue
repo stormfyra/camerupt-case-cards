@@ -2,7 +2,9 @@
   <div class="profile-page-background">
       <div class="text-center page">
         <!-- card -->
-        <profile-card :badges="badges" class="card" />
+        <div class="profile">
+            <profile-card :user="user" :badges="badges" class="card" />
+        </div>
         <!-- features -->
         <profile-features class="features" :badges="badges" />
       </div>
@@ -12,8 +14,7 @@
 <script>
 import ProfileCard from './ProfileCard.vue'
 import ProfileFeatures from './ProfileFeatures.vue'
-import UserService from '../../services/UserService'
-import BadgeService from '../../services/BadgeService'
+import userService from '../../services/UserService'
 
 export default {
   name: "profile-page-background",
@@ -27,25 +28,16 @@ export default {
     data() {
     return {
         selectedPokemon: '',
-        badges: []
+        badges: [],
+        user: 'wait'
     }
     },
-    created() {
-        UserService.getUserDetails(this.$route.params.id)
+    created() { 
+        userService.getUserDetails(this.$route.params.id)
                     .then(response => {
-                        // profile card details
-                        this.username = response.data.username;
-                        this.bio = response.data.bio;
-                        this.selectedPokemon = response.data.profilePokemon;
-
-                        // add pronouns, stats, and badges
-
-                        // add profile feature content: featured cards, public collections, and friends
+                        console.log(response.data);
+                        this.user = response.data;
                     });
-        BadgeService.getBadgesByUserId(this.$route.params.id)
-                    .then(response => {
-                        this.badges =(JSON.parse(JSON.stringify(response.data)));
-                    }); 
     }
 };
 </script>
@@ -66,5 +58,11 @@ export default {
 .features {
     grid-area: features;
     padding-left: 3%;
+}
+
+.profile{
+    padding-right: 10px;
+    border-right: solid white;
+    box-shadow: 10px 0px 10px -2px #dedede; 
 }
 </style>

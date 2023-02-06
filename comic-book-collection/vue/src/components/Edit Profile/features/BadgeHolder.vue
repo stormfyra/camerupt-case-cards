@@ -1,31 +1,50 @@
 <template>
     <div>
-        <img v-for="badge in badges" :key="badge.id" :src="badgeSource(badge)" :alt="badge" class="badge">
+        <img v-for="badge in badges" :key="badge.id" :src="badgeSource(badge)" :alt="badge" :class="small ? 'small-badge' : 'badge'">
     </div>
     
 </template>
 
 <script>
+import BadgeService from '../../../services/BadgeService'
 
 
 export default {
+    
 
     props: [
-        'badges'
+        'user',
+        'small'
     ],
+    data(){
+        return{
+            badges: ''
+        }
+    },
     methods: {
         badgeSource(badge) {
             return require(`../../../../resources/${badge}.png`)
         }
+    },
+    created() {
+        BadgeService.getBadgesByUserId(this.user.id)
+                    .then(response => {
+                        this.badges =(JSON.parse(JSON.stringify(response.data)));
+            });
     }
     
 }
 </script>
 
 <style scoped>
-img {
+.badge {
     height: 50px;
     width: 50px;
+}
+.small-badge {
+    height: 30px;
+    width: 30px;
+    margin-top: 5%;
 }
 
 </style>
