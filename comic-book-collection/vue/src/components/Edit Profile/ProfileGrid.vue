@@ -44,7 +44,7 @@
 
                 <div class="button-div">
                 <button @click="updateProfile()" type="submit">Save</button>
-                <button id="cancel-button">Cancel</button>
+                <button id="cancel-button" @click="cancel()">Cancel</button>
                 </div>
 
             </form>
@@ -76,6 +76,9 @@ export default {
             this.$store.commit('SET_USER', this.user)
             console.log(this.user);
             userService.updateUserBio(this.user)
+            this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
+        },
+        cancel(){
             this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
         }
     }
