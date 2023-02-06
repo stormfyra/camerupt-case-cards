@@ -31,14 +31,13 @@
 
             <!-- to update: badges will go here -->
             <h2 v-if="!small">Badges</h2>
-            <badge-holder class="badge-holder" :badges='badges'/>
+            <badge-holder v-if="user != 'wait'" :small='small' :user='user' class="badge-holder" :badges='badges'/>
         </div>
 </template>
 
 <script>
 import profileImage from './ProfileImage.vue'
 import BadgeHolder from './features/BadgeHolder.vue'
-import BadgeService from '../../services/BadgeService'
 
 
 export default {
@@ -54,12 +53,6 @@ export default {
     components: {
         profileImage,
         BadgeHolder
-    },
-    created() {
-        BadgeService.getBadgesByUserId(this.user.id)
-                    .then(response => {
-                        this.badges =(JSON.parse(JSON.stringify(response.data)));
-                    });
     }
 }
 
@@ -155,7 +148,6 @@ p {
 .badge-holder {
     display: flex;
     flex-wrap: wrap;
-    margin-top: auto;
 }
 
 

@@ -16,7 +16,6 @@ import ProfileCard from './ProfileCard.vue'
 import ProfileFeatures from './ProfileFeatures.vue'
 import userService from '../../services/UserService'
 
-
 export default {
   name: "profile-page-background",
     components: {
@@ -30,7 +29,7 @@ export default {
     return {
         selectedPokemon: '',
         badges: [],
-        user: {}
+        user: 'wait'
     }
     },
     created() { 
