@@ -18,8 +18,8 @@ public class JdbcBadgeDao implements BadgeDao{
     }
 
     @Override
-    public List<Badge> getUserBadges(int id) {
-        List<Badge> badges = new ArrayList<>();
+    public List<String> getUserBadges(int id) {
+        List<String> badges = new ArrayList<>();
 
         String sqlQuery = "SELECT badge_name FROM badges_user_has\n" +
                         "WHERE user_id = ?;";
@@ -28,22 +28,26 @@ public class JdbcBadgeDao implements BadgeDao{
 
         while (results.next()){
             Badge badge = mapRowToBadge(results);
-            badges.add(badge);
+            badges.add(badge.getBadgeName());
         }
 
         return badges;
     }
 
     @Override
-    public void giveUserBadge(int id, Badge badge) {
-        String sqlQuery = "INSERT INTO badges_user_has (user_id, badge_name)\n" +
+    public void giveUserBadge(int toUserId, int fromUserId, String badgeName) {
+        String giveSqlQuery = "INSERT INTO badges_user_has (user_id, badge_name)\n" +
                 "VALUES (?, ?)";
-        jdbcTemplate.update(sqlQuery, id, badge.getBadgeName());
+        jdbcTemplate.update(giveSqlQuery, toUserId, badgeName);
+
+        String removeSqlQuery = "DELETE FROM badges_user_can_give\n" +
+                "WHERE user_id = ? AND badge_name = ?;";
+        jdbcTemplate.update(removeSqlQuery, fromUserId, badgeName);
     }
 
     @Override
-    public List<Badge> getGivableBadges(int id) {
-        List<Badge> badges = new ArrayList<>();
+    public List<String> getGivableBadges(int id) {
+        List<String> badges = new ArrayList<>();
 
         String sqlQuery = "SELECT badge_name FROM badges_user_can_give\n" +
                           "WHERE user_id = ?";
@@ -52,7 +56,7 @@ public class JdbcBadgeDao implements BadgeDao{
 
         while (results.next()){
             Badge badge = mapRowToBadge(results);
-            badges.add(badge);
+            badges.add(badge.getBadgeName());
         }
 
         return badges;

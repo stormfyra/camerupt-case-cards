@@ -5,11 +5,6 @@
     <div class="nav-menu">
       <ul class="nav-list">
 
-        <!-- viewing other users' profiles. This is for testing; to be moved/hidden later -->
-        <li class="nav-item" v-for="user in users" v-bind:key="user.index">
-          <a :href="$router.resolve({ name: 'profileWithId', params: {id: user.id} }).href" class="navbar-item">{{user.username}}</a>
-        </li>
-
         <li v-if="isLoggedIn" class="nav-item">
           <router-link :to="{ name: 'friends' }" class="navbar-item">Friends</router-link>
         </li>
@@ -43,7 +38,6 @@
 
 <script>
 import ProfileImage from './Edit Profile/ProfileImage.vue';
-import userService from '../services/UserService'
   export default {
     name: 'Nav',
     data() {
@@ -59,14 +53,6 @@ import userService from '../services/UserService'
         // Then sorts collections into user-ownd collections and public collections 
         this.username = this.$store.state.user.username;
         this.user = this.$store.state.user;
-        userService.getAllUsers()
-                         .then(response => {
-                            response.data.forEach(element => {
-                                if (element.ownerUsername != this.username){
-                                    this.users.push(element)
-                                }
-                            });
-                         });
         
       },
     computed: {
@@ -85,7 +71,6 @@ import userService from '../services/UserService'
     border-bottom: solid #e93d40;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-right: 10%;
     font-family: "Flexo-Regular",arial,sans-serif;
     color: #e93d40;
   }

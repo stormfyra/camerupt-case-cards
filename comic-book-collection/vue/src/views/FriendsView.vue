@@ -1,17 +1,17 @@
 <template>
     <div>
         <h1>Friends</h1>
-        <friends-grid></friends-grid>
+        <friends-page-background></friends-page-background>
     </div>
 </template>
 
 <script>
-import FriendsGrid from '../components/Friends/FriendsGrid.vue';
+import FriendsPageBackground from '../components/Friends/FriendsPageBackground.vue';
 
 
 export default {
     components: {
-        FriendsGrid
+        FriendsPageBackground
     }
 }
 

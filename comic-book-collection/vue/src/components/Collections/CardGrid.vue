@@ -74,8 +74,9 @@ img:hover{
 
 #card-container {
     width: 100%;
-    display: grid;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     align-items: center;
     background-color: #B3B3B3;
     height: auto + 40px;
