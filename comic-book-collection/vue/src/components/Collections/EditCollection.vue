@@ -71,12 +71,6 @@ export default{
             );
         this.off();
         this.$router.go()
-      },
-      deleteThisCollection() {
-          collectionService.deleteCollection(this.$route.params.collectionId)
-          this.off()
-          this.$router.push({name: 'ViewCollections'})
-                        .then(this.$router.go())
       }
   },
 };
