@@ -12,6 +12,13 @@
           <div class="overlay" v-if="$store.state.showAddCardForm" >
               <add-a-card class="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
           </div>
+        <select v-model="selectedFilter" name="type-dropdown" id="">
+          <option value="Select A Filter">Select A Filter</option>
+          <option v-for='type in types' :key='type.id' :value='type'>{{type}}</option>
+        </select>
+        <div id="statistics-holder">
+          Number of {{selectedFilter}} Cards : {{numberOfCardsInFilterSearch}}
+        </div>
         </div>
         <div id=cardSpread>
           <card-grid :cards='cards' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
@@ -38,7 +45,9 @@ export default {
            title: '',
            description: '',
            isPrivate: true,
-           cards: []
+           cards: [],
+           types: ['Fire', 'Water', 'Grass', 'Lightning', 'Fighting', 'Psychic','Colorless', 'Darkness', 'Metal', 'Dragon', 'Fairy'],
+           selectedFilter: ''
         }
     },
     computed: {
@@ -60,7 +69,15 @@ export default {
             cardIds.add(this.cards[i].id);
           }
           return cardIds;
-        }
+        },
+        numberOfCardsInFilterSearch() {
+          let filteredCards = this.cards.filter(card => {
+              return card.types.includes(this.selectedFilter);
+            })
+
+          return filteredCards.length;
+          },
+
     },
     created() {
         collectionWebService.getCollectionDetails(this.$route.params.collectionId)

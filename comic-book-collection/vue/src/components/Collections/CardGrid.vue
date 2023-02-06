@@ -78,7 +78,7 @@ img:hover{
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #B3B3B3;
+    background-color: #879fee;
     height: auto + 40px;
     padding: 10px 0px;
     border-radius: 30px;
