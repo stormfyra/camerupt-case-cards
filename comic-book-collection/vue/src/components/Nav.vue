@@ -27,7 +27,10 @@
             <div id="profile-holder-navbar">
               <p>{{$store.state.user.username}}</p>
             </div>
-            <profile-image :small="true" :pokemon="$store.state.user.profilePokemon"></profile-image>
+            <div class="profile-icon-holder">
+              <profile-image :small="true" :pokemon="$store.state.user.profilePokemon" :class="'profile-icon'"></profile-image>
+            </div>
+            
           </li>
         </a>
       </ul>
@@ -89,6 +92,17 @@ import ProfileImage from './Edit Profile/ProfileImage.vue';
     font-weight: 500;
     color: black;
   }
+
+  .profile-icon-holder {
+  width: 40px; /*any size*/
+  height: 40px; /*any size*/
+}
+
+.profile-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /*magic*/
+}
 
   .nav-list{
     display: flex;
