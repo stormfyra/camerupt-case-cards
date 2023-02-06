@@ -1,17 +1,21 @@
 <template>
-    <div>
+    <div id="collectionDetails">
         <h1 class="collectionTitle">{{title}}</h1>
         <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
         <p class="collectionDescription"><em>{{description}}</em></p>
-        <button v-if="ownerUsername == $store.state.user.username" @click="showEditCollection">Edit</button>
-        <div class="overlay" v-if="$store.state.showEditCollectionForm">
-            <edit-collection class="overlay-form" :collection="collection" />
+        <div id="twoButtons">
+          <button v-if="ownerUsername == $store.state.user.username" @click="showEditCollection">Edit</button>
+          <div class="overlay" v-if="$store.state.showEditCollectionForm">
+              <edit-collection class="overlay-form" :collection="collection" />
+          </div>
+          <button v-if="ownerUsername == $store.state.user.username" @click="showAddCard" id="btn2">Add A card</button>
+          <div class="overlay" v-if="$store.state.showAddCardForm" >
+              <add-a-card class="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
+          </div>
         </div>
-        <button v-if="ownerUsername == $store.state.user.username" @click="showAddCard">Add A card</button>
-        <div class="overlay" v-if="$store.state.showAddCardForm" >
-            <add-a-card class="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
+        <div id=cardSpread>
+          <card-grid :cards='cards' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
         </div>
-        <card-grid :cards='cards' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
     </div>
 </template>
 
@@ -109,6 +113,28 @@ export default {
 </script>
 
 <style scoped>
+
+#btn2{
+  background-color: white;
+  color: #E45052;
+  border: 2px solid #E45052;
+}
+
+#collectionDetails{
+  display: flex;
+  flex-direction: column;
+}
+
+#twoButtons{
+  display: grid;
+  grid-template-columns: 200px 200px;
+  gap: 10px;
+}
+
+#cardSpread{
+  margin-top: 20px;
+}
+
 .button-container {
   display: flex;
   justify-content: space-between;
@@ -121,6 +147,7 @@ card-grid {
 .collectionTitle, .collectionOwnerDeclaration, .collectionDescription {
     text-align: center;
 }
+
 
 .switch-div {
     display: flex;

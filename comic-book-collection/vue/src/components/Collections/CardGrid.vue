@@ -42,9 +42,34 @@ export default {
 .cardImage {
     width: 200px;
     height: 280px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 10px;
     margin: 10px;
+    box-shadow:  0 0 3px -1px transparent, 0 0 2px 1px transparent
+        , 0 0 5px 0px transparent, 0px 10px 20px -5px rgb(36, 35, 35)
+        , 0 2px 15px -5px rgb(36, 35, 35), 0 0 20px 0px transparent;
+    /* box-shadow: 10px 0px 10px -2px grey; */
+    border: none;
+}
+
+img:hover{
+    animation: shake 1s;
+
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-2deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(3deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(5px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(5px, 2px) rotate(0deg); }
+  100% { transform: translate(5px, -2px) rotate(-1deg); }
 }
 
 #card-container {
@@ -52,16 +77,21 @@ export default {
     display: grid;
     justify-items: center;
     align-items: center;
-    background-color: #87CEEE;
+    background-color: #B3B3B3;
     height: auto + 40px;
     padding: 10px 0px;
+    border-radius: 30px;
+    box-shadow:  0 0 3px -1px transparent, 0 0 2px 1px transparent
+        , 0 0 5px 0px transparent, 0px 10px 15px -5px rgb(97, 94, 94)
+        , 0 2px 20px -5px rgb(97, 94, 94), 0 0 20px 0px transparent;
+    
 }
 
 #cardQuantity {
-    background-color: #000000;
+    background-color: #E45052;
     color: #FFFFFF;
     text-align: center;
-    border-radius: 45%;
+    border-radius: 8px;
     flex-grow: 1;
 }
 
@@ -107,7 +137,10 @@ export default {
 
 .change-quantity {
     height: 50%;
-    background-color: blue;
+    background-color: #FFFFFF;
     border-radius: 50%;
+    width: 30px;
+    color: #E45052;
+    font-weight: bold;
 }
 </style>
