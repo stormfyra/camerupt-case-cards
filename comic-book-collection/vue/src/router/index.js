@@ -10,6 +10,7 @@ import ViewCollections from "../views/ViewCollections.vue"
 import ProfileGrid from '../components/Edit Profile/ProfileGrid.vue'
 import ProfileView from "../views/ProfileView.vue"
 import FriendsView from "../views/FriendsView.vue"
+import MembershipView from "../views/MembershipView.vue"
 
 Vue.use(Router)
 
@@ -103,6 +104,14 @@ const router = new Router({
       path: "/friends",
       name: "friends",
       component: FriendsView,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/membership",
+      name: "membership",
+      component: MembershipView,
       meta: {
         requiresAuth: true
       }
