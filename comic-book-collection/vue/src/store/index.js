@@ -24,6 +24,7 @@ export default new Vuex.Store({
     showAddCollectionForm: false,
     showEditCollectionForm: false,
     showAddCardForm: false,
+    showDeleteCollection: false,
     showGiveBadgeForm: false,
     showEditProfile: false
   },
@@ -52,7 +53,7 @@ export default new Vuex.Store({
       state.showAddCollectionForm = !state.showAddCollectionForm;
     },
     CHANGE_SHOW_DELETE_COLLECTION(state){
-      state.showAddCardForm = !state.showAddCardForm;
+      state.showDeleteCollection = !state.showDeleteCollection;
     },
     CHANGE_SHOW_EDIT_COLLECTION_FORM(state){
       state.showEditCollectionForm = !state.showEditCollectionForm;

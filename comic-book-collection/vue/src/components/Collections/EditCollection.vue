@@ -1,10 +1,12 @@
 <template>
     <div id="edit-collection">
-        <scrolly :style="{ width: '600px', height: '600px' }">
+        <scrolly :style="{ width: '600px', height: '700px' }">
             <scrolly-viewport>
                 <form class="form-container">
-                    <button id="close-edit-collection" @click="off">X</button>
-                    <h1>Edit Your Collection</h1>
+                    <div id="title-and-close">
+                      <h1 id="title">Edit Your Collection</h1>
+                      <button id="close-edit-collection" @click="off">X</button>
+                    </div>
                     <label for="title">Title</label>
                     <input 
                         type="text"
@@ -28,7 +30,10 @@
                         <p class="private-text" style="display: inline-block">private</p>
                     </div>
                     <button id="submit" @click.prevent="onSubmit">Submit</button>
-                    <button @click="deleteThisCollection">DELETE</button>
+                    <button @click.prevent="showDeleteCollection">Delete</button>
+                    <div class="overlay" v-if="$store.state.showDeleteCollection">
+                      <confirm-delete class="overlay-form" :collection="collection" />
+                    </div>
                 </form>
             </scrolly-viewport>
             <scrolly-bar axis="y"></scrolly-bar>
@@ -42,6 +47,7 @@
 <script>
 import collectionService from '../../services/CollectionService.js'
 import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
+import confirmDelete from './ConfirmDelete.vue'
 
 export default{
   name: 'edit-collection',
@@ -49,6 +55,7 @@ export default{
       Scrolly,
       ScrollyViewport,
       ScrollyBar,
+      confirmDelete
   },
   data() {
       return {
@@ -71,7 +78,10 @@ export default{
             );
         this.off();
         this.$router.go()
-      }
+      },
+      showDeleteCollection() {
+        this.$store.commit('CHANGE_SHOW_DELETE_COLLECTION')
+      },
   },
 };
 </script>
@@ -83,10 +93,22 @@ export default{
 
 .form-container {
 max-width: 100%;
-margin: 10px;
+margin: 15px;
+padding-bottom: 40px;
 background-color: white;
 border-radius: 10px;
 display: flex;
+}
+
+#title-and-close {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+#close-edit-collection {
+    width: 25px;
+    height: 25px;
 }
 
 input{
@@ -178,10 +200,5 @@ button:hover{
     cursor: pointer;
 }
 
-#close-edit-collection {
-    width: 20px;
-    height: 20px;
-    align-self: flex-end;
-    margin-right: 20px;
-}
+
 </style>

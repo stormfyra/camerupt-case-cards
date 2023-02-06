@@ -15,7 +15,7 @@
               <add-a-card class="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
           </div>
         <select v-model="selectedFilter" name="type-dropdown" id="">
-          <option value="Select A Filter">Select A Filter</option>
+          <option value="selectedFilter">Select A Filter</option>
           <option v-for='type in types' :key='type.id' :value='type'>{{type}}</option>
         </select>
         <div id="statistics-holder">
@@ -187,4 +187,7 @@ card-grid {
     gap: 10px;
 }
 
+strong:hover{
+  cursor: pointer;
+}
 </style>
