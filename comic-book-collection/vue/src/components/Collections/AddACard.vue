@@ -127,6 +127,8 @@ export default {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .card-image {
@@ -159,10 +161,12 @@ scrolly:hover {
 #searchbar {
     width: 80%;
     align-self: center;
+    margin-bottom: 20px;
 }
 
 #button-bar {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 10px;
 }
 </style>
