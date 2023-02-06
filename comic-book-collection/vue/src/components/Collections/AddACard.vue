@@ -1,25 +1,25 @@
 <template>
-<scrolly :style="{ width: '750px', height: '600px' }">
-    <scrolly-viewport>
-        <div class="form-container">
-                <button id="close-add-card" @click="off">X</button>
-                <input type="text" v-model="internalSearchParamater" id="searchbar" />
-                <div id="button-bar">
-                    <button @click="addSelectedCards">Add selected</button>
-                    <label for="search-all-cards">Not finding the right card?
-                        <button name="search-all-cards" @click="searchAllCards">Search all cards</button>
-                    </label>
-                </div>
-                <div class="choose-a-card">
-                    <img class="card-image selected-card" v-for="card in selectedCards" :key="card.id" :src="card.images.small" @click="removeFromSelectedCards(card)" />
-                    <img class="card-image" v-for="card in filteredCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
-                    <img class="card-image" v-for="card in filteredExternalCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
-                </div>    
-        </div>
-    </scrolly-viewport>
-    <scrolly-bar axis="y"></scrolly-bar>
-    <scrolly-bar axis="x"></scrolly-bar>
-</scrolly>
+    <scrolly :style="{ width: '750px', height: '600px' }">
+        <scrolly-viewport>
+            <div class="form-container">
+                    <button id="close-add-card" @click="off">X</button>
+                    <input type="text" v-model="internalSearchParamater" id="searchbar" />
+                    <div id="button-bar">
+                        <button @click="addSelectedCards">Add selected</button>
+                        <label for="search-all-cards">Not finding the right card?
+                            <button name="search-all-cards" @click="searchAllCards">Search all cards</button>
+                        </label>
+                    </div>
+                    <div class="choose-a-card">
+                        <img class="card-image selected-card" v-for="card in selectedCards" :key="card.id" :src="card.images.small" @click="removeFromSelectedCards(card)" />
+                        <img class="card-image" v-for="card in filteredCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
+                        <img class="card-image" v-for="card in filteredExternalCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
+                    </div>    
+            </div>
+        </scrolly-viewport>
+        <scrolly-bar axis="y"></scrolly-bar>
+        <scrolly-bar axis="x"></scrolly-bar>
+    </scrolly>
 </template>
 
 <script>
@@ -115,17 +115,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-}
-
-.form-container {
-    max-width: 100%;
-    margin: 10px;
-    background-color: white;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .card-image {

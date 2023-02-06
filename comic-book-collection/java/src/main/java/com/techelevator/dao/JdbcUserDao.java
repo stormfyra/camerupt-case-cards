@@ -110,15 +110,19 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void updateUserProfile(String email, String fullName, String shippingAddress, String bio, String profilePokemon, int userId) {
+    public void updateUserProfile(String email, String fullName, String shippingAddress, String bio,
+                                  String profilePokemon, int userId, boolean isPremium, String pronouns) {
         String sqlQuery = "UPDATE users SET\n" +
                 "email = ?,\n" +
                 "full_name = ?,\n" +
                 "shipping_address = ?,\n" +
                 "bio = ?,\n" +
+                "is_premium = ?,\n" +
+                "pronouns = ?,\n" +
                 "profile_pokemon = (SELECT image_id from profile_pokemons WHERE pokemon = ?)\n" +
                 "WHERE user_id = ?;";
-        jdbcTemplate.update(sqlQuery, email, fullName, shippingAddress, bio, profilePokemon, userId);
+        jdbcTemplate.update(sqlQuery, email, fullName, shippingAddress, bio, isPremium, pronouns, profilePokemon,
+                userId);
     }
 
     @Override
@@ -200,6 +204,8 @@ public class JdbcUserDao implements UserDao {
         user.setShippingAddress(rs.getString("shipping_address"));
         user.setBio(rs.getString("bio"));
         user.setProfilePokemon(rs.getString("pokemon"));
+        user.setIsPremium(rs.getBoolean("is_premium"));
+        user.setPronouns(rs.getString("pronouns"));
         return user;
     }
 }

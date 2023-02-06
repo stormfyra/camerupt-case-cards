@@ -2,9 +2,9 @@
   <div class="profile-page-background">
       <div class="text-center page">
         <!-- card -->
-      <profile-card :badges="badges" class="card"></profile-card>
-      <!-- features -->
-      <profile-features class="features" :badges="badges"></profile-features>
+        <profile-card :badges="badges" class="card" />
+        <!-- features -->
+        <profile-features class="features" :badges="badges" />
       </div>
   </div>
 </template>
@@ -14,7 +14,6 @@ import ProfileCard from './ProfileCard.vue'
 import ProfileFeatures from './ProfileFeatures.vue'
 import UserService from '../../services/UserService'
 import BadgeService from '../../services/BadgeService'
-
 
 export default {
   name: "profile-page-background",

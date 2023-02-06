@@ -31,6 +31,8 @@ CREATE TABLE users (
     shipping_address varchar(150),
     bio varchar(800),
     profile_pokemon int,
+    is_premium boolean DEFAULT false,
+    pronouns varchar(30),
     CONSTRAINT FK_users_profile_pokemons FOREIGN KEY(profile_pokemon) REFERENCES profile_pokemons(image_id),
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );

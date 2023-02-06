@@ -1,16 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from '../views/Home.vue'
+import store from '../store/index'
+import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
-import Register from '../views/Register.vue'
-import store from '../store/index'
-import CollectionDetails from '../views/CollectionDetails.vue'
-import ViewCollections from "../views/ViewCollections.vue"
-import ProfileGrid from '../components/Edit Profile/ProfileGrid.vue'
-import ProfileView from "../views/ProfileView.vue"
-import FriendsView from "../views/FriendsView.vue"
-import MembershipView from "../views/MembershipView.vue"
+import Collection from '../views/Collection.vue'
+import Collections from "../views/Collections.vue"
+import Profile from "../views/Profile.vue"
+import Friends from "../views/Friends.vue"
 
 Vue.use(Router)
 
@@ -61,33 +58,33 @@ const router = new Router({
     },
     {
       path: "/collections/:collectionId",
-      name: "collectionDetails",
-      component: CollectionDetails,
+      name: "collection",
+      component: Collection,
       meta: {
         requiresAuth: false
       }
     },
     {
       path: "/collections",
-      name: "ViewCollections",
-      component: ViewCollections,
+      name: "collections",
+      component: Collections,
       meta: {
         requiresAuth: false,
       }
     },
-    {
-      path: "/edit-profile",
-      name: "editProfile",
-      component: ProfileGrid,
-      meta: {
-        requiresAuth: true
-      }
+    // {
+    //   path: "/edit-profile",
+    //   name: "editProfile",
+    //   component: ProfileGrid,
+    //   meta: {
+    //     requiresAuth: true
+    //   }
       
-    },
+    // },
     {
       path: "/profile",
       name: "profile",
-      component: ProfileView,
+      component: Profile,
       meta: {
         requiresAuth: false
       }
@@ -95,7 +92,7 @@ const router = new Router({
     {
       path: "/profile/:id",
       name: "profileWithId",
-      component: ProfileView,
+      component: Profile,
       meta: {
         requiresAuth: false
       }
@@ -103,19 +100,12 @@ const router = new Router({
     {
       path: "/friends",
       name: "friends",
-      component: FriendsView,
+      component: Friends,
       meta: {
         requiresAuth: true
       }
     },
-    {
-      path: "/membership",
-      name: "membership",
-      component: MembershipView,
-      meta: {
-        requiresAuth: true
-      }
-    }
+  
   ]
 })
 

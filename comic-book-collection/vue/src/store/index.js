@@ -25,6 +25,7 @@ export default new Vuex.Store({
     showEditCollectionForm: false,
     showAddCardForm: false,
     showGiveBadgeForm: false,
+    showEditProfile: false
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -58,6 +59,16 @@ export default new Vuex.Store({
     },
     CHANGE_SHOW_GIVE_BADGE_FORM(state){
       state.showGiveBadgeForm = !state.showGiveBadgeForm;
+    },
+    CHANGE_SHOW_EDIT_PROFILE(state) {
+      state.showEditProfile = !state.showEditProfile;
+    },
+    CLOSE_OVERLAYS(state) {
+      state.showAddCollectionForm = false;
+      state.showEditCollectionForm = false;
+      state.showAddCardForm = false;
+      state.showGiveBadgeForm = false;
+      state.showEditProfile = false;
     }
   }
 })

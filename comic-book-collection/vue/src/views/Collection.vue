@@ -1,14 +1,16 @@
 <template>
     <div id="collectionDetails">
         <h1 class="collectionTitle">{{title}}</h1>
-        <h2 class="collectionOwnerDeclaration">This collection is owned by {{ownerUsername}}</h2>
+        <p class="collectionOwnerDeclaration">This collection is owned by 
+          <strong @click="goToUserProfile">{{ownerUsername}}</strong>
+              </p>
         <p class="collectionDescription"><em>{{description}}</em></p>
         <div id="twoButtons">
           <button v-if="ownerUsername == $store.state.user.username" @click="showEditCollection">Edit</button>
           <div class="overlay" v-if="$store.state.showEditCollectionForm">
               <edit-collection class="overlay-form" :collection="collection" />
           </div>
-          <button v-if="ownerUsername == $store.state.user.username" @click="showAddCard" id="btn2">Add A card</button>
+          <button v-if="ownerUsername == $store.state.user.username" @click="showAddCard" id="btn2">Add A Card</button>
           <div class="overlay" v-if="$store.state.showAddCardForm" >
               <add-a-card class="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
           </div>
@@ -31,6 +33,7 @@ import CardGrid from "../components/Collections/CardGrid.vue"
 import EditCollection from '../components/Collections/EditCollection.vue'
 import collectionWebService from '../services/CollectionService'
 import AddACard from '../components/Collections/AddACard.vue'
+import UserService from '../services/UserService'
 
 
 export default {
@@ -60,7 +63,8 @@ export default {
             title: this.title,
             description: this.description,
             isPrivate: this.isPrivate,
-            cards: this.cards
+            cards: this.cards,
+            id: this.id
           }
         },
         cardIds() {
@@ -77,6 +81,9 @@ export default {
 
           return filteredCards.length;
           },
+          getUserId() {
+            return UserService.getUserIdByUsername(this.ownerUsername);
+          }
 
     },
     created() {
@@ -87,7 +94,8 @@ export default {
                                 this.description = response.data.description;
                                 this.isPrivate = response.data.private;
                                 this.cards = response.data.cards;
-                            })
+                            });
+
     },
     methods: {
         togglePrivacy() {
@@ -123,6 +131,12 @@ export default {
           this.cards = this.cards.filter(card => {
             return card.id != id;
           })
+        },
+        goToUserProfile() {
+          UserService.getUserIdByUsername(this.ownerUsername)
+                    .then(response => {
+                      this.$router.push({name: 'profileWithId', params: {id: response.data}});
+                  })
         }
     }
 }
