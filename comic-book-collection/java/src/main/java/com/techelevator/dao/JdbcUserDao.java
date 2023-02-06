@@ -121,6 +121,36 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public List<User> getFriends(int id) {
+        String sqlQuery = "SELECT user_from.username AS from_username, user_from.user_id AS from_id, " +
+                "user_from_profile_pokemon.pokemon AS from_pokemon, " +
+                "user_to.username AS to_username, user_to.user_id AS to_id, " +
+                "user_to_profile_pokemon.pokemon AS to_pokemon FROM friends\n" +
+                "JOIN users AS user_from ON user_from.user_id = friends.from_user_id\n" +
+                "JOIN users AS user_to ON user_to.user_id = friends.to_user_id\n" +
+                "JOIN profile_pokemons AS user_from_profile_pokemon ON user_from.profile_pokemon = user_from_profile_pokemon.image_id\n" +
+                "JOIN profile_pokemons AS user_to_profile_pokemon ON user_to.profile_pokemon = user_to_profile_pokemon.image_id\n" +
+                "WHERE accepted = true\n" +
+                "AND (user_from.user_id = ? OR user_to.user_id = ?);";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, id, id);
+        List<User> friends = new ArrayList<>();
+        while (results.next()) {
+            User friend = new User();
+            friend.setUsername(results.getString("from_username"));
+            friend.setId(results.getLong("from_id"));
+            friend.setProfilePokemon(results.getString("from_pokemon"));
+            friends.add(friend);
+
+            friend = new User();
+            friend.setUsername(results.getString("to_username"));
+            friend.setId(results.getLong("to_id"));
+            friend.setProfilePokemon(results.getString("to_pokemon"));
+            friends.add(friend);
+        }
+        return friends;
+    }
+
+    @Override
     public List<User> getFriendRequests(int id) {
         List<User> users = new ArrayList<>();
         String sqlQuery = "SELECT from_user_id, username FROM friends\n" +
