@@ -4,7 +4,7 @@
             <div class="user-header">
                 <div class="flexy">
                     <!-- hard-coded; replace with data from database -->
-                    <p class="account-type">PREMIUM</p>
+                    <p class="account-type">{{user.isPremium ? "Premium" : "Standard"}}</p>
                     <h2 class="user-name">{{user.username}}</h2>
                 </div>
 
@@ -17,7 +17,7 @@
             </div>
             <profile-image class="profile-image" :small="false" :pokemon="user.profilePokemon"></profile-image>
             <div id="pronouns">
-                <p>Pronouns: they/them</p>
+                <p v-if="user.pronouns">Pronouns: {{user.pronouns}}</p>
             </div>
             <h2>Bio</h2>
             <em><p class="bio"> {{user.bio}}</p></em>

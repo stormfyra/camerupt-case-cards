@@ -65,7 +65,7 @@ export default {
     },
     methods:{
         editProfile(){
-            this.$router.push({name:'editProfile'})
+            this.$store.commit('CHANGE_SHOW_EDIT_PROFILE');
         },
         addFriend() {
             userService.addFriend({userFrom: this.$store.state.user.id, userTo: this.$route.params.id});

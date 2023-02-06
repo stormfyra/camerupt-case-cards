@@ -20,6 +20,8 @@ public class User {
    private String shippingAddress;
    private String bio;
    private String profilePokemon;
+   private boolean isPremium;
+   private String pronouns;
 
    public User() { }
 
@@ -30,7 +32,7 @@ public class User {
       this.activated = true;
    }
 
-   public User(Long id, String username, String password, String email, String fullName, String shippingAddress, String bio) {
+   public User(Long id, String username, String password, String email, String fullName, String shippingAddress, String bio, boolean isPremium, String pronouns) {
       this.id = id;
       this.username = username;
       this.password = password;
@@ -39,6 +41,8 @@ public class User {
       this.fullName = fullName;
       this.shippingAddress = shippingAddress;
       this.bio = bio;
+      this.isPremium = isPremium;
+      this.pronouns = pronouns;
    }
 
    public Long getId() {
@@ -154,5 +158,21 @@ public class User {
 
    public void setProfilePokemon(String profilePokemon) {
       this.profilePokemon = profilePokemon;
+   }
+
+   public boolean getIsPremium() {
+      return isPremium;
+   }
+
+   public void setIsPremium(boolean isPremium) {
+      this.isPremium = isPremium;
+   }
+
+   public String getPronouns() {
+      return pronouns;
+   }
+
+   public void setPronouns(String pronouns) {
+      this.pronouns = pronouns;
    }
 }
