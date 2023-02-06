@@ -2,18 +2,13 @@
     <div :class="'collection-container text-center'">
         <!-- display the user's friends -->
         <div v-for="user in filteredFriends" v-bind:key="user.index" :class="'collectionImage'">
-            <router-link :class="'profile-image'" :to="{name: 'profileWithId', params: {id: user.id}}">
-                <div class="friend-card">
-                    <profile-image :pokemon="user.profilePokemon" ></profile-image>
-                    <p class="title">{{user.username}}</p>  
-                </div>
-            </router-link>
+            <friend-card :user="user"></friend-card>
         </div>
     </div>
 </template>
 
 <script>
-import ProfileImage from '../Edit Profile/ProfileImage.vue';
+import FriendCard from './FriendCard.vue'
 
 export default {
     name: 'FriendsView',
@@ -23,7 +18,7 @@ export default {
         'pokemon'
     ],
     components: {
-        ProfileImage
+        FriendCard
     },
     computed: {
         filteredFriends() {
@@ -36,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-.friend-card {
+friend-card {
 
     /* will need to add more styles and swap between them if we implement
     changing the person's theme */
@@ -54,20 +49,6 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
-img {
-    /* width: auto; */
-    min-height: 125px;
-    min-width: 125px;
-}
-
-.profile-image {
-    align-self: center;
-    border-radius: px;
-    border: solid #D9D9D9 6px;
-    background-color: #d9d9d9;
-}
-
-
 
 .collection-container {
     width: 100%;
