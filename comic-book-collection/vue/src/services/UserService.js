@@ -16,6 +16,9 @@ export default {
     getAllUsers() {
         return http.get(`/users`)
     },
+    getFriends(id) {
+        return http.get(`/users/${id}/friends`)
+    },
     addFriend(friendRequest) {
         return http.post(`/users/friend-requests`, friendRequest);
     },

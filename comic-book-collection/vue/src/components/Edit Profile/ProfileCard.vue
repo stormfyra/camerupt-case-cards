@@ -15,7 +15,7 @@
                     
                 </div>
             </div>
-            <profile-image class="profile-image" :pokemon="pokemon"></profile-image>
+            <profile-image class="profile-image" :pokemon="user.profilePokemon"></profile-image>
             <div id="pronouns">
                 <p>Pronouns: they/them</p>
             </div>
@@ -45,7 +45,6 @@ import BadgeHolder from './features/BadgeHolder.vue'
 
 export default {
     props: [
-        'pokemon',
         'badges'
     ],
     components: {

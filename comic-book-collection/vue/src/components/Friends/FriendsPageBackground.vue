@@ -23,7 +23,7 @@ export default {
     },
     created() {
         // TO-DO: change this to show only user's friends; getAllUsers just for testing
-        UserService.getAllUsers()
+        UserService.getFriends(this.$store.state.user.id)
                     .then(response => {
                         // profile card details
                         this.users = response.data;

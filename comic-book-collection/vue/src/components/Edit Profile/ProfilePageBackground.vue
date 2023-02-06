@@ -2,7 +2,7 @@
   <div class="profile-page-background">
       <div class="text-center page">
         <!-- card -->
-      <profile-card :pokemon="selectedPokemon" :badges="badges" class="card"></profile-card>
+      <profile-card :badges="badges" class="card"></profile-card>
       <!-- features -->
       <profile-features class="features" :badges="badges"></profile-features>
       </div>
@@ -27,12 +27,11 @@ export default {
     ],
     data() {
     return {
-        selectedPokemon: 'Camerupt',
+        selectedPokemon: '',
         badges: []
     }
     },
     created() {
-        this.selectedPokemon = this.$store.state.user.profilePokemon;
         UserService.getUserDetails(this.$route.params.id)
                     .then(response => {
                         // profile card details

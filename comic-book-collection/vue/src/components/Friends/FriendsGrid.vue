@@ -1,16 +1,10 @@
 <template>
     <div :class="'collection-container text-center'">
-        <!-- add friend button + overlay -->
-        <button class="empty-card" v-on:click="showAddForm"><h1>+</h1></button>
-        <div id="overlay" v-if="$store.state.showAddCollectionForm">
-            <add-friend id="overlay-form"/>
-        </div>
-
-        <!-- display all users; TO-DO: change to the user's friends -->
-        <div v-for="user in users" v-bind:key="user.index" :class="'collectionImage'">
+        <!-- display the user's friends -->
+        <div v-for="user in filteredFriends" v-bind:key="user.index" :class="'collectionImage'">
             <div class="friend-card">
                 <router-link :class="'profile-image'" :to="{name: 'profileWithId', params: {id: user.id}}">
-                    <profile-image :class="image" :pokemon="user.profilePokemon" height="40px" width="40px"></profile-image>
+                    <profile-image :pokemon="user.profilePokemon" height="40px" width="40px"></profile-image>
                 </router-link>
                 <router-link :class="'title-holder'" :to="{name: 'profileWithId', params: {id: user.id}}"> 
                     <p class="title">{{user.username}}</p>
@@ -22,45 +16,24 @@
 
 <script>
 import ProfileImage from '../Edit Profile/ProfileImage.vue';
-import AddFriend from './AddFriend.vue';
-import userService from '../../services/UserService'
 
 export default {
     name: 'FriendsView',
-    // TO-DO: change to friends
     props: [
         'users',
         'smallView',
         'pokemon'
     ],
-    data(){
-        return {
-            user: {
-                username: '',
-                imageLink: '',
-                bio:'',
-                profilePokemon: ''
-            },
-        }
-    },
     components: {
-        AddFriend,
         ProfileImage
     },
-    methods: {
-        //TO-DO: change to add friends form
-        showAddForm() {
-              this.$store.commit('CHANGE_SHOW_COLLECTION_FORM');
+    computed: {
+        filteredFriends() {
+            return this.users.filter(user => {
+                return user.username != this.$store.state.user.username;
+            })
         }
-    },
-        created() {
-        userService.getUserDetails(this.$route.params.id)
-                                .then(response => {
-                                    console.log(response.data);
-                                    this.user = response.data;
-                                });
     }
-  
 }
 </script>
 

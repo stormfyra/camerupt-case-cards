@@ -14,4 +14,5 @@ public interface UserDao {
     List<User> getFriendRequests(int id);
     void acceptFriendRequest(int userFrom, int userTo);
     void deleteFriendRequest(int userFrom, int userTo);
+    List<User> getFriends(int id);
 }

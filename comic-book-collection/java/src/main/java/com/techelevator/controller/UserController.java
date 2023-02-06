@@ -65,4 +65,9 @@ public class UserController {
     public void deleteFriendRequest(@PathVariable int userFrom, @PathVariable int userTo) {
         userDao.deleteFriendRequest(userFrom, userTo);
     }
+
+    @RequestMapping(path = "/{id}/friends", method = RequestMethod.GET)
+    public List<User> getFriends(@PathVariable int id) {
+        return userDao.getFriends(id);
+    }
 }
