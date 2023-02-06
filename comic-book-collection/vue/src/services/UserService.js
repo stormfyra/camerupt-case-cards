@@ -13,6 +13,9 @@ export default {
     getUserDetails(id) {
         return http.get(`/users/${id}`)
     },
+    getUserIdByUsername(username) {
+        return http.get(`/users/get-id/${username}`)
+    },
     getAllUsers() {
         return http.get(`/users`)
     },
