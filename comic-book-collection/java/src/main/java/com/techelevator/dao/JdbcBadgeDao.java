@@ -52,6 +52,7 @@ public class JdbcBadgeDao implements BadgeDao{
         String sqlQuery = "SELECT badge_name FROM badges_user_can_give\n" +
                           "WHERE user_id = ?";
 
+
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, id);
 
         while (results.next()){

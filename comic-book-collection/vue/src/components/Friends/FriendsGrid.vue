@@ -2,14 +2,12 @@
     <div :class="'collection-container text-center'">
         <!-- display the user's friends -->
         <div v-for="user in filteredFriends" v-bind:key="user.index" :class="'collectionImage'">
-            <div class="friend-card">
-                <router-link :class="'profile-image'" :to="{name: 'profileWithId', params: {id: user.id}}">
-                    <profile-image :pokemon="user.profilePokemon" height="40px" width="40px"></profile-image>
-                </router-link>
-                <router-link :class="'title-holder'" :to="{name: 'profileWithId', params: {id: user.id}}"> 
-                    <p class="title">{{user.username}}</p>
-                </router-link>
-            </div>
+            <router-link :class="'profile-image'" :to="{name: 'profileWithId', params: {id: user.id}}">
+                <div class="friend-card">
+                    <profile-image :pokemon="user.profilePokemon" ></profile-image>
+                    <p class="title">{{user.username}}</p>  
+                </div>
+            </router-link>
         </div>
     </div>
 </template>
@@ -57,8 +55,7 @@ export default {
     align-items: center;
 }
 img {
-    height: 80%;
-    width: 80%;
+    /* width: auto; */
     min-height: 125px;
     min-width: 125px;
 }

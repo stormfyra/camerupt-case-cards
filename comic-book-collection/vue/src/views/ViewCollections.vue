@@ -43,8 +43,9 @@ export default {
                                 } else {
                                     this.publicCollections.push(element)
                                 }
-                            });
-                         });
+                            })
+                         })
+
     },
     computed: {
         isLoggedIn() {

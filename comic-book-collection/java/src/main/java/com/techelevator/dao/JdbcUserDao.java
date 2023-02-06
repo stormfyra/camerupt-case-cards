@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Badge;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -84,6 +85,26 @@ public class JdbcUserDao implements UserDao {
                 }
                 , keyHolder) == 1;
         int newUserId = (int) keyHolder.getKeys().get(id_column);
+
+        String getBadgesSqlQuery = "SELECT badge_name FROM badges;";
+        List<String> allBadges = new ArrayList<>();
+        SqlRowSet badgesResults = jdbcTemplate.queryForRowSet(getBadgesSqlQuery);
+        while (badgesResults.next()){
+            allBadges.add(badgesResults.getString("badge_name"));
+        }
+
+        String userIdQuery = "SELECT user_id FROM users\n" +
+                "WHERE username = ?;";
+        SqlRowSet userIdResults = jdbcTemplate.queryForRowSet(userIdQuery, username);
+        userIdResults.next();
+        int userId = userIdResults.getInt("user_id");
+
+        String badgeSqlQuery = "INSERT INTO badges_user_can_give (user_id, badge_name)\n" +
+                "VALUES (?, ?);";
+
+        for (String badge : allBadges) {
+            jdbcTemplate.update(badgeSqlQuery, userId, badge);
+        }
 
         return userCreated;
     }
