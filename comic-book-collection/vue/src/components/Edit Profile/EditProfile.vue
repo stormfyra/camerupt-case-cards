@@ -1,16 +1,19 @@
 <template>
     <div id = "profile-page">
-        <div id = "edit-profile" class="text-center">
+        <div id = "edit-profile">
             <div class="profile-pic">
             <h1>Edit Profile</h1><profile-image :small="false" :pokemon="$store.state.user.profilePokemon" id="profile-pic" />
             </div>
 
             <h4>Profile Information</h4>
-            <select-profile-pokemon />
 
             <form action="">
                 <label for="username">Username</label>
                 <input v-model="user.username" id="username">
+                <label for="select-profile-pokemon">Profile Pokemon</label>
+                <select-profile-pokemon />
+                <label for="pronouns">Pronouns</label>
+                <input v-model="user.pronouns" id="pronouns">
                 <label for="bio">Bio</label>
                 <input v-model="user.bio" id="bio">
 
@@ -77,6 +80,7 @@ export default {
             console.log(this.user);
             userService.updateUserBio(this.user)
             this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
+            this.$router.go();
         },
         cancel(){
             this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})

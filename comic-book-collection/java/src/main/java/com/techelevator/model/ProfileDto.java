@@ -1,11 +1,7 @@
 package com.techelevator.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ProfileDto {
     private Long id;
@@ -16,6 +12,8 @@ public class ProfileDto {
     private String shippingAddress;
     private String bio;
     private String profilePokemon;
+    private boolean isPremium;
+    private String pronouns;
 
     public Long getId() {
         return id;
@@ -79,5 +77,21 @@ public class ProfileDto {
 
     public void setProfilePokemon(String profilePokemon) {
         this.profilePokemon = profilePokemon;
+    }
+
+    public boolean getIsPremium() {
+        return isPremium;
+    }
+
+    public void setIsPremium(boolean isPremium) {
+        this.isPremium = isPremium;
+    }
+
+    public String getPronouns() {
+        return pronouns;
+    }
+
+    public void setPronouns(String pronouns) {
+        this.pronouns = pronouns;
     }
 }

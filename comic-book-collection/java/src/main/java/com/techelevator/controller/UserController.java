@@ -46,7 +46,7 @@ public class UserController {
     @RequestMapping(value = "/update-profile", method = RequestMethod.PUT)
     public void updateUserProfile(Principal principal, @RequestBody ProfileDto user) {
         userDao.updateUserProfile(user.getEmail(), user.getFullName(), user.getShippingAddress(), user.getBio(), user.getProfilePokemon(),
-                Math.toIntExact(user.getId()));
+                Math.toIntExact(user.getId()), user.getIsPremium(), user.getPronouns());
     }
 
     @RequestMapping(value = "/friend-requests", method = RequestMethod.POST)

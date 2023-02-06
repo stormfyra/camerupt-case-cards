@@ -110,16 +110,18 @@ import ProfileImage from './Edit Profile/ProfileImage.vue';
     display: flex;
     gap: 1rem;
   }
+
   li {
-    border-left: solid #e93d40 2px;
+    border: solid #e93d40 2px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
-    padding-left: 5px;
+    padding: 10px;
   }
 
-  li:first-child {
+  /* li:first-child {
     border-left: none;
-  }
+  } */
 
   #profile-link {
     display: flex;
