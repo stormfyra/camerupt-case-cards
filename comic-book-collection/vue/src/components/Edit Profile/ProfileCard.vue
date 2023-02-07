@@ -1,5 +1,5 @@
 <template>
-        <div class="profile-card">
+        <div :class="tiny-card ? 'tiny-card' : 'profile-card'" >
             <div class="user-header">
                 <div class="flexy">
                     <!-- hard-coded; replace with data from database -->
@@ -31,7 +31,7 @@
 
             <!-- to update: badges will go here -->
             <h2 v-if="!small">Badges</h2>
-            <badge-holder v-if="user != 'wait'" :small='small' :user='user' class="badge-holder" :badges='badges'/>
+            <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges'/>
         </div>
 </template>
 
@@ -43,7 +43,8 @@ import BadgeHolder from './features/BadgeHolder.vue'
 export default {
     props: [
         'user',
-        'small'
+        'small',
+        'tinyCard'
     ],
     data() {
         return {
@@ -87,6 +88,7 @@ export default {
     border: solid #f5e55a 1em;
     border-radius: 1em;
     width: 80%;
+    height: 85%;
     aspect-ratio: 3 / 2;
     background-color: #e93d40;
     margin: auto;
@@ -149,6 +151,21 @@ p {
     display: flex;
     flex-wrap: wrap;
 }
+
+/* .tiny-card {
+    display: flex;
+    flex-direction: column;
+    border: solid #f5e55a .25em;
+    border-radius: 1em;
+    width: 80%;
+    aspect-ratio: 3 / 2;
+    background-color: #e93d40;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 2% 5% 5% 5%;
+    font-size: x-small;
+} */
 
 
 </style>

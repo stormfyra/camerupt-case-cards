@@ -24,9 +24,7 @@
         </div>
         <div class="friends">
             <h3>Friends</h3>
-            <div>
-                <friends-grid :users="friends" />
-            </div>
+                <friends-grid :smallView='true' :tinyCard="true" :users="friends" />
         </div>
     </div>
   </div>
@@ -110,6 +108,7 @@ h3 {
 .featured-cards {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 1em;
     margin-left: 10px;
 }

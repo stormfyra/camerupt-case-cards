@@ -1,9 +1,10 @@
 <template>
   <div class="profile-page-background">
-      <div class="friends-container">
         <!-- grids -->
-      <friends-grid :users='users' :smallView='true'></friends-grid>
-      </div>
+    <div :class="'collection-container text-center'">
+      <friends-grid :smallView='false' :tinyCard='false' :users='users' ></friends-grid>
+    </div>
+
   </div>
 </template>
 
@@ -12,7 +13,7 @@ import UserService from '../../services/UserService'
 import FriendsGrid from './FriendsGrid.vue';
 
 export default {
-  name: "profile-page-background",
+  name: "friends-page-background",
     components: {
         FriendsGrid
     },
@@ -52,5 +53,16 @@ export default {
 .features {
     grid-area: features;
     padding-left: 3%;
+}
+
+.collection-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background-color: #fff;
+    height: auto;
+    padding: 10px 12px;
 }
 </style>
