@@ -4,7 +4,7 @@
         <div class="overlay" v-if="$store.state.showAddCollectionForm">
             <add-collection class="overlay-form"/>
         </div>
-        <div v-for="collection in collections" :key="collection.index"  :class="smallView ? 'smallCollecitonImage' : 'collectionImage'">
+        <div v-for="collection in collections" :key="collection.index"  :class="smallView ? 'smallCollectionImage' : 'collectionImage'">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
                 <p class="title">{{collection.title}}</p>
                 <p v-if="!ownedByMe && !smallView"><em>Owner: {{collection.ownerUsername}}</em></p>
@@ -61,6 +61,7 @@ export default {
     height: auto;
     flex-wrap: wrap;
     padding: 10px;
+    gap: 1em;
 }
 
 .collectionImage {
@@ -84,14 +85,6 @@ export default {
     border-radius: 10px;
 }
 
-.smallCollectionImage {
-    width: 100px;
-    height: 100px;
-    max-height: 330px;
-    border: 2px solid black;
-    position: relative;
-    z-index: 1;
-}
 .smallCardBack {
     position: relative;
     top: 0;

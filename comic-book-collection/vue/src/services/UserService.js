@@ -7,20 +7,19 @@ const http = axios.create({
 export default {
     updateUserBio(user) {
         // delete user.authorities
-        console.log(user)
-        return http.put(`/users/update-profile`, user)
+        return http.put(`/users/update-profile`, user);
     },
     getUserDetails(id) {
-        return http.get(`/users/${id}`)
+        return http.get(`/users/${id}`);
     },
     getUserIdByUsername(username) {
-        return http.get(`/users/get-id/${username}`)
+        return http.get(`/users/get-id/${username}`);
     },
     getAllUsers() {
-        return http.get(`/users`)
+        return http.get(`/users`);
     },
     getFriends(id) {
-        return http.get(`/users/${id}/friends`)
+        return http.get(`/users/${id}/friends`);
     },
     addFriend(friendRequest) {
         return http.post(`/users/friend-requests`, friendRequest);
@@ -29,9 +28,12 @@ export default {
         return http.get(`/users/friend-requests/${userId}`);
     },
     acceptFriendRequest(friendRequest) {
-        return http.put(`/users/friend-requests`, friendRequest)
+        return http.put(`/users/friend-requests`, friendRequest);
     },
     deleteFriendRequest(fromUser, toUser) {
         return http.delete(`/users/friend-requests/${fromUser}/${toUser}`);
+    },
+    getAllCardsForUser(userId) {
+        return http.get(`/collections/${userId}/getAllCards`);
     }
 }

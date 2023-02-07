@@ -1,55 +1,38 @@
 <template>
     <div id="edit-collection">
-        <scrolly :style="{ width: '600px', height: '600px' }">
-            <scrolly-viewport>
-                <form class="form-container">
-                    <button id="close-edit-collection" @click="off">X</button>
-                    <h1>Edit Your Collection</h1>
-                    <label for="title">Title</label>
-                    <input 
-                        type="text"
-                        name="title"
-                        placeholder="Title"
-                        v-model="updatedCollection.title"
-                    />
-                    <label for="description">Description</label>
-                    <input 
-                        type="text"
-                        id="description"
-                        placeholder="Description"
-                        v-model="updatedCollection.description"
-                    />
-                    <div class="switch-div">
-                        <p class="private-text" style="display: inline-block">public</p>
-                        <label class="switch">
-                            <input type="checkbox" v-model="updatedCollection.isPrivate" />
-                            <span class="slider round" />
-                        </label>
-                        <p class="private-text" style="display: inline-block">private</p>
-                    </div>
-                    <button id="submit" @click.prevent="onSubmit">Submit</button>
-                    <button @click="deleteThisCollection">DELETE</button>
-                </form>
-            </scrolly-viewport>
-            <scrolly-bar axis="y"></scrolly-bar>
-            <scrolly-bar axis="x"></scrolly-bar>
-            </scrolly>
-
-            
+      <h1>Edit Your Collection</h1>
+      <label for="title">Title</label>
+      <input 
+          type="text"
+          name="title"
+          placeholder="Title"
+          v-model="updatedCollection.title"
+      />
+      <label for="description">Description</label>
+      <input 
+          type="text"
+          id="description"
+          placeholder="Description"
+          v-model="updatedCollection.description"
+      />
+      <div class="switch-div">
+          <p class="private-text" style="display: inline-block">public</p>
+          <label class="switch">
+              <input type="checkbox" v-model="updatedCollection.isPrivate" />
+              <span class="slider round" />
+          </label>
+          <p class="private-text" style="display: inline-block">private</p>
+      </div>
+      <button id="submit" @click.prevent="onSubmit">Submit</button>
+      <button @click="deleteThisCollection">DELETE</button>       
     </div>
 </template>
 
 <script>
 import collectionService from '../../services/CollectionService.js'
-import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
 
 export default{
   name: 'edit-collection',
-  components: {
-      Scrolly,
-      ScrollyViewport,
-      ScrollyBar,
-  },
   data() {
       return {
           updatedCollection: {},
@@ -79,14 +62,6 @@ export default{
 <style scoped>
 .hide-form {
     display: none;
-}
-
-.form-container {
-max-width: 100%;
-margin: 10px;
-background-color: white;
-border-radius: 10px;
-display: flex;
 }
 
 input{
@@ -183,5 +158,11 @@ button:hover{
     height: 20px;
     align-self: flex-end;
     margin-right: 20px;
+}
+
+#edit-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 </style>

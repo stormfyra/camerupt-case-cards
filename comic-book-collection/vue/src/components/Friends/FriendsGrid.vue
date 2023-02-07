@@ -15,9 +15,7 @@ import ProfileCard from '../Edit Profile/ProfileCard.vue'
 export default {
     name: 'FriendsView',
     props: [
-        'users',
-        'smallView',
-        'pokemon'
+        'users'
     ],
     components: {
         ProfileCard

@@ -19,4 +19,5 @@ public interface CollectionDao {
     void updateCollection(String name, int id, CardCollection collection);
     void updateCollectionQuantity(int collectionId, String cardId, int quantity);
     void deleteCardFromCollection(int collectionId, String cardId);
+    public List<Card> getAllCardsForGivenUser(int id);
 }
