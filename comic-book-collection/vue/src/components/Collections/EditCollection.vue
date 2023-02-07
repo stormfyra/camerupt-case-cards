@@ -1,6 +1,7 @@
 <template>
     <div id="edit-collection">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <scrolly :style="{ width: '600px', height: '700px' }">
             <scrolly-viewport>
                 <form class="form-container">
@@ -43,6 +44,8 @@
 
             
 =======
+=======
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
       <h1>Edit Your Collection</h1>
       <label for="title">Title</label>
       <input 
@@ -68,12 +71,16 @@
       </div>
       <button id="submit" @click.prevent="onSubmit">Submit</button>
       <button @click="deleteThisCollection">DELETE</button>       
+<<<<<<< HEAD
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
+=======
 >>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
     </div>
 </template>
 
 <script>
 import collectionService from '../../services/CollectionService.js'
+<<<<<<< HEAD
 <<<<<<< HEAD
 import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
 import confirmDelete from './ConfirmDelete.vue'
@@ -86,6 +93,11 @@ export default{
       ScrollyBar,
       confirmDelete
   },
+=======
+
+export default{
+  name: 'edit-collection',
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
 =======
 
 export default{
@@ -126,6 +138,7 @@ export default{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .form-container {
 max-width: 100%;
 margin: 15px;
@@ -146,6 +159,8 @@ justify-content: space-between;
     height: 25px;
 }
 
+=======
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
 =======
 >>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
 input{
@@ -252,5 +267,8 @@ button:hover{
   flex-direction: column;
   gap: 1em;
 }
+<<<<<<< HEAD
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
+=======
 >>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
 </style>
