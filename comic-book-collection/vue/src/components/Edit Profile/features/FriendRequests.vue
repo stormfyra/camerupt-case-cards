@@ -25,9 +25,11 @@
         methods: {
             accept(userFrom) {
                 userService.acceptFriendRequest({userFrom: userFrom, userTo: this.$store.state.user.id})
+                window.location.reload();
             },
             reject(userFrom) {
                 userService.deleteFriendRequest(userFrom, this.$store.state.user.id);
+                window.location.reload();
             }
         }
     }

@@ -1,8 +1,7 @@
 <template>
     <div>
-        <h1>Friend Request</h1>
+        <h1>Pending Friend Request</h1>
         <div v-if="pendingRequest">
-            <h3>Pending Friend Requests</h3>
             <friend-requests />
         </div>
         <h1>Friends</h1>
