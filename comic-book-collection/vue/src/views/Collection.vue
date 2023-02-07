@@ -1,27 +1,45 @@
 <template>
     <div id="collectionDetails">
-        <h1 class="collectionTitle">{{title}}</h1>
-        <p class="collectionOwnerDeclaration">This collection is owned by 
-          <strong @click="goToUserProfile">{{ownerUsername}}</strong>
-              </p>
-        <p class="collectionDescription"><em>{{description}}</em></p>
-        <div id="twoButtons">
-          <button v-if="ownerUsername == $store.state.user.username" @click="showEditCollection">Edit</button>
-          <div class="overlay" v-if="$store.state.showEditCollectionForm">
-              <edit-collection class="overlay-form" :collection="collection" />
-          </div>
-          <button v-if="ownerUsername == $store.state.user.username" @click="showAddCard" id="btn2">Add A Card</button>
-          <div class="overlay" v-if="$store.state.showAddCardForm" >
-              <add-a-card class="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
-          </div>
-        <select v-model="selectedFilter" name="type-dropdown" id="">
-          <option value="selectedFilter">Select A Filter</option>
-          <option v-for='type in types' :key='type.id' :value='type'>{{type}}</option>
-        </select>
-        <div id="statistics-holder">
-          Number of {{selectedFilter}} Cards : {{numberOfCardsInFilterSearch}}
+
+      <!-- banner, title, description -->
+      <!-- :style="imageObject" -->
+      <div id="main-header">
+        <div id="banner" v-for="(card, index) in cards.slice(0,1)" :key="index">
+          <img :src="card.images.large" :alt="card.cardName" id="banner-image">
+        </div>    
+        <div id="header-text">
+          <h1 class="collection-title">{{title}}</h1>
+          <h4 class="collection-description"><em>{{description}}</em></h4>
+          <p class="collection-owner-declaration">Collection owner: <strong @click="goToUserProfile">{{ownerUsername}}</strong></p>
         </div>
+      </div>
+
+        <!-- edit/add buttons -->
+        <div class="functions">
+          <div id="twoButtons">
+            <button v-if="ownerUsername == $store.state.user.username" @click="showEditCollection">Edit</button>
+            <div class="overlay" v-if="$store.state.showEditCollectionForm">
+                <edit-collection class="overlay-form" :collection="collection" />
+            </div>
+            <button v-if="ownerUsername == $store.state.user.username" @click="showAddCard" id="btn2">Add A Card</button>
+            <div class="overlay" v-if="$store.state.showAddCardForm" >
+                <add-a-card class="overlay-form" @addSelectedCards='addSelectedCards' :collectionId="$route.params.collectionId" :collectedCardIds="cardIds" />
+            </div>
+          </div>
+          <!-- filtering and stats -->
+          <div class="filter-and-stats">
+            <div id="statistics-holder">
+              Number of {{selectedFilter}} Cards : {{numberOfCardsInFilterSearch}}
+            </div>
+            <select v-model="selectedFilter" name="type-dropdown" id="">
+              <option value="selectedFilter">Select A Filter</option>
+              <option v-for='type in types' :key='type.id' :value='type'>{{type}}</option>
+            </select>
+            
+          </div>
         </div>
+
+        <!-- displays all cards in collection -->
         <div id=cardSpread>
           <card-grid :cards='cards' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
         </div>
@@ -144,7 +162,44 @@ export default {
 </script>
 
 <style scoped>
+#main-header {
+ width: 100%;
+ height: 300px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-areas: "banner";
+  margin-bottom: 40px;
+}
+#banner {
+  width: 100%;
+  height: 300px;
+  background-color: rgb(49, 49, 49);
 
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  z-index: 1;
+}
+#banner-image {
+  width: 80%;
+  height: 300px;
+  object-fit: cover;
+  object-position: 10% 15%;
+}
+#header-text {
+  /* display: grid;
+  grid-area: banner; */
+  z-index: 2;
+  width: 80%;
+  height: 300px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px;
+  background-color: rgba(0, 0, 0, 0.61);
+}
 #btn2{
   background-color: white;
   color: #E45052;
@@ -175,19 +230,35 @@ card-grid {
     display: flex;
     justify-content: center;
 }
-.collectionTitle, .collectionOwnerDeclaration, .collectionDescription {
+.collection-title, .collection-owner-declaration, .collection-description {
     text-align: center;
+    margin: 10px;
+    color: white;
+}
+.collection-owner-declaration {
+  font-size: 10pt;
 }
 
-
 .switch-div {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
 }
 
 strong:hover{
   cursor: pointer;
 }
+
+.functions {
+  display: flex;
+  justify-content: space-between;
+}
+.filter-and-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
 </style>
