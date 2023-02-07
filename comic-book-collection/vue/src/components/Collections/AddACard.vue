@@ -1,6 +1,22 @@
 <template>
     <div style="display: flex; flex-direction: column;">
         <input type="text" v-model="internalSearchParamater" id="searchbar" />
+
+        <!-- checkboxes for element types -->
+        <div class="element-checkboxes">
+            <input type="checkbox" name="colorless" value="colorless" checked> Colorless
+            <input type="checkbox" name="darkness" value="darkness"> Darkness
+            <input type="checkbox" name="dragon" value="dragon"> Dragon
+            <input type="checkbox" name="fairy" value="fairy"> Fairy
+            <input type="checkbox" name="fighting" value="fighting" checked> Fighting
+            <input type="checkbox" name="fire" value="fire"> Fire
+            <input type="checkbox" name="grass" value="grass"> Grass
+            <input type="checkbox" name="lightning" value="lightning"> Lightning/Electric
+            <input type="checkbox" name="metal" value="metal"> Metal
+            <input type="checkbox" name="psychic" value="psychic"> Psychic
+            <input type="checkbox" name="water" value="water"> Water
+        </div>
+
         <div id="button-bar">
             <button @click="addSelectedCards">Add selected</button>
             <label for="search-all-cards">Not finding the right card?
@@ -97,6 +113,12 @@ export default {
 </script>
 
 <style scoped>
+.element-checkboxes {
+    width: 100%;
+    display:flex;
+    align-items: center;
+    margin: 10px;
+}
 .choose-a-card {
     display: flex;
     flex-wrap: wrap;
@@ -106,7 +128,7 @@ export default {
 .card-image {
     width: 200px;
     height: 280px;
-    border: 2px solid black;
+    border: 2px solid rgb(161, 161, 161);
     border-radius: 10px;
     margin: 10px;
 }
