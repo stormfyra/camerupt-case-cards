@@ -10,17 +10,19 @@
         </div>
         <h1>Public Collections</h1>
         <collection-grid :collections="publicCollections" :ownedByMe="false"></collection-grid>
-        
+        <overlay />
     </div>
 </template>
 
 <script>
 import CollectionGrid from "../components/Collections/CollectionGrid.vue"
+import Overlay from '../components/Overlay.vue'
 import collectionService from "../services/CollectionService"
 
 export default {
     components: {
-        CollectionGrid
+        CollectionGrid,
+        Overlay
     },
     data() {
         return {

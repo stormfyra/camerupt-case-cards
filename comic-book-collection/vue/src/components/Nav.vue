@@ -102,14 +102,15 @@ ul{
 }
 
 .profile-icon-holder {
-width: 45px; /*any size*/
-height: 45px; /*any size*/
+width: 42px;
+height: 42px; 
 }
 
 .profile-icon {
   width: 100%;
   height: 100%;
-  object-fit: cover; /*magic*/
+/* crops the image with the same ratio */
+  object-fit: cover;
 }
 
 .nav-list{
@@ -122,7 +123,7 @@ li {
   border-radius: 5px;
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 8px;
   height: 70%;
 }
 
@@ -138,7 +139,7 @@ li {
 #logged-in-user-info {
   display: flex;
   border-left: solid #e93d40 2px;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 5px;
 }
 

@@ -26,6 +26,10 @@ export default{
 /* Main font: Montserrat */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
+#app {
+  --site-red: #E45052;
+}
+
 * {
   font-family: 'Montserrat', sans-serif;
 }
@@ -64,7 +68,7 @@ h1 {
 }
 
 a {
-  color: #E45052;
+  color: var(--site-red);
 }
 
 input{
@@ -73,7 +77,7 @@ input{
 }
 
 button{
-  background-color: #E45052;
+  background-color: var(--site-red);
   border: none;
   border-radius: 8px;
   text-align: center;
@@ -97,8 +101,8 @@ button{
 
 #cancel-button {
     background-color: #ffffff;
-    border: solid 2px #E45052;
-    color: #E45052;
+    border: solid 2px var(--site-red);
+    color: var(--site-red);
 }
 
 .cardImage {
@@ -121,6 +125,7 @@ button{
 
 button {
   cursor: pointer;
+  text-align: center;
 }
 
 .overlay {
@@ -150,7 +155,7 @@ button {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
+    gap: 5px;
 }
 </style>

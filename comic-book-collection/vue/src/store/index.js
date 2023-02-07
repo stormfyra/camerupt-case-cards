@@ -24,8 +24,10 @@ export default new Vuex.Store({
     showAddCollectionForm: false,
     showEditCollectionForm: false,
     showAddCardForm: false,
+    showDeleteCollection: false,
     showGiveBadgeForm: false,
-    showEditProfile: false
+    showEditProfile: false,
+    showMembershipForm: false
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -52,7 +54,7 @@ export default new Vuex.Store({
       state.showAddCollectionForm = !state.showAddCollectionForm;
     },
     CHANGE_SHOW_DELETE_COLLECTION(state){
-      state.showAddCardForm = !state.showAddCardForm;
+      state.showDeleteCollection = !state.showDeleteCollection;
     },
     CHANGE_SHOW_EDIT_COLLECTION_FORM(state){
       state.showEditCollectionForm = !state.showEditCollectionForm;
@@ -66,12 +68,16 @@ export default new Vuex.Store({
     CHANGE_SHOW_EDIT_PROFILE(state) {
       state.showEditProfile = !state.showEditProfile;
     },
+    CHANGE_SHOW_MEMBERSHIP_FORM(state) {
+      state.showMembershipForm = !state.showMembershipForm;
+    },
     CLOSE_OVERLAYS(state) {
       state.showAddCollectionForm = false;
       state.showEditCollectionForm = false;
       state.showAddCardForm = false;
       state.showGiveBadgeForm = false;
       state.showEditProfile = false;
+      state.showMembershipForm = false;
     }
   }
 })

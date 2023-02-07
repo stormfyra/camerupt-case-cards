@@ -72,15 +72,6 @@ const router = new Router({
         requiresAuth: false,
       }
     },
-    // {
-    //   path: "/edit-profile",
-    //   name: "editProfile",
-    //   component: ProfileGrid,
-    //   meta: {
-    //     requiresAuth: true
-    //   }
-      
-    // },
     {
       path: "/profile",
       name: "profile",

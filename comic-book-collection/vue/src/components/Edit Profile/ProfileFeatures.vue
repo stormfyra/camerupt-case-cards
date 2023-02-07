@@ -13,24 +13,19 @@
         <div class="featured-cards-holder">
             <h3>Featured Cards</h3>
             <div class="featured-cards">
-                <button class="empty-card"></button>
-                <button class="empty-card"></button>
-                <button class="empty-card"></button>
-                <button class="empty-card"></button>
+                <img v-for="card in cards.slice(0, 4)" :key="card" :src="card.images.small" style="width: 100px; height: 140px;" />
             </div>
         </div>
         <div class="public-collections">
             <h3>Public Collections</h3>
-            <div class="featured-cards">
+            <div>
                 <collection-grid :smallView="true" :collections="publicCollections"></collection-grid>
             </div>
         </div>
         <div class="friends">
             <h3>Friends</h3>
-            <div class="featured-cards">
-                <button class="empty-card"></button>
-                <button class="empty-card"></button>
-                <button class="empty-card"></button>
+            <div>
+                <friends-grid :users="friends" />
             </div>
         </div>
     </div>
@@ -39,15 +34,18 @@
 
 <script>
 import userService from '../../services/UserService'
-import CollectionService from '../../services/CollectionService'
+import collectionService from '../../services/CollectionService'
 import CollectionGrid from '../Collections/CollectionGrid.vue'
 import GiveBadge from './features/GiveBadge.vue'
+import FriendsGrid from '../Friends/FriendsGrid.vue'
 
 export default {
     name: "profile-features",
     data() {
         return {
-            publicCollections: {}
+            publicCollections: {},
+            cards: [],
+            friends: []
         }
     },
     props: [
@@ -55,7 +53,8 @@ export default {
     ],
     components: {
         CollectionGrid,
-        GiveBadge
+        GiveBadge,
+        FriendsGrid
     },
     methods:{
         editProfile(){
@@ -69,8 +68,12 @@ export default {
         }
     },
     created(){
-        CollectionService.getPublicCollectionsByUserId(this.$route.params.id)
-                        .then(response => this.publicCollections = response.data)
+        collectionService.getPublicCollectionsByUserId(this.$route.params.id)
+                        .then(response => this.publicCollections = response.data);
+        userService.getAllCardsForUser(this.$route.params.id)
+                        .then(response => this.cards = response.data);
+        userService.getFriends(this.$route.params.id)
+                        .then(response => this.friends = response.data);
     }
 };
 </script>
@@ -103,5 +106,11 @@ h3 {
     justify-content: top;
     margin-top: 70px;
 }
+
+.featured-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin-left: 10px;
+}
 </style>
- 

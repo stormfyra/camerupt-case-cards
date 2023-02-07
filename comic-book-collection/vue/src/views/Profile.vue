@@ -1,7 +1,7 @@
 <template>
     <div>
         <profile-page-background />
-        <overlay v-if="$store.state.showEditProfile" />
+        <overlay />
     </div>
 </template>
 

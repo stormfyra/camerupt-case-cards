@@ -50,6 +50,17 @@ public class JdbcCollectionDao implements CollectionDao {
     }
 
     @Override
+    public List<Card> getAllCardsForGivenUser(int id) {
+        List<Card> cards = new ArrayList<>();
+        List<CardCollection> userCollections = getUserCardCollections(id);
+        for (CardCollection userCollection : userCollections) {
+            CardCollection cardCollection = getCardCollectionById(userCollection.getCollectionId(), userCollection.getOwnerUsername());
+            cards.addAll(cardCollection.getCards());
+        }
+        return cards;
+    }
+
+    @Override
     public CardCollection getCardCollectionById(int id, String username) {
         CardCollection cardCollection = null;
         String queryForCollectionDetails = "SELECT collection_id, name, description, is_private, username FROM collection\n" +
