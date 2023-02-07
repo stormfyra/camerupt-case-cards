@@ -1,6 +1,6 @@
 <template>    
     <div id="tiny-friend-card-holder" >
-        <router-link v-for="user in filteredFriends" v-bind:key="user.index" :to="{name: 'profileWithId', params: {id: user.id}}" :class="tinyCard ? 'tinyCollectionImage' : 'collectionImage'">
+        <router-link v-for="user in users" v-bind:key="user.index" :to="{name: 'profileWithId', params: {id: user.id}}" :class="tinyCard ? 'tinyCollectionImage' : 'collectionImage'">
             <profile-card :class="smallView ? 'tiny-friend-card' : 'medium-card'" :user='user' :small='true' :tinyCard='smallView' ></profile-card>
         </router-link>
     </div>
@@ -18,13 +18,6 @@ export default {
     ],
     components: {
         ProfileCard
-    },
-    computed: {
-        filteredFriends() {
-            return this.users.filter(user => {
-                return user.username != this.$store.state.user.username;
-            })
-        }
     }
 }
 </script>

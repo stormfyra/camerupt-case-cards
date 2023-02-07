@@ -8,9 +8,9 @@
                 </div>
 
                 <div class="flexy">
-                    <p v-if="!small" class="cards  flexFont">cards</p>
+                    <p v-if="!small" class="cards">cards</p>
                     <!-- hard-coded; replace with data from database -->
-                    <h2 v-if="!small" class="card-count flexFont">347</h2>
+                    <h2 v-if="!small" class="card-count">{{numberOfCards}}</h2>
                     
                 </div>
             </div>
@@ -44,7 +44,8 @@ export default {
     props: [
         'user',
         'small',
-        'tinyCard'
+        'tinyCard',
+        'cards'
     ],
     data() {
         return {
@@ -54,6 +55,15 @@ export default {
     components: {
         profileImage,
         BadgeHolder
+    },
+    computed: {
+        numberOfCards(){
+            let numberOfCards = 0;
+            for (let i= 0; i < this.cards.length; i++){
+                numberOfCards += this.cards[i].quantity
+            }
+            return numberOfCards
+        }
     }
 }
 

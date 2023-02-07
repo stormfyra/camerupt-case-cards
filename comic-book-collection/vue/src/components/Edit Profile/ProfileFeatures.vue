@@ -3,14 +3,14 @@
     <div class="feature-holder">
         <div class="buttons-holder">
             <button v-if="$store.state.user.id == $route.params.id" @click="editProfile()">Edit Profile</button>
-            <button v-if="$store.state.user.id == $route.params.id" @click="changePremiumStatus()">Change Premium Status</button>
+            <button v-if="$store.state.user.id == $route.params.id" @click="changePremiumStatus()">Change Membership</button>
             <button v-if="!($store.state.user.id == $route.params.id)" @click="addFriend">Add Friend</button>
             <button v-if="!($store.state.user.id == $route.params.id)" @click="showGiveBadgeForm">Give Badge</button>
         </div>
         <div class="featured-cards-holder">
             <h3>Featured Cards</h3>
             <div class="featured-cards">
-                <img v-for="card in cards.slice(0, 4)" :key="card" :src="card.images.small" style="width: 100px; height: 140px;" />
+                <img v-for="card in cards.slice(0, 5)" :key="card" :src="card.images.small" style="width: 100px; height: 140px;" />
             </div>
         </div>
         <div class="public-collections">
@@ -38,12 +38,12 @@ export default {
     data() {
         return {
             publicCollections: {},
-            cards: [],
             friends: []
         }
     },
     props: [
-        'badges'
+        'badges',
+        'cards'
     ],
     components: {
         CollectionGrid,
@@ -66,8 +66,6 @@ export default {
     created(){
         collectionService.getPublicCollectionsByUserId(this.$route.params.id)
                         .then(response => this.publicCollections = response.data);
-        userService.getAllCardsForUser(this.$route.params.id)
-                        .then(response => this.cards = response.data);
         userService.getFriends(this.$route.params.id)
                         .then(response => this.friends = response.data);
     }
