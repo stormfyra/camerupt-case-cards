@@ -70,16 +70,6 @@ public class CollectionController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void createNewCollection(Principal principal, @RequestBody NewCollectionDTO newCollection) {
-        collectionDao.createNewCollection(newCollection);
-    }
-
-    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
-    public void addCardToCollection(Principal principal, @PathVariable int id, Card card) {
-        collectionDao.addCardToCollection(id, card);
-    }
-
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     public void updateCollectionDetails(Principal principal, @PathVariable int id, @RequestBody CardCollection collection) {
         collectionDao.updateCollection(principal.getName(), id, collection);
@@ -90,6 +80,16 @@ public class CollectionController {
         collectionDao.updateCollectionQuantity(collectionId, card.getId(), card.getQuantity());
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public void createNewCollection(Principal principal, @RequestBody NewCollectionDTO newCollection) {
+        collectionDao.createNewCollection(newCollection);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
+    public void addCardToCollection(Principal principal, @PathVariable int id, Card card) {
+        collectionDao.addCardToCollection(id, card);
+    }
+
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void deleteCollection(Principal principal, @PathVariable int id) {
         collectionDao.deleteCollection(id, principal.getName());
@@ -98,5 +98,10 @@ public class CollectionController {
     @RequestMapping(path = "/{collectionId}/{cardId}", method = RequestMethod.DELETE)
     public void deleteCardFromCollection(@PathVariable int collectionId, @PathVariable String cardId) {
         collectionDao.deleteCardFromCollection(collectionId, cardId);
+    }
+
+    @RequestMapping(path = "/{userId}/getAllCards", method = RequestMethod.GET)
+    public List<Card> getAllCardsForGivenUser(@PathVariable int userId) {
+        return collectionDao.getAllCardsForGivenUser(userId);
     }
 }

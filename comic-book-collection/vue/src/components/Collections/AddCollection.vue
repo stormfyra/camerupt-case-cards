@@ -38,7 +38,6 @@
                     />
                 </div>
                 <button id="submit" @click.prevent="onSubmit">Submit</button>
-                <button type="button" id="close" v-on:click="off()">Close</button>
             </form>
         </div>
     </div>
@@ -60,9 +59,6 @@ export default{
       }
   },
   methods: {
-      off() {
-          this.$store.commit('CHANGE_SHOW_COLLECTION_FORM')
-      },
       onSubmit() {
         this.collection.isPrivate = this.collection.privacy == 'private'
         delete this.collection.privacy
@@ -70,7 +66,7 @@ export default{
               this.collection
             );
         this.collection.privacy = this.collection.isPrivate ? 'private' : 'public'
-        this.off();
+        this.$store.commit('CHANGE_SHOW_COLLECTION_FORM')
         this.$router.go()
       }
   },

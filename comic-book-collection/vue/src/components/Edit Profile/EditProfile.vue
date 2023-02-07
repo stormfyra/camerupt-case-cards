@@ -5,49 +5,38 @@
             <h1>Edit Profile</h1><profile-image :small="false" :pokemon="$store.state.user.profilePokemon" id="profile-pic" />
             </div>
 
-            <h4>Profile Information</h4>
+            <h2>Profile Information</h2>
 
             <form action="">
-                <label for="username">Username</label>
-                <input v-model="user.username" id="username">
-                <label for="select-profile-pokemon">Profile Pokemon</label>
-                <select-profile-pokemon />
-                <label for="pronouns">Pronouns</label>
-                <input v-model="user.pronouns" id="pronouns">
-                <label for="bio">Bio</label>
-                <input v-model="user.bio" id="bio">
+                <label for="username" class="input-label">Username
+                    <input v-model="user.username" id="username" name="username">
+                </label>
+                <label for="select-profile-pokemon" class="input-label">Profile Pokemon
+                    <select-profile-pokemon />
+                </label>
+                <label for="pronouns" class="input-label">Pronouns
+                    <input v-model="user.pronouns" id="pronouns">
+                </label>
+                <label for="bio" class="input-label">Bio
+                    <input v-model="user.bio" id="bio">
+                </label>
 
-                <label for=""><h4>Featured Cards</h4></label>
-                <div class="featured-cards">
-                    <img src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
-                    <img src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
-                    <img src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
-                    <img src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
-                </div>
+                <label for=""><h2>Featured Cards</h2>
+                    <div class="featured-cards">
+                        <img v-for="n in 4" :key="n" src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
+                    </div>
+                </label>
 
-                <h4>Shipping Information</h4>
-                <label for="firstName">First Name</label>
-                <input v-model="user.fullName" type="text">
-                <label for="lastName">Last Name</label>
-                <input type="text">
+                <h2>Shipping Information</h2>
+                <label for="fullName" class="input-label">Full Name
+                    <input v-model="user.fullName" type="text">
+                </label>
 
-                <label for="streetAddress">Street Address</label>
-                <input v-model="user.shippingAddress" type="text">
-                <label for="city">City</label>
-                <input type="text">
-                <label for="state">State</label>
-                <input type="text">
-                <label for="zipCode">Zip Code</label>
-                <input type="text">
-
-                <div class="checkbox">
-                <input type="checkbox" name="showCity" id="checkboxCity" value="Show city on profile">
-                <label for="checkboxCity">Show city on profile</label>
-                </div>
-
+                <label for="streetAddress" class="input-label">Full Address
+                    <input v-model="user.shippingAddress" type="text">
+                </label>
                 <div class="button-div">
-                <button @click="updateProfile()" type="submit">Save</button>
-                <button id="cancel-button" @click="cancel()">Cancel</button>
+                    <button @click="updateProfile()" type="submit">Save</button>
                 </div>
 
             </form>
@@ -81,9 +70,6 @@ export default {
             userService.updateUserBio(this.user)
             this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
             this.$router.go();
-        },
-        cancel(){
-            this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
         }
     }
 }
@@ -139,5 +125,11 @@ export default {
 
   img {
       width: 20%;
+  }
+
+  .input-label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25em;
   }
 </style>
