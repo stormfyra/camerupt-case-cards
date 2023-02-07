@@ -1,51 +1,5 @@
 <template>
     <div id="edit-collection">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <scrolly :style="{ width: '600px', height: '700px' }">
-            <scrolly-viewport>
-                <form class="form-container">
-                    <div id="title-and-close">
-                      <h1 id="title">Edit Your Collection</h1>
-                      <button id="close-edit-collection" @click="off">X</button>
-                    </div>
-                    <label for="title">Title</label>
-                    <input 
-                        type="text"
-                        name="title"
-                        placeholder="Title"
-                        v-model="updatedCollection.title"
-                    />
-                    <label for="description">Description</label>
-                    <input 
-                        type="text"
-                        id="description"
-                        placeholder="Description"
-                        v-model="updatedCollection.description"
-                    />
-                    <div class="switch-div">
-                        <p class="private-text" style="display: inline-block">public</p>
-                        <label class="switch">
-                            <input type="checkbox" v-model="updatedCollection.isPrivate" />
-                            <span class="slider round" />
-                        </label>
-                        <p class="private-text" style="display: inline-block">private</p>
-                    </div>
-                    <button id="submit" @click.prevent="onSubmit">Submit</button>
-                    <button @click.prevent="showDeleteCollection">Delete</button>
-                    <div class="overlay" v-if="$store.state.showDeleteCollection">
-                      <confirm-delete class="overlay-form" :collection="collection" />
-                    </div>
-                </form>
-            </scrolly-viewport>
-            <scrolly-bar axis="y"></scrolly-bar>
-            <scrolly-bar axis="x"></scrolly-bar>
-            </scrolly>
-
-            
-=======
-=======
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
       <h1>Edit Your Collection</h1>
       <label for="title">Title</label>
       <input 
@@ -70,39 +24,20 @@
           <p class="private-text" style="display: inline-block">private</p>
       </div>
       <button id="submit" @click.prevent="onSubmit">Submit</button>
-      <button @click="deleteThisCollection">DELETE</button>       
-<<<<<<< HEAD
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
-=======
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
+      <button @click="deleteThisCollection">DELETE</button>
+
     </div>
 </template>
 
 <script>
 import collectionService from '../../services/CollectionService.js'
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
-import confirmDelete from './ConfirmDelete.vue'
+// import confirmDelete from './ConfirmDelete.vue'
 
 export default{
   name: 'edit-collection',
   components: {
-      Scrolly,
-      ScrollyViewport,
-      ScrollyBar,
-      confirmDelete
+      // confirmDelete
   },
-=======
-
-export default{
-  name: 'edit-collection',
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
-=======
-
-export default{
-  name: 'edit-collection',
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
   data() {
       return {
           updatedCollection: {},
@@ -137,8 +72,6 @@ export default{
     display: none;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 .form-container {
 max-width: 100%;
 margin: 15px;
@@ -158,11 +91,6 @@ justify-content: space-between;
     width: 25px;
     height: 25px;
 }
-
-=======
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
-=======
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
 input{
 width: 90%;
 height: 20%;
@@ -251,10 +179,6 @@ input:checked + .slider:before {
 button:hover{
     cursor: pointer;
 }
-
-<<<<<<< HEAD
-
-=======
 #close-edit-collection {
     width: 20px;
     height: 20px;
@@ -267,8 +191,4 @@ button:hover{
   flex-direction: column;
   gap: 1em;
 }
-<<<<<<< HEAD
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
-=======
->>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
 </style>
