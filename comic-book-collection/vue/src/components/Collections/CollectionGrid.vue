@@ -51,6 +51,10 @@ export default {
     background-color: #879fee;
     height: auto;
     padding: 10px 12px;
+    border-radius: 30px;
+    box-shadow:  0 0 3px -1px transparent, 0 0 2px 1px transparent
+        , 0 0 5px 0px transparent, 0px 10px 15px -5px rgb(97, 94, 94)
+        , 0 2px 20px -5px rgb(97, 94, 94), 0 0 20px 0px transparent;
 }
 
 .small-collection-container {
