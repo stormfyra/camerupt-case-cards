@@ -24,13 +24,7 @@
         </div>
         <div class="friends">
             <h3>Friends</h3>
-            <div>
-                <friends-grid :users="friends" />
-            </div>
-        </div>
-        <div v-if="$store.state.user.id == $route.params.id">
-            <h3>Pending Friend Requests</h3>
-            <friend-requests />
+                <friends-grid :smallView='true' :tinyCard="true" :users="friends" />
         </div>
     </div>
   </div>
@@ -38,7 +32,6 @@
 
 <script>
 import userService from '../../services/UserService'
-import FriendRequests from '../Edit Profile/features/FriendRequests.vue'
 import collectionService from '../../services/CollectionService'
 import CollectionGrid from '../Collections/CollectionGrid.vue'
 import GiveBadge from './features/GiveBadge.vue'
@@ -57,7 +50,6 @@ export default {
         'badges'
     ],
     components: {
-        FriendRequests,
         CollectionGrid,
         GiveBadge,
         FriendsGrid
@@ -116,6 +108,7 @@ h3 {
 .featured-cards {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 1em;
     margin-left: 10px;
 }

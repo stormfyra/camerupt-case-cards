@@ -1,11 +1,8 @@
-<template>
-    <div :class="'collection-container text-center'">
-        <!-- display the user's friends -->
-        <div v-for="user in filteredFriends" v-bind:key="user.index">
-            <router-link :to="{name: 'profileWithId', params: {id: user.id}}" :class="'collectionImage'">
-                <profile-card :user='user' :small='true' ></profile-card>
-            </router-link>
-        </div>
+<template>    
+    <div id="tiny-friend-card-holder" >
+        <router-link v-for="user in filteredFriends" v-bind:key="user.index" :to="{name: 'profileWithId', params: {id: user.id}}" :class="tinyCard ? 'tinyCollectionImage' : 'collectionImage'">
+            <profile-card :class="smallView ? 'tiny-friend-card' : 'medium-card'" :user='user' :small='true' :tinyCard='smallView' ></profile-card>
+        </router-link>
     </div>
 </template>
 
@@ -13,9 +10,11 @@
 import ProfileCard from '../Edit Profile/ProfileCard.vue'
 
 export default {
-    name: 'FriendsView',
+    name: 'FriendsGrid',
     props: [
-        'users'
+        'users',
+        'smallView',
+        'tinyCard'
     ],
     components: {
         ProfileCard
@@ -31,44 +30,6 @@ export default {
 </script>
 
 <style scoped>
-friend-card {
-
-    /* will need to add more styles and swap between them if we implement
-    changing the person's theme */
-    background-color:#E45052;
-    width: 200px;
-    height: 280px;
-    border: 12px solid #f5e55a;
-    box-sizing: border-box;
-    border-radius: 10px;
-    margin: 0px;
-    padding-top: 20px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.collection-container {
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    background-color: #fff;
-    height: auto;
-    padding: 10px 12px;
-}
-
-.small-collection-container {
-    width: 100%;
-    display: flex;
-    justify-items: top;
-    align-items: top;
-    height: auto;
-    flex-wrap: wrap;
-    padding: 10px;
-}
 
 .collectionImage {
     width: 200px;
@@ -81,86 +42,33 @@ friend-card {
     align-items: flex-end;
 }
 
-.smallCollectionImage {
-    width: 100px;
-    height: 100px;
-    max-height: 330px;
-    border: 2px solid black;
-    position: relative;
-    z-index: 1;
-}
-.smallCardBack {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 140px;
+.tinyCollectionImage {
+    width: 90px;
+    height: 126px;
     border-radius: 10px;
-}
-p {
-    margin: 5px;
-}
-.privacyStatus {
-    z-index: 3;
-    color: white;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.title-holder {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    /* position: absolute;
-    z-index: 2; */
-    width: 100%;
-    height: 25%;
-    font-size: large;
-    justify-content: center;
-    align-items: center;
-
     display: flex;
-    align-self: flex-end;
+    align-items: flex-end;
 }
 
-button > h1 {
-    font-size: 50pt;
-    font-weight: 500;
-    color: rgb(109, 109, 109);
-}
-.profile-card {
-    min-height: 85%;
+.tiny-friend-card {
+    width: 100%;
+    height: 100%;
+    border: 5px solid #f5e55a;
+    border-radius: .25em;
+    font-size: x-small;
 }
 
+.medium-card {
+    height: 80%;
+}
 
+#tiny-friend-card-holder{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 2em;
+    margin-top: 2em;
+}
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 800px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 1200px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1400px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    }
-}
 </style>
