@@ -1,6 +1,4 @@
 <template>
-    <scrolly :style="{ width: '600px', height: '600px' }">
-        <scrolly-viewport>
             <div class="form-container">
                 <h2>Are you sure you want to delete this collection?</h2>
                 <p>This action cannot be undone.</p>
@@ -9,23 +7,13 @@
                 <button id="close-confirmation" @click="off">No, take me back</button>
                 </div>
             </div>
-        </scrolly-viewport>
-        <scrolly-bar axis="y"></scrolly-bar>
-        <scrolly-bar axis="x"></scrolly-bar>
-    </scrolly>
 </template>
 
 <script>
 import collectionService from '../../services/CollectionService.js'
-import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
 
 export default {
     name: 'edit-collection',
-    components: {
-        Scrolly,
-        ScrollyViewport,
-        ScrollyBar,
-    },
     props: [
         'collection'
     ],

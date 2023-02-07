@@ -2,13 +2,10 @@
   <div class="profile-features">
     <div class="feature-holder">
         <div class="buttons-holder">
-            <button v-if="$store.state.user.id == $route.params.id" @click="editProfile()">Edit Profile</button>          
+            <button v-if="$store.state.user.id == $route.params.id" @click="editProfile()">Edit Profile</button>
+            <button v-if="$store.state.user.id == $route.params.id" @click="changePremiumStatus()">Change Premium Status</button>
             <button v-if="!($store.state.user.id == $route.params.id)" @click="addFriend">Add Friend</button>
-            <button v-if="!($store.state.user.id == $route.params.id)">Message</button>
             <button v-if="!($store.state.user.id == $route.params.id)" @click="showGiveBadgeForm">Give Badge</button>
-            <div class="overlay" v-if="$store.state.showGiveBadgeForm">
-                <give-badge class="overlay-form" :badgesUserHas='badges' />
-            </div> 
         </div>
         <div class="featured-cards-holder">
             <h3>Featured Cards</h3>
@@ -24,9 +21,7 @@
         </div>
         <div class="friends">
             <h3>Friends</h3>
-            <div>
-                <friends-grid :users="friends" />
-            </div>
+                <friends-grid :smallView='true' :tinyCard="true" :users="friends" />
         </div>
     </div>
   </div>
@@ -36,7 +31,6 @@
 import userService from '../../services/UserService'
 import collectionService from '../../services/CollectionService'
 import CollectionGrid from '../Collections/CollectionGrid.vue'
-import GiveBadge from './features/GiveBadge.vue'
 import FriendsGrid from '../Friends/FriendsGrid.vue'
 
 export default {
@@ -53,7 +47,6 @@ export default {
     ],
     components: {
         CollectionGrid,
-        GiveBadge,
         FriendsGrid
     },
     methods:{
@@ -65,6 +58,9 @@ export default {
         },
         showGiveBadgeForm(){
             this.$store.commit('CHANGE_SHOW_GIVE_BADGE_FORM');
+        },
+        changePremiumStatus() {
+            this.$store.commit('CHANGE_SHOW_PREMIUM_FORM');
         }
     },
     created(){
@@ -110,6 +106,7 @@ h3 {
 .featured-cards {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 1em;
     margin-left: 10px;
 }

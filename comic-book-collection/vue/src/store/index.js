@@ -27,7 +27,8 @@ export default new Vuex.Store({
     showDeleteCollection: false,
     showGiveBadgeForm: false,
     showEditProfile: false,
-    showMembershipForm: false
+    showMembershipForm: false,
+    showPremiumForm: false
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -71,6 +72,9 @@ export default new Vuex.Store({
     CHANGE_SHOW_MEMBERSHIP_FORM(state) {
       state.showMembershipForm = !state.showMembershipForm;
     },
+    CHANGE_SHOW_PREMIUM_FORM(state) {
+      state.showPremiumForm = !state.showPremiumForm;
+    },
     CLOSE_OVERLAYS(state) {
       state.showAddCollectionForm = false;
       state.showEditCollectionForm = false;
@@ -78,6 +82,7 @@ export default new Vuex.Store({
       state.showGiveBadgeForm = false;
       state.showEditProfile = false;
       state.showMembershipForm = false;
+      state.showPremiumForm = false;
     }
   }
 })

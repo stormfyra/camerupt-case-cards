@@ -1,42 +1,62 @@
 <template>
     <div id="edit-collection">
-      <h1>Edit Your Collection</h1>
-      <label for="title">Title</label>
-      <input 
-          type="text"
-          name="title"
-          placeholder="Title"
-          v-model="updatedCollection.title"
-      />
-      <label for="description">Description</label>
-      <input 
-          type="text"
-          id="description"
-          placeholder="Description"
-          v-model="updatedCollection.description"
-      />
-      <div class="switch-div">
-          <p class="private-text" style="display: inline-block">public</p>
-          <label class="switch">
-              <input type="checkbox" v-model="updatedCollection.isPrivate" />
-              <span class="slider round" />
-          </label>
-          <p class="private-text" style="display: inline-block">private</p>
-      </div>
-      <button id="submit" @click.prevent="onSubmit">Submit</button>
-      <button @click="deleteThisCollection">DELETE</button>
+        <scrolly :style="{ width: '600px', height: '450px' }">
+            <scrolly-viewport>
+                <form class="form-container">
+                    <div id="title-and-close">
+                      <h1 id="title">Edit Your Collection</h1>
+                    </div>
+                    <label for="title">Title</label>
+                    <input 
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        v-model="updatedCollection.title"
+                    />
+                    <label for="description">Description</label>
+                    <input 
+                        type="text"
+                        id="description"
+                        placeholder="Description"
+                        v-model="updatedCollection.description"
+                    />
+                    <div class="switch-div">
+                        <p class="private-text" style="display: inline-block">public</p>
+                        <label class="switch">
+                            <input type="checkbox" v-model="updatedCollection.isPrivate" />
+                            <span class="slider round" />
+                        </label>
+                        <p class="private-text" style="display: inline-block">private</p>
+                    </div>
+                    <div class="button-holder">
+                      <button id="submit" @click.prevent="onSubmit">Submit</button>
+                      <button @click.prevent="showDeleteCollection" id="delete-button">Delete</button>
+                    </div>
+                    <div class="overlay" v-if="$store.state.showDeleteCollection">
+                      <confirm-delete class="overlay-form" :collection="collection" />
+                    </div>
+                </form>
+            </scrolly-viewport>
+            <scrolly-bar axis="y"></scrolly-bar>
+            <scrolly-bar axis="x"></scrolly-bar>
+            </scrolly>
 
+            
     </div>
 </template>
 
 <script>
 import collectionService from '../../services/CollectionService.js'
-// import confirmDelete from './ConfirmDelete.vue'
+import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
+import confirmDelete from './ConfirmDelete.vue'
 
 export default{
   name: 'edit-collection',
   components: {
-      // confirmDelete
+      Scrolly,
+      ScrollyViewport,
+      ScrollyBar,
+      confirmDelete
   },
   data() {
       return {
@@ -68,6 +88,7 @@ export default{
 </script>
 
 <style scoped>
+
 .hide-form {
     display: none;
 }
@@ -75,7 +96,6 @@ export default{
 .form-container {
 max-width: 100%;
 margin: 15px;
-padding-bottom: 40px;
 background-color: white;
 border-radius: 10px;
 display: flex;
@@ -90,6 +110,10 @@ justify-content: space-between;
 #close-edit-collection {
     width: 25px;
     height: 25px;
+}
+#edit-collection {
+  display: flex;
+  justify-content: center;
 }
 input{
 width: 90%;
@@ -175,20 +199,24 @@ input:checked + .slider:before {
 .private-text {
     text-align: center;
 }
-
+.button-holder {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
 button:hover{
     cursor: pointer;
 }
-#close-edit-collection {
-    width: 20px;
-    height: 20px;
-    align-self: flex-end;
-    margin-right: 20px;
+button {
+  width: 100%;
+}
+#delete-button {
+    color: #e93d40;
+    background-color: white;
+    border: solid #e93d40 2px;
 }
 
-#edit-collection {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+h1 {
+  margin-top: 0px;
 }
 </style>

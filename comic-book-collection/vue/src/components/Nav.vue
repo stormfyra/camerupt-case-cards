@@ -29,7 +29,7 @@
             Logout
           </li>
         </router-link>
-        <router-link :to="({ name: 'profileWithId', params: {id: this.$store.state.user.id} })" class="nav-item">
+        <div id="link-to-my-profile" @click="goToMyProfile()">
           <li id="logged-in-user-info" v-if="isLoggedIn">
             <div id="profile-holder-navbar">
               <p>{{$store.state.user.username}}</p>
@@ -38,7 +38,7 @@
               <profile-image :small="true" :pokemon="$store.state.user.profilePokemon" :class="'profile-icon'"></profile-image>
             </div>    
           </li>
-        </router-link>
+        </div>
       </ul>
     </div>
 
@@ -57,16 +57,22 @@ import ProfileImage from './Edit Profile/ProfileImage.vue';
     components: {
       ProfileImage
     },
-        created() {
+    created() {
         // This initialization calls the logged in user from the store and then contacts our server for all collecitons
         // Then sorts collections into user-ownd collections and public collections 
         this.username = this.$store.state.user.username;
         this.user = this.$store.state.user;
         
-      },
+    },
     computed: {
         isLoggedIn() {
         return this.$store.state.user.username != null;
+      }
+    },
+    methods: {
+      goToMyProfile() {
+        this.$router.push({ name: 'profileWithId', params: {id: this.$store.state.user.id}})
+        this.$router.go();
       }
     }
   };
@@ -150,6 +156,10 @@ li {
 
 p {
   text-align: center;
-}               
+}   
+
+#link-to-my-profile:hover {
+  cursor: pointer;
+}
   
 </style>

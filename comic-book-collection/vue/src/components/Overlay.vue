@@ -12,6 +12,7 @@
                         <edit-collection v-if="$store.state.showEditCollectionForm" :collection="collection" />
                         <add-collection v-if="$store.state.showAddCollectionForm" />
                         <give-badge v-if="$store.state.showGiveBadgeForm" />
+                        <membership-form v-if="$store.state.showPremiumForm" />
                     </div>
                 </scrolly-viewport>
                 <scrolly-bar axis="y"></scrolly-bar>
@@ -28,6 +29,7 @@ import AddACard from './Collections/AddACard.vue';
 import EditCollection from './Collections/EditCollection.vue';
 import GiveBadge from './Edit Profile/features/GiveBadge.vue';
 import AddCollection from './Collections/AddCollection.vue';
+import MembershipForm from './MembershipForm.vue';
 
     export default {
         props: [
@@ -43,7 +45,8 @@ import AddCollection from './Collections/AddCollection.vue';
             AddACard,
             EditCollection,
             GiveBadge,
-            AddCollection
+            AddCollection,
+            MembershipForm
         },
         methods: {
             off() {
