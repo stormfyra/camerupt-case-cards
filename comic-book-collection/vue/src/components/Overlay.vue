@@ -1,13 +1,16 @@
 <template>
-    <div class="overlay" >
+    <div class="overlay" 
+    v-if="$store.state.showEditProfile || $store.state.showAddCardForm || $store.state.showEditCollectionForm || 
+    $store.state.showAddCollectionForm || $store.state.showGiveBadgeForm">
         <div class="overlay-form">
             <scrolly :style="{ width: '750px', height: '600px' }">
                 <scrolly-viewport>
                     <div class="form-container">
                         <button id="close-overlay" @click="off">X</button>
                         <edit-profile v-if="$store.state.showEditProfile" />
-                        <add-a-card v-if="$store.state.showAddCardForm" />
-                        <edit-collection v-if="$store.state.showEditCollectionForm" />
+                        <add-a-card v-if="$store.state.showAddCardForm" :collectionId="collectionId" :collectedCardIds="collectedCardIds" />
+                        <edit-collection v-if="$store.state.showEditCollectionForm" :collection="collection" />
+                        <add-collection v-if="$store.state.showAddCollectionForm" />
                         <give-badge v-if="$store.state.showGiveBadgeForm" />
                     </div>
                 </scrolly-viewport>
@@ -24,8 +27,14 @@ import EditProfile from './Edit Profile/EditProfile.vue';
 import AddACard from './Collections/AddACard.vue';
 import EditCollection from './Collections/EditCollection.vue';
 import GiveBadge from './Edit Profile/features/GiveBadge.vue';
+import AddCollection from './Collections/AddCollection.vue';
 
     export default {
+        props: [
+            'collection',
+            'collectedCardIds',
+            'collectionId'
+        ],
         components: {
             Scrolly,
             ScrollyViewport,
@@ -33,7 +42,8 @@ import GiveBadge from './Edit Profile/features/GiveBadge.vue';
             EditProfile,
             AddACard,
             EditCollection,
-            GiveBadge
+            GiveBadge,
+            AddCollection
         },
         methods: {
             off() {
@@ -47,10 +57,12 @@ import GiveBadge from './Edit Profile/features/GiveBadge.vue';
     scrolly:hover {
         cursor: default;
     }
+
     #close-overlay {
         width: 20px;
         height: 20px;
         align-self: flex-end;
-        margin-right: 20px;
+        /* margin-right: 20px; */
     }
+
 </style>

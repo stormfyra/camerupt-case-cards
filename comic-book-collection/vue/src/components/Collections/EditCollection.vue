@@ -1,5 +1,6 @@
 <template>
     <div id="edit-collection">
+<<<<<<< HEAD
         <scrolly :style="{ width: '600px', height: '700px' }">
             <scrolly-viewport>
                 <form class="form-container">
@@ -41,11 +42,39 @@
             </scrolly>
 
             
+=======
+      <h1>Edit Your Collection</h1>
+      <label for="title">Title</label>
+      <input 
+          type="text"
+          name="title"
+          placeholder="Title"
+          v-model="updatedCollection.title"
+      />
+      <label for="description">Description</label>
+      <input 
+          type="text"
+          id="description"
+          placeholder="Description"
+          v-model="updatedCollection.description"
+      />
+      <div class="switch-div">
+          <p class="private-text" style="display: inline-block">public</p>
+          <label class="switch">
+              <input type="checkbox" v-model="updatedCollection.isPrivate" />
+              <span class="slider round" />
+          </label>
+          <p class="private-text" style="display: inline-block">private</p>
+      </div>
+      <button id="submit" @click.prevent="onSubmit">Submit</button>
+      <button @click="deleteThisCollection">DELETE</button>       
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
     </div>
 </template>
 
 <script>
 import collectionService from '../../services/CollectionService.js'
+<<<<<<< HEAD
 import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
 import confirmDelete from './ConfirmDelete.vue'
 
@@ -57,6 +86,11 @@ export default{
       ScrollyBar,
       confirmDelete
   },
+=======
+
+export default{
+  name: 'edit-collection',
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
   data() {
       return {
           updatedCollection: {},
@@ -91,6 +125,7 @@ export default{
     display: none;
 }
 
+<<<<<<< HEAD
 .form-container {
 max-width: 100%;
 margin: 15px;
@@ -111,6 +146,8 @@ justify-content: space-between;
     height: 25px;
 }
 
+=======
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
 input{
 width: 90%;
 height: 20%;
@@ -200,5 +237,20 @@ button:hover{
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 
+=======
+#close-edit-collection {
+    width: 20px;
+    height: 20px;
+    align-self: flex-end;
+    margin-right: 20px;
+}
+
+#edit-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+>>>>>>> 1ec2fba022b3931461f14208a1df9c03385c6a4a
 </style>
