@@ -1,11 +1,10 @@
 <template>
-    <div class="overlay-form">
+    <div id="overall-badge-holder">
         <div id="give-badge-holder" v-for="badge in badgesToGive" :key="badge.id" >
             <img  :src="badgeSource(badge)" :alt="badge" class="badge">
             <button :class="badgesUserHas.includes(badge) ? 'disabled' : ''" @click="giveUserBadge(badge)">Give {{badge}}</button>
             <h3 id="given-away-all-badges" v-if="badgesToGive.size == 0">You have given away all of your badges</h3>
         </div>
-        <button @click="closeGiveBadgeForm">Close</button>
     </div>
 </template>
 
@@ -40,20 +39,7 @@ export default {
         closeGiveBadgeForm(){
             this.$store.commit('CHANGE_SHOW_GIVE_BADGE_FORM')
         }
-    },
-    // computed: {
-    //     badgeNamesUserHas(){
-    //         let badgeNamesUserHas = new Set();
-
-    //         for(let badge in JSON.parse(JSON.stringify(this.badgesUserHas))){
-    //             badgeNamesUserHas.add(badge.badgeName)
-    //         }
-
-    //         return badgeNamesUserHas;
-    //     }
-    // }
-
-
+    }
 }
 </script>
 
@@ -66,6 +52,7 @@ img {
 
 #give-badge-holder {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     background-color: white;
     border-radius: 20px;
@@ -86,6 +73,12 @@ img {
 .disabled {
     background-color: grey;
     pointer-events: none;
+}
+
+#overall-badge-holder {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 2%;
 }
 
 </style>

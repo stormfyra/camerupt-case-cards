@@ -25,38 +25,38 @@
           <!-- filtering and stats -->
           <div class="filter-and-stats">
             <select v-model="selectedFilterType">
-              <option value="">Select A Filter Type</option>
+              <option value="">No Filter</option>
               <option v-for='filterType in filterTypes' :key='filterType' :value='filterType'>{{filterType}}</option>
             </select>
             <select v-if="selectedFilterType == 'Type'" v-model="selectedFilter">
-              <option value="">Select A Filter</option>
+              <option value="">All</option>
               <option v-for='type in types' :key='type' :value='type'>{{type}}</option>
             </select>
             <select v-if="selectedFilterType == 'Subtype'" v-model="selectedFilter">
-              <option value="">Select A Filter</option>
+              <option value="">All</option>
               <option v-for='subtype in subtypes' :key='subtype' :value='subtype'>{{subtype}}</option>
             </select>
             <select v-if="selectedFilterType == 'Supertype'" v-model="selectedFilter">
-              <option value="">Select A Filter</option>
+              <option value="">All</option>
               <option v-for='supertype in supertypes' :key='supertype' :value='supertype'>{{supertype}}</option>
             </select>
             <select v-if="selectedFilterType == 'Set Name'" v-model="selectedFilter">
-              <option value="">Select A Filter</option>
+              <option value="">All</option>
               <option v-for='set in setNames' :key='set' :value='set'>{{set}}</option>
             </select>
             <select v-if="selectedFilterType == 'Rarity'" v-model="selectedFilter">
-              <option value="">Select A Filter</option>
+              <option value="">All</option>
               <option v-for='rarity in rarities' :key='rarity' :value='rarity'>{{rarity}}</option>
             </select>
             <div id="statistics-holder">
-              Number of {{selectedFilter}} Cards : {{numberOfCardsInFilterSearch}}
+              Number of {{selectedFilter}} Cards : {{cardsInFilteredSearch.length}}
             </div>
           </div>
         </div>
 
         <!-- displays all cards in collection -->
         <div id=cardSpread>
-          <card-grid :cards='cards' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
+          <card-grid :cards='cardsInFilteredSearch' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
         </div>
     </div>
 </template>
@@ -107,36 +107,38 @@ export default {
       }
       return cardIds;
     },
-    numberOfCardsInFilterSearch() {
-      let filteredCards = [];
-      switch (this.selectedFilterType) {
-        case "Supertype":
-          filteredCards = this.cards.filter(card => {
-              return card.supertype == this.selectedFilter
-          })
-          break;
-        case "Type":
-          filteredCards = this.cards.filter(card => {
-              return card.types.includes(this.selectedFilter);
-          })
-          break;
-        case "Subtype":
-          filteredCards = this.cards.filter(card => {
-              return card.subtypes.includes(this.selectedFilter);
-          })
-          break;
-        case "Set Name":
-          filteredCards = this.cards.filter(card => {
-              return card.cardSet.name == this.selectedFilter
-          })
-          break;
-        case "Rarity":
-          filteredCards = this.cards.filter(card => {
-              return card.rarity == this.selectedFilter
-          })
-          break;
+    cardsInFilteredSearch() {
+      let filteredCards = this.cards;
+      if (this.selectedFilter) {
+        switch (this.selectedFilterType) {
+          case "Supertype":
+            filteredCards = this.cards.filter(card => {
+                return card.supertype == this.selectedFilter
+            })
+            break;
+          case "Type":
+            filteredCards = this.cards.filter(card => {
+                return card.types.includes(this.selectedFilter);
+            })
+            break;
+          case "Subtype":
+            filteredCards = this.cards.filter(card => {
+                return card.subtypes.includes(this.selectedFilter);
+            })
+            break;
+          case "Set Name":
+            filteredCards = this.cards.filter(card => {
+                return card.cardSet.name == this.selectedFilter
+            })
+            break;
+          case "Rarity":
+            filteredCards = this.cards.filter(card => {
+                return card.rarity == this.selectedFilter
+            })
+            break;
+        }
       }
-      return filteredCards.length;
+      return filteredCards;
     },
     getUserId() {
       return UserService.getUserIdByUsername(this.ownerUsername);
