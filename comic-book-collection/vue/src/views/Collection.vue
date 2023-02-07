@@ -173,7 +173,7 @@ export default {
 #banner {
   width: 100%;
   height: 300px;
-  background-color: rgb(49, 49, 49);
+  /* background-color: rgb(49, 49, 49); */
 
   display: flex;
   justify-content: center;
@@ -182,10 +182,10 @@ export default {
   z-index: 1;
 }
 #banner-image {
-  width: 80%;
+  width: 100%;
   height: 300px;
   object-fit: cover;
-  object-position: 10% 15%;
+  object-position: 10% 20%;
 }
 #header-text {
   /* display: grid;
@@ -193,12 +193,12 @@ export default {
   z-index: 2;
   width: 80%;
   height: 300px;
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0px;
-  background-color: rgba(0, 0, 0, 0.61);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 #btn2{
   background-color: white;
