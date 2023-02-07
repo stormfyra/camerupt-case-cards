@@ -108,7 +108,7 @@ export default {
     height: 280px;
     border: 2px solid black;
     border-radius: 10px;
-    margin: 10px;
+    margin: 5px;
 }
 
 .selected-card {
