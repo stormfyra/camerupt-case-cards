@@ -30,8 +30,6 @@
             <div id="statistics-holder">
               Number of {{selectedFilter}} Cards : {{numberOfCardsInFilterSearch}}
             </div>
-
-            
           </div>
         </div>
 
