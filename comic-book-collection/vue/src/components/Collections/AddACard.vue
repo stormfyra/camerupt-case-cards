@@ -130,7 +130,7 @@ export default {
     height: 280px;
     border: 2px solid rgb(161, 161, 161);
     border-radius: 10px;
-    margin: 10px;
+    margin: 5px;
 }
 
 .selected-card {
