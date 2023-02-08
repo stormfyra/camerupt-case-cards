@@ -28,7 +28,8 @@ export default new Vuex.Store({
     showGiveBadgeForm: false,
     showEditProfile: false,
     showMembershipForm: false,
-    showPremiumForm: false
+    showPremiumForm: false,
+    showCaughtPokemon: false,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -74,6 +75,12 @@ export default new Vuex.Store({
     },
     CHANGE_SHOW_PREMIUM_FORM(state) {
       state.showPremiumForm = !state.showPremiumForm;
+    },
+    CHANGE_SHOW_CAUGHT_POKEMON(state){
+      state.showCaughtPokemon = !state.showCaughtPokemon;
+    },
+    SET_SHOW_CAUGHT_POKEMON_FALSE(state){
+      state.showCaughtPokemon = false;
     },
     CLOSE_OVERLAYS(state) {
       state.showAddCollectionForm = false;

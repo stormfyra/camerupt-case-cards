@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-
+        <img id="caught-a-pokemon" v-if="showCaughtPokemon" :src="catchGifSource" alt="Caught a pokemon!">
         <!-- displays all cards in collection -->
         <div id=cardSpread>
           <card-grid :cards='cardsInFilteredSearch' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
@@ -108,6 +108,9 @@ export default {
       }
       return cardIds;
     },
+    catchGifSource(){
+      return require(`../../resources/pokeballCatch.gif`) + '?' + Math.random();
+    },
     cardsInFilteredSearch() {
       let filteredCards = this.cards;
       if (this.selectedFilter) {
@@ -140,6 +143,12 @@ export default {
         }
       }
       return filteredCards;
+    },
+    showCaughtPokemon(){
+      if (this.$store.state.showCaughtPokemon){
+        this.changeShowCaughtPokemon()
+      }
+      return this.$store.state.showCaughtPokemon;
     },
     getUserId() {
       return UserService.getUserIdByUsername(this.ownerUsername);
@@ -196,6 +205,11 @@ export default {
             cards: []
         }
         collectionWebService.toggleCollectionPrivacyStatus(this.$route.params.collectionId, collection);
+    },
+    changeShowCaughtPokemon(){
+      setTimeout(() => {  this.$store.commit('CHANGE_SHOW_CAUGHT_POKEMON');
+                          this.$router.go(); }, 4930);
+        
     },
     deleteThisCollection() {
         collectionWebService.deleteCollection(this.$route.params.collectionId);
@@ -294,6 +308,16 @@ export default {
 card-grid {
     display: flex;
     justify-content: center;
+}
+#caught-a-pokemon{
+  position: fixed;
+  top: 30%;
+  left: 35%;
+  height: 30%;
+  width: 30%;
+  z-index: 10;
+  border-radius: 1em;
+  border: solid black .5em;
 }
 .collection-title, .collection-owner-declaration, .collection-description {
     text-align: center;

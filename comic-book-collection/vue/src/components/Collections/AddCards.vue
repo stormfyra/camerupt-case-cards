@@ -95,7 +95,7 @@ export default {
             cardService.addCards(this.collectionId, this.selectedCards);
             this.selectedCards = [];
             this.off();
-            this.$router.go();
+            this.$store.commit('CHANGE_SHOW_CAUGHT_POKEMON');
         }
     }
 }
