@@ -10,7 +10,7 @@
           <h1 class="collection-title">{{title}}</h1>
           <h4 class="collection-description"><em>{{description}}</em></h4>
           <p class="collection-owner-declaration" v-if="!(ownerUsername == $store.state.user.username)">Collection owner:
-            <strong @click="goToUserProfile">{{ownerUsername}}</strong>
+            <strong @click="goToUserProfile" class="collection-owner">{{ownerUsername}}</strong>
           </p>
         </div>
       </div>
@@ -361,6 +361,13 @@ card-grid {
   justify-content: space-between;
   align-items: center;
   gap: 25px;
+}
+.collection-owner {
+    text-decoration: underline;
+}
+.collection-owner:hover {
+    cursor:pointer;
+    text-decoration: underline;
 }
 
 </style>

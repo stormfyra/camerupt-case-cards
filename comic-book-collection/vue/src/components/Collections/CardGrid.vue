@@ -1,7 +1,7 @@
 <template>
     <div class="collection-container">
         <div v-for="(card, index) in cards" :key="index">
-            <img :src="card.images.small" :alt="card.cardName" class="cardImage" />
+            <img :src="card.images.small" :alt="card.cardName" class="cardImage hover-shake" />
             <div id="quantity-div">
                 <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, -1)">-</button>
                 <p id="cardQuantity"><strong>x{{card.quantity}}</strong></p>
@@ -51,14 +51,14 @@ export default {
     /* box-shadow: 10px 0px 10px -2px grey; */
     border: none;
 }
-
+/* 
 img:hover{
     animation: shake 1s;
 
     animation-iteration-count: infinite;
-}
+} */
 
-@keyframes shake {
+/* @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
   10% { transform: translate(-1px, -2px) rotate(-2deg); }
   20% { transform: translate(-3px, 0px) rotate(1deg); }
@@ -70,7 +70,7 @@ img:hover{
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(5px, 2px) rotate(0deg); }
   100% { transform: translate(5px, -2px) rotate(-1deg); }
-}
+} */
 
 #card-container {
     width: 100%;
