@@ -104,7 +104,7 @@ button{
 .cardImage {
   width: 200px;
   height: 280px;
-  border: 2px solid black;
+  border: 2px solid rgb(46, 46, 46);
   border-radius: 10px;
   margin: 10px;
 }
@@ -164,6 +164,8 @@ button {
 
   position: relative;
   z-index: 1;
+
+  margin-bottom: 30px;
 }
 #banner-image {
   width: 100%;
@@ -173,7 +175,7 @@ button {
 }
 #header-text {
   z-index: 2;
-  width: 80%;
+  width: 100%;
   height: 300px;
   position: absolute;
   display: flex;

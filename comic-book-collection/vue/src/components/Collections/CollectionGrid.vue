@@ -82,7 +82,7 @@ export default {
 .collectionImage {
     width: 200px;
     height: 280px;
-    border: 2px solid black;
+    border: 2px solid rgb(51, 51, 51);
     border-radius: 10px;
     margin: 10px;
     position: relative;
@@ -123,6 +123,7 @@ p {
 .title-holder {
     background-color: rgba(0, 0, 0, 0.85);
     color: white;
+    border-radius: 0 0 10px 10px;
     position: absolute;
     z-index: 2;
 
