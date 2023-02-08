@@ -41,7 +41,8 @@ export default {
         return {
             publicCollections: {},
             friends: '',
-            buttonPushed: false
+            buttonPushed: false,
+            pendingRequest: ''
         }
     },
     props: [
@@ -58,6 +59,12 @@ export default {
             }
             if (this.buttonPushed) {
                 return false;
+            }
+
+            for (let request of this.pendingRequest){
+                if (request.id == this.$store.state.user.id){
+                    return false;
+                }
             }
             return true;
         }
@@ -86,6 +93,8 @@ export default {
                         .then(response => this.publicCollections = response.data);
         userService.getFriends(this.$route.params.id)
                         .then(response => this.friends = response.data);
+        userService.getFriendRequests(this.$route.params.id)
+                        .then(response => this.pendingRequest = response.data);
     }
 };
 </script>
