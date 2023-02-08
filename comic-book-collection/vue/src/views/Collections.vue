@@ -7,7 +7,7 @@
         <!-- <div class="banner">
             <img data-v-6e0e9e00 src="https://images.pokemontcg.io/bw11/25.png">
         </div> -->
-        <div id="main-header">
+        <div id="main-header" v-if="isLoggedIn">
             <div id="banner">
                 <div id="banner-image">
                     <img src="https://images.pokemontcg.io/bw11/25_hires.png" id="banner-image">
