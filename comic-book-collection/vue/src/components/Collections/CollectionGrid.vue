@@ -72,7 +72,6 @@ export default {
     width: 100%;
     display: flex;
     justify-items: top;
-    align-items: top;
     height: auto;
     flex-wrap: wrap;
     padding: 10px;
@@ -88,7 +87,8 @@ export default {
     position: relative;
     z-index: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+
 }
 
 .cardBack {
@@ -126,7 +126,7 @@ p {
     z-index: 2;
 
     width: 100%;
-    height: 100%;
+    height: 30%;
 
     text-align: center;
     padding-top: 5px;
@@ -144,8 +144,8 @@ p {
     position: absolute;
     z-index: 2;
     width: 100px;
+    height: auto;
     font-size: x-small;
-    height: 22px;
     text-align: center;
     padding-top: 5px;
     border-radius:10px 10px  0 0;
