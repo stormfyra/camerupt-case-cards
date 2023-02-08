@@ -4,8 +4,8 @@
         <div class="buttons-holder">
             <button v-if="$store.state.user.id == $route.params.id" @click="editProfile()">Edit Profile</button>
             <button v-if="$store.state.user.id == $route.params.id" @click="changePremiumStatus()">Change Membership</button>
-            <button v-if="showAddFriend" @click="addFriend">Add Friend</button>
-            <button v-if="!($store.state.user.id == $route.params.id)" @click="showGiveBadgeForm">Give Badge</button>
+            <button v-if="showAddFriend && isLoggedIn" @click="addFriend">Add Friend</button>
+            <button v-if="!($store.state.user.id == $route.params.id) && isLoggedIn" @click="showGiveBadgeForm">Give Badge</button>
         </div>
         <div class="featured-cards-holder">
             <h3>Featured Cards</h3>
@@ -70,6 +70,9 @@ export default {
                 }
             }
             return true;
+        },
+        isLoggedIn() {
+            return this.$store.state.user.username != null;
         }
     },
     components: {
