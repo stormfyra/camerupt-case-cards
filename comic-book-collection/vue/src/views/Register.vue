@@ -62,7 +62,7 @@ export default {
     };
   },
   created() {
-    if (this.$store.state.user) {
+    if (this.$store.state.user.id) {
       this.$router.push({ name: 'collections' })
     }
   },
