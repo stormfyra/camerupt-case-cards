@@ -1,38 +1,38 @@
 <template>
-        <div :class="tiny-card ? 'tiny-card' : 'profile-card'" >
-            <div class="user-header">
-                <div class="flexy">
-                    <!-- user membership type -->
-                    <p v-if="!small" class="account-type">{{user.isPremium ? "Premium" : "Standard"}}</p>
-                    <h2 class="user-name flexFont">{{user.username}}</h2>
-                </div>
+    <div :class="tiny-card ? 'tiny-card' : 'profile-card'" >
+        <div class="user-header">
+            <div class="flexy">
+                <!-- user membership type -->
+                <p v-if="!small" class="account-type">{{user.isPremium ? "Premium" : "Standard"}}</p>
+                <h2 class="user-name flexFont">{{user.username}}</h2>
+            </div>
 
-                <div class="flexy">
-                    <p v-if="!small" class="cards">cards</p>
-                    <!-- number of cards -->
-                    <h2 v-if="!small" class="card-count">{{numberOfCards}}</h2>
-                    
-                </div>
+            <div class="flexy">
+                <p v-if="!small" class="cards">cards</p>
+                <!-- number of cards -->
+                <h2 v-if="!small" class="card-count">{{numberOfCards}}</h2>
+                
             </div>
-            <div id="profile-image-and-pronouns">
-                <profile-image class="profile-image" :small="false" :pokemon="user.profilePokemon"></profile-image>
-                <div v-if="!small" id="pronouns">
-                    <p v-if="user.pronouns">Pronouns: {{user.pronouns}}</p>
-                </div>
-            </div>
-            <div v-if="!small">
-                <h2 v-if="user.bio">Bio</h2>
-                <em><p class="bio"> {{user.bio}}</p></em>
-                <!-- stats -->
-                <h2>User Stats</h2>
-                <p v-if="statistics.length == 0"><em>This user doesn't have any cards in public collections yet.</em></p>
-                <p v-for="statistic in statistics" :key="statistic"><em>{{statistic}}</em></p>
-
-                <!-- badges -->
-                <h2 id="badges-label">Badges</h2>
-            </div>
-                <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges' />
         </div>
+        <div id="profile-image-and-pronouns">
+            <profile-image class="profile-image" :small="false" :pokemon="user.profilePokemon"></profile-image>
+            <div v-if="!small" id="pronouns">
+                <p v-if="user.pronouns">Pronouns: {{user.pronouns}}</p>
+            </div>
+        </div>
+        <div v-if="!small">
+            <h2 v-if="user.bio">Bio</h2>
+            <em><p class="bio"><strong>{{user.bio}}</strong></p></em>
+            <!-- stats -->
+            <h2>User Stats</h2>
+            <p v-if="statistics.length == 0"><em><strong>This user doesn't have any cards in public collections yet.</strong></em></p>
+            <p v-for="statistic in statistics" :key="statistic"><strong><em>{{statistic}}</em></strong></p>
+
+            <!-- badges -->
+            <h2 id="badges-label">Badges</h2>
+        </div>
+            <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges' />
+    </div>
 </template>
 
 <script>
