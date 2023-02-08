@@ -130,6 +130,7 @@ h3 {
 
 #tiny-friend-cards {
     margin-top: 2em;
+    margin-left: .5em;
 }
 
 </style>
