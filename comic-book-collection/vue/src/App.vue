@@ -72,7 +72,7 @@ input{
   height: 50px;
 }
 
-button{
+button {
   background-color: var(--site-red);
   border: none;
   border-radius: 8px;
@@ -82,7 +82,6 @@ button{
 
   font-size: 12pt;
   font-weight: 500;
-  
 }
 
 .empty-card {
