@@ -246,6 +246,10 @@ export default {
 </script>
 
 <style scoped>
+button{
+  width:200px;
+}
+
 #main-header {
  width: 100%;
  height: 300px;
