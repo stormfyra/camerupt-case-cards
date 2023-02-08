@@ -1,5 +1,6 @@
 <template>
 <div id="loginPage">
+  <div id="bg">
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create An Account</h1>
@@ -39,10 +40,8 @@
       </button>
     </form>
   </div>
-  <div id="pokePic">
-    <img src="camerupt-removebg-preview.png" alt="pokemon picture here">
   </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -95,4 +94,77 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  #loginPage {
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+  }
+
+  #bg {
+  width: 100vw;
+  height: 100%;
+  margin-left: -10%;
+  margin-top: -30px;
+  position: fixed;
+  background-image: url("../../resources/backgrounds/gardevoir.jpg");
+  background-size: cover;
+  background-position: 0 18%;
+}
+
+ form {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-content: center;
+
+  padding: 40px;
+  margin: 0 3%;
+}
+.text-center{
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0px 10px 10px rgb(0 0 0 / 20%);
+  
+  width: 430px;
+  height: 530px;
+  margin: 0 6%;
+
+  display: flex;
+  margin-top: 200px;
+}
+h1 {
+  margin-top: 10px;
+}
+
+  a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+
+  #password, #confirmPassword{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.1ch;
+    font-size: 15px;
+    color: rgb(117, 166, 223);
+  }
+
+  #password:focus{
+    outline: 0;
+    box-shadow: 0 0 0 3px #E45052;
+  }
+
+  #username:focus{
+    outline: 0;
+    box-shadow: 0 0 0 3px #E45052;
+  }
+
+  #confirmPassword:focus{
+    outline: 0;
+    box-shadow: 0 0 0 3px #E45052;
+  }
+
+
+
+</style>

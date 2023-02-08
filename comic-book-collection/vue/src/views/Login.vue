@@ -81,14 +81,6 @@ export default {
 </script>
 
 <style scoped>
-Nav {
-  margin: 0 10%;
-  border-bottom: 0px;
-}
-  body {
-    margin: 0 !important;
-  }
-
   #loginPage {
     width: 100%;
     height: 800px;
@@ -101,7 +93,7 @@ Nav {
   margin-left: -10%;
   margin-top: -30px;
   position: fixed;
-  background-image: url("../../resources/backgrounds/gardevoir.jpg");
+  background-image: url("../../resources/backgrounds/aggron.jpg");
   background-size: cover;
   background-position: 0 18%;
 }
@@ -120,7 +112,7 @@ Nav {
   border-radius: 12px;
   box-shadow: 0px 10px 10px rgb(0 0 0 / 20%);
   
-  width: 380px;
+  width: 430px;
   height: 530px;
   margin: 0 6%;
 
