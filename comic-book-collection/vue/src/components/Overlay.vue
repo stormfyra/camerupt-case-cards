@@ -1,13 +1,13 @@
 <template>
     <div class="overlay" 
     v-if="$store.state.showEditProfile || $store.state.showAddCardForm || $store.state.showEditCollectionForm || 
-    $store.state.showAddCollectionForm || $store.state.showGiveBadgeForm">
+    $store.state.showAddCollectionForm || $store.state.showGiveBadgeForm || $store.state.showPremiumForm">
         <div class="overlay-form">
             <scrolly :style="{ width: '750px', height: '600px' }">
                 <scrolly-viewport>
                     <div class="form-container">
                         <button id="close-overlay" @click="off">X</button>
-                        <edit-profile v-if="$store.state.showEditProfile" />
+                        <edit-profile v-if="$store.state.showEditProfile" :cards="cards" />
                         <add-a-card v-if="$store.state.showAddCardForm" :collectionId="collectionId" :collectedCardIds="collectedCardIds" />
                         <edit-collection v-if="$store.state.showEditCollectionForm" :collection="collection" />
                         <add-collection v-if="$store.state.showAddCollectionForm" />
@@ -35,7 +35,8 @@ import MembershipForm from './MembershipForm.vue';
         props: [
             'collection',
             'collectedCardIds',
-            'collectionId'
+            'collectionId',
+            'cards'
         ],
         components: {
             Scrolly,

@@ -8,30 +8,33 @@
                 </div>
 
                 <div class="flexy">
-                    <p v-if="!small" class="cards  flexFont">cards</p>
+                    <p v-if="!small" class="cards">cards</p>
                     <!-- hard-coded; replace with data from database -->
-                    <h2 v-if="!small" class="card-count flexFont">347</h2>
+                    <h2 v-if="!small" class="card-count">{{numberOfCards}}</h2>
                     
                 </div>
             </div>
             <div id="profile-image-and-pronouns">
                 <profile-image class="profile-image" :small="false" :pokemon="user.profilePokemon"></profile-image>
-                <div id="pronouns">
+                <div v-if="!small" id="pronouns">
                     <p v-if="user.pronouns">Pronouns: {{user.pronouns}}</p>
                 </div>
             </div>
-            <h2 v-if="!small">Bio</h2>
-            <em v-if="!small"><p class="bio"> {{user.bio}}</p></em>
-            <!-- to update: stats will go here -->
-            <h2 v-if="!small">User Stats</h2>
-            <ul v-if="!small">
-                <li>Collected 14% of Sun &amp; Moon series</li>
-                <li>Collected 8.67% of all Poison-type Pokemon</li>
-            </ul>
+            <div v-if="!small">
+                <h2>Bio</h2>
+                <em><p class="bio"> {{user.bio}}</p></em>
+                <!-- to update: stats will go here -->
+                <h2>User Stats</h2>
+                <p v-if="statistics.length == 0"><em>This user doesn't have any cards in public collections yet</em></p>
+                <ul>
+                    <li v-for="statistic in statistics" :key="statistic">{{statistic}}</li>
+                </ul>
 
-            <!-- to update: badges will go here -->
-            <h2 v-if="!small">Badges</h2>
-            <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges'/>
+                <!-- to update: badges will go here -->
+                <h2>Badges</h2>
+                <p v-if="badges.length == 0"><em>This user doesn't have any badges yet</em></p>
+            </div>
+                <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges'/>
         </div>
 </template>
 
@@ -44,7 +47,8 @@ export default {
     props: [
         'user',
         'small',
-        'tinyCard'
+        'tinyCard',
+        'cards'
     ],
     data() {
         return {
@@ -54,6 +58,55 @@ export default {
     components: {
         profileImage,
         BadgeHolder
+    },
+    computed: {
+        numberOfCards(){
+            let numberOfCards = 0;
+            for (let i= 0; i < this.cards.length; i++){
+                numberOfCards += this.cards[i].quantity
+            }
+            return numberOfCards
+        },
+        statistics() {
+            let cardsAndSets = new Map();
+            let cardSets = new Set();
+            let setIdsAndNames = new Map();
+            for (let i = 0; i < this.cards.length; i++) {
+                let card = this.cards[i];
+                cardsAndSets.set(card.id, card.cardSet);
+                cardSets.add(card.cardSet)
+                setIdsAndNames.set(card.cardSet.id, card.cardSet.name)
+            }
+
+            let setIdAndQuantities = new Map()
+            for (let cardSet of cardsAndSets.values()){
+                if (setIdAndQuantities.has(cardSet.id)){
+                    setIdAndQuantities.set(cardSet.id, setIdAndQuantities.get(cardSet.id) + 1)
+                } else {
+                    setIdAndQuantities.set(cardSet.id, 1)
+                }
+            }
+
+            let setIdsAndPercentages = new Map()
+            for(let cardSet of cardSets.values()) {
+                setIdsAndPercentages.set(cardSet.id, Math.round((setIdAndQuantities.get(cardSet.id) / cardSet.printedTotal) * 10000) / 100)
+            }
+
+            let array = Array.from(setIdsAndPercentages, ([cardSetId, percentage]) => ({ cardSetId, percentage }));
+            array.sort((a,b) => { return b.percentage - a.percentage });
+            if(array.length > 2){
+                array.splice(2);
+            }
+
+            let statistics = []
+            for(let i = 0; i < array.length; i++){
+                statistics.push(`Collected ${array[i].percentage}% of ${setIdsAndNames.get(array[i].cardSetId)}`)
+            }
+            
+
+
+            return statistics;    
+        }
     }
 }
 

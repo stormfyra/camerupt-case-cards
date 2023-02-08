@@ -16,7 +16,7 @@ export default {
         return http.get(`/users/get-id/${username}`);
     },
     getAllUsers() {
-        return http.get(`/users`);
+        return http.get(`/users/`);
     },
     getFriends(id) {
         return http.get(`/users/${id}/friends`);
