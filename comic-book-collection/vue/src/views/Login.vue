@@ -56,6 +56,11 @@ export default {
       invalidCredentials: false
     };
   },
+  created() {
+    if (this.$store.state.user) {
+      this.$router.push({ name: 'collections' })
+    }
+  },
   methods: {
     login() {
       authService

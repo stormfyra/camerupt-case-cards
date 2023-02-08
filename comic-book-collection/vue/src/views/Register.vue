@@ -61,6 +61,11 @@ export default {
       registrationErrorMsg: 'There were problems registering this user.',
     };
   },
+  created() {
+    if (this.$store.state.user) {
+      this.$router.push({ name: 'collections' })
+    }
+  },
   methods: {
     register() {
       if (this.user.password != this.user.confirmPassword) {
