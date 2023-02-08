@@ -8,7 +8,7 @@
                     <div class="form-container">
                         <button id="close-overlay" @click="off">X</button>
                         <edit-profile v-if="$store.state.showEditProfile" :cards="cards" />
-                        <add-a-card v-if="$store.state.showAddCardForm" :collectionId="collectionId" :collectedCardIds="collectedCardIds" />
+                        <add-cards v-if="$store.state.showAddCardForm" :collectionId="collectionId" :collectedCardIds="collectedCardIds" />
                         <edit-collection v-if="$store.state.showEditCollectionForm" :collection="collection" />
                         <add-collection v-if="$store.state.showAddCollectionForm" />
                         <give-badge v-if="$store.state.showGiveBadgeForm" />
@@ -25,13 +25,14 @@
 <script>
 import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly';
 import EditProfile from './Edit Profile/EditProfile.vue';
-import AddACard from './Collections/AddACard.vue';
+import AddCards from './Collections/AddCards.vue';
 import EditCollection from './Collections/EditCollection.vue';
 import GiveBadge from './Edit Profile/features/GiveBadge.vue';
 import AddCollection from './Collections/AddCollection.vue';
 import MembershipForm from './MembershipForm.vue';
 
     export default {
+        name: 'overlay',
         props: [
             'collection',
             'collectedCardIds',
@@ -43,7 +44,7 @@ import MembershipForm from './MembershipForm.vue';
             ScrollyViewport,
             ScrollyBar,
             EditProfile,
-            AddACard,
+            AddCards,
             EditCollection,
             GiveBadge,
             AddCollection,

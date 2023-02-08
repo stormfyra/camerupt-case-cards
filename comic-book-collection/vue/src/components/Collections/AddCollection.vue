@@ -70,10 +70,6 @@ export default{
         this.$router.go()
       }
   },
-//   created() {
-//       this.userId = this.$store.state.user.userId;
-//       console.log(this.$store.state.user)
-//   }
 };
 </script>
 

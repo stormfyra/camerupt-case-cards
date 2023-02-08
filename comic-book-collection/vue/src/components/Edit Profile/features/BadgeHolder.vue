@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p v-if="badges.length == 0 && !small"><em>This user doesn't have any badges yet.</em></p>
         <img v-for="badge in badges" :key="badge.id" :src="badgeSource(badge)" :alt="badge" :class="small ? 'small-badge' : 'badge'">
     </div>
     
@@ -10,7 +11,7 @@ import BadgeService from '../../../services/BadgeService'
 
 
 export default {
-    
+    name: 'badge-holder',
 
     props: [
         'user',

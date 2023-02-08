@@ -14,7 +14,7 @@
 <script>
 import collectionService from '../../services/CollectionService';
 export default {
-    name: 'CardGrid',
+    name: 'card-grid',
     emits: ['deleteCard'],
     props: [
         "cards",

@@ -10,6 +10,7 @@ import ProfilePageBackground from '../components/Edit Profile/ProfilePageBackgro
 import Overlay from './../components/Overlay.vue'
 
 export default {
+    name: "profile",
     components: {
         ProfilePageBackground,
         Overlay

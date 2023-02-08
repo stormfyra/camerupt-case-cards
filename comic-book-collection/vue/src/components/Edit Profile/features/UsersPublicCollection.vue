@@ -7,6 +7,7 @@ import CollectionGrid from "../components/Collections/CollectionGrid.vue"
 import collectionService from "../services/CollectionService"
 
 export default {
+    name: "users-public-collection",
     components: {
         CollectionGrid
     },

@@ -22,7 +22,7 @@
 import collectionService from '../../services/CollectionService.js'
 
 export default{
-  name: 'add-collection',
+  name: 'add-friend',
   data() {
       return {
           collection: {
