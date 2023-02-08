@@ -1,5 +1,6 @@
 <template>
   <div id="loginPage">
+    <div id="bg">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
@@ -36,8 +37,6 @@
       <button type="submit">Login</button>
     </form>
   </div>
-  <div id="pokePic">
-    <img src="camerupt-removebg-preview.png" alt="pokemon picture here">
   </div>
   </div>
 </template>

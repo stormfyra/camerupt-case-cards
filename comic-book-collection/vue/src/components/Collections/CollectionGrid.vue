@@ -5,7 +5,7 @@
         <div v-for="collection in collections" :key="collection.index"  :class="smallView ? 'smallCollectionImage' : 'collectionImage'">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
                 <p class="title">{{collection.title}}</p>
-                <p v-if="!ownedByMe && !smallView"><em>Owner: {{collection.ownerUsername}}</em></p>
+                <p v-if="!ownedByMe && !smallView" class="collection-owner"><em>Owner: {{collection.ownerUsername}}</em></p>
             </router-link>
             <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">    
                 <img src="../../../resources/backOfPokemonCard.jpg" alt="" :class="smallView ? 'smallCardBack' : 'cardBack'">
@@ -88,7 +88,7 @@ export default {
     position: relative;
     z-index: 1;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .cardBack {
@@ -117,17 +117,25 @@ p {
     position: absolute;
     bottom: 0;
     right: 0;
+    font-size: 9.5pt;
 }
 .title-holder {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.85);
     color: white;
     position: absolute;
     z-index: 2;
+
     width: 100%;
-    height: 25%;
-    font-size: large;
+    height: 100%;
+
     text-align: center;
     padding-top: 5px;
+    font-size: 11pt;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
 }
 
 .small-title-holder {
@@ -149,6 +157,13 @@ button > h1 {
     color: rgb(109, 109, 109);
 }
 
+.title {
+    font-weight: 600;
+}
+
+.collection-owner {
+    font-size: 9.5pt;
+}
 
 
 /* Extra small devices (phones, 600px and down) */
