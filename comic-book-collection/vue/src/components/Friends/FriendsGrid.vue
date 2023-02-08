@@ -22,7 +22,9 @@ export default {
     methods: {
         goToProfile(userId){
             this.$router.push({name: 'profileWithId', params: {id: userId}})
-            this.$router.go()
+            if (this.tinyCard) {
+                this.$router.go();
+            }
         }
         
     }

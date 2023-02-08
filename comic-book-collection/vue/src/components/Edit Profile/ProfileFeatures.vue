@@ -42,7 +42,7 @@ export default {
             publicCollections: {},
             friends: '',
             buttonPushed: false,
-            pendingRequest: ''
+            pendingRequest: 'wait'
         }
     },
     props: [
@@ -51,6 +51,9 @@ export default {
     ],
     computed: {
         showAddFriend() {
+            if (this.pendingRequest == 'wait') {
+                return false;
+            }
             if (this.$store.state.user.id == this.$route.params.id) { return false; }
             for (let friend of this.friends) {
                 if (this.$store.state.user.id == friend.id) {
@@ -62,7 +65,7 @@ export default {
             }
 
             for (let request of this.pendingRequest){
-                if (request.id == this.$store.state.user.id){
+                if (request.id == this.$store.state.user.id || request.id == this.$route.params.id){
                     return false;
                 }
             }
@@ -95,6 +98,8 @@ export default {
                         .then(response => this.friends = response.data);
         userService.getFriendRequests(this.$route.params.id)
                         .then(response => this.pendingRequest = response.data);
+        userService.getFriendRequests(this.$store.state.user.id)
+                        .then(response => this.pendingRequest = this.pendingRequest.concat(response.data));
     }
 };
 </script>
