@@ -1,5 +1,5 @@
 <template>
-    <div id="card-container">
+    <div class="collection-container">
         <div v-for="(card, index) in cards" :key="index">
             <img :src="card.images.small" :alt="card.cardName" class="cardImage" />
             <div id="quantity-div">

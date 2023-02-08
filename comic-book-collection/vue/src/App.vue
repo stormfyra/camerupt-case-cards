@@ -165,7 +165,7 @@ button {
   position: relative;
   z-index: 1;
 
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 #banner-image {
   width: 100%;
@@ -188,5 +188,23 @@ button {
     text-align: center;
     margin: 10px;
     color: white;
+}
+
+.collection-container {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+
+    padding: 20px 20px;
+    border-radius: 30px;
+    background-color: #879fee;
+    box-shadow:  0 0 3px -1px transparent, 0 0 2px 1px transparent
+        , 0 0 5px 0px transparent, 0px 10px 15px -5px rgb(97, 94, 94)
+        , 0 2px 20px -5px rgb(97, 94, 94), 0 0 20px 0px transparent;
 }
 </style>
