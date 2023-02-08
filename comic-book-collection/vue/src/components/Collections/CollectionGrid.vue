@@ -57,7 +57,7 @@ export default {
 .collection-container {
     width: 100%;
     display: flex;
-    justify-items: center;
+    justify-content: space-evenly;
     align-items: center;
     background-color: #879fee;
     height: auto;
