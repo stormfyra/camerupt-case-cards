@@ -168,6 +168,7 @@ p {
     margin-bottom: 1%;
 }
 
+
 .user-header {
     display: flex;
     justify-content: space-between;
