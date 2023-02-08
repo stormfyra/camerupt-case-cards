@@ -277,9 +277,10 @@ export default {
 }
 
 #twoButtons{
-  display: grid;
-  grid-template-columns: 200px 200px;
+  display: flex;
+  /* grid-template-columns: 200px 200px; */
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 #cardSpread{
@@ -294,6 +295,7 @@ export default {
 card-grid {
     display: flex;
     justify-content: center;
+    width: 80vw;
 }
 .collection-title, .collection-owner-declaration, .collection-description {
     text-align: center;
@@ -322,6 +324,7 @@ card-grid {
 .functions {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .filter-and-stats {
   display: flex;

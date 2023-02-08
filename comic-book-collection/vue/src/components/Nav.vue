@@ -122,6 +122,7 @@ height: 42px;
 .nav-list{
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 li {

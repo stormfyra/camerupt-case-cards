@@ -30,6 +30,8 @@ export default{
 
 Nav {
   margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 body {
