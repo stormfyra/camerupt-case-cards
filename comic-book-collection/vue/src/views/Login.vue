@@ -4,35 +4,39 @@
     <div id="login" class="text-center">
       <form class="form-signin" @submit.prevent="login">
         <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
-        <div
-          class="alert alert-danger"
-          role="alert"
-          v-if="invalidCredentials"
-        >Invalid username and password!</div>
-        <div
-          class="alert alert-success"
-          role="alert"
-          v-if="this.$route.query.registration"
-        >Thank you for registering, please sign in.</div>
-        <label for="username" class="sr-only">Username</label>
-        <input
-          type="text"
-          id="username"
-          class="form-control"
-          placeholder="Username"
-          v-model="user.username"
-          required
-          autofocus
-        />
-        <label for="password" class="sr-only">Password</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          placeholder="Password"
-          v-model="user.password"
-          required
-        />
+          <div class="input-holder">
+            <div
+              class="alert alert-danger"
+              role="alert"
+              v-if="invalidCredentials"
+            >Invalid username and password!</div>
+            <div
+              class="alert alert-success"
+              role="alert"
+              v-if="this.$route.query.registration"
+            >Thank you for registering, please sign in.</div>
+            <label for="username" class="sr-only">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              placeholder="Username"
+              v-model="user.username"
+              required
+              autofocus
+            />
+          </div>
+          <div class="input-holder">
+            <label for="password" class="sr-only">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              placeholder="Password"
+              v-model="user.password"
+              required
+            />
+          </div>
         <router-link :to="{ name: 'register' }">Need an account? <div id="click-here-to-register">Click here to register!</div></router-link>
         <button type="submit">Login</button>
       </form>
@@ -81,9 +85,12 @@ export default {
 </script>
 
 <style scoped>
+#login {
+  position: absolute;
+}
+
   #loginPage {
     width: 100%;
-    overflow-y: hidden;
   }
 
   #bg {
@@ -103,7 +110,6 @@ export default {
   gap: 20px;
   flex-direction: column;
   align-content: center;
-
   padding: 40px;
   margin: 0 3%;
 }
@@ -113,76 +119,74 @@ export default {
   box-shadow: 0px 10px 10px rgb(0 0 0 / 20%);
   
   width: 430px;
-  height: 530px;
+  height: 80%;
   margin: 0 6%;
 
   display: flex;
-  margin-top: 160px;
+  margin-top: 4%;
 }
 h1 {
   margin-top: 10px;
 }
-  /* .text-center{
-    border-radius: 12px;
-    box-shadow: 0px 20px 20px rgb(0 0 0 / 20%);
-    
-    width: 505px;
-    height: 700px;
-
-    display: grid;
-    grid-area: form;
-    justify-self: center;
-
-  } */
-
-  /* .form-register, .form-signin{
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    padding: 40px;
-  } */
 
 #click-here-to-register {
   display: inline-block;
   color: var(--site-red)
 }
-  #pokePic{
-    display: grid;
-    grid-area: pic;
+#pokePic{
+  display: grid;
+  grid-area: pic;
+  align-items: center;
+  justify-self: center;
+  width: 120%;
+
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+#password, #confirmPassword{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.1ch;
+  font-size: 15px;
+  color: rgb(117, 166, 223);
+}
+
+#password:focus{
+  outline: 0;
+  box-shadow: 0 0 0 3px #E45052;
+}
+
+#username:focus{
+  outline: 0;
+  box-shadow: 0 0 0 3px #E45052;
+}
+
+#confirmPassword:focus{
+  outline: 0;
+  box-shadow: 0 0 0 3px #E45052;
+}
+.input-holder {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+@media (max-height: 575px) {
+  .text-center{
     align-items: center;
-    justify-self: center;
-    width: 120%;
-
+    justify-content: center;
+    width: 85%;
+    height: 35%;
   }
-
-  a{
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+  form {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
-
-  #password, #confirmPassword{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 0.1ch;
-    font-size: 15px;
-    color: rgb(117, 166, 223);
-  }
-
-  #password:focus{
-    outline: 0;
-    box-shadow: 0 0 0 3px #E45052;
-  }
-
-  #username:focus{
-    outline: 0;
-    box-shadow: 0 0 0 3px #E45052;
-  }
-
-  #confirmPassword:focus{
-    outline: 0;
-    box-shadow: 0 0 0 3px #E45052;
-  }
-
-
+}
 
 </style>
