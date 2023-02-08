@@ -97,13 +97,13 @@ export default {
 <style scoped>
   #loginPage {
     width: 100%;
-    height: 800px;
+    height: vh;
     overflow: hidden;
   }
 
   #bg {
   width: 100vw;
-  height: 100%;
+  height: 90vh;
   margin-left: -10%;
   margin-top: -30px;
   position: fixed;
@@ -131,7 +131,7 @@ export default {
   margin: 0 6%;
 
   display: flex;
-  margin-top: 200px;
+  margin-top: 50px;
 }
 h1 {
   margin-top: 10px;
