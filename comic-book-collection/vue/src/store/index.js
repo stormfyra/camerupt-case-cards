@@ -84,5 +84,6 @@ export default new Vuex.Store({
       state.showMembershipForm = false;
       state.showPremiumForm = false;
     }
+
   }
 })

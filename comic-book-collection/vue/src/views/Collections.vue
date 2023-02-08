@@ -4,7 +4,7 @@
                 <h1>Want to add your own collection?</h1>
                 <button><router-link to="/register">Create an account now!</router-link></button>
         </div>
-        <div v-if="username != '' && personalCollections.length > 0">
+        <div v-if="username != ''">
             <h1>Your Collections</h1>
             <collection-grid :collections="personalCollections" :ownedByMe="true"></collection-grid>
         </div>

@@ -21,12 +21,6 @@
                     <input v-model="user.bio" id="bio">
                 </label>
 
-                <label for=""><h2>Featured Cards</h2>
-                    <div class="featured-cards">
-                        <img v-for="n in 4" :key="n" src="../../../resources/backOfPokemonCard.jpg" alt="placeholder">
-                    </div>
-                </label>
-
                 <h2>Shipping Information</h2>
                 <label for="fullName" class="input-label">Full Name
                     <input v-model="user.fullName" type="text">
@@ -60,6 +54,9 @@ export default {
             user: {}
         }
     },
+    props: [
+        'cards'
+    ],
     created() {
             this.user = this.$store.state.user
     },
