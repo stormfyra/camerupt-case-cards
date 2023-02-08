@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div v-if="username != ''">
+        <div v-if="isLoggedIn">
             <h1>Your Collections</h1>
             <collection-grid :collections="personalCollections" :ownedByMe="true"></collection-grid>
         </div>
