@@ -43,7 +43,7 @@ export default {
 }
 
 .tinyCollectionImage {
-    width: 90px;
+    width: 83px;
     height: 126px;
     border-radius: 10px;
     display: flex;

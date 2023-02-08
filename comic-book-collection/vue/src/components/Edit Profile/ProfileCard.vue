@@ -22,11 +22,11 @@
         </div>
         <div v-if="!small">
             <h2 v-if="user.bio">Bio</h2>
-            <em><p class="bio"><strong>{{user.bio}}</strong></p></em>
+            <em><p class="bio">{{user.bio}}</p></em>
             <!-- stats -->
             <h2>User Stats</h2>
             <p v-if="statistics.length == 0"><em><strong>This user doesn't have any cards in public collections yet.</strong></em></p>
-            <p v-for="statistic in statistics" :key="statistic"><strong><em>{{statistic}}</em></strong></p>
+            <p v-for="statistic in statistics" :key="statistic" class="stat">{{statistic}}</p>
 
             <!-- badges -->
             <h2 id="badges-label">Badges</h2>
@@ -148,7 +148,7 @@ export default {
 
     background-image: url("../../../resources/texture.jpg");
     /* background-color: #e93d40; */
-    background-color: #d83134;
+    background-color: #ee4043;
     background-blend-mode: overlay;
     background-size: cover;
 }
@@ -166,8 +166,9 @@ ul {
 p {
     margin-top: 2%;
     margin-bottom: 1%;
+    font-weight: 600;
+    font-size: 10.8pt;
 }
-
 
 .user-header {
     display: flex;
@@ -203,7 +204,7 @@ p {
     font-weight: 600;
     color: #444;
     align-self: center;
-    padding-right: 6%;
+    padding-right: 4%;
 }
 .badge-holder {
     display: flex;
