@@ -1,9 +1,7 @@
 <template>
     <div :class="smallView ? 'small-collection-container' : 'collection-container'">
-        <button class="empty-card" v-on:click="showAddForm" v-if="!smallView"><h1>+</h1></button>
-        <div class="overlay" v-if="$store.state.showAddCollectionForm">
-            <add-collection class="overlay-form"/>
-        </div>
+        <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1>+</h1></button>
+
         <div v-for="collection in collections" :key="collection.index"  :class="smallView ? 'smallCollectionImage' : 'collectionImage'">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
                 <p class="title">{{collection.title}}</p>
@@ -20,9 +18,7 @@
 </template>
 
 <script>
-import AddCollection from './AddCollection.vue';
 export default {
-  components: { AddCollection },
     name: 'CollectionGrid',
     props: [
         'collections',
@@ -32,10 +28,25 @@ export default {
     methods: {
         showAddForm() {
               this.$store.commit('CHANGE_SHOW_COLLECTION_FORM');
-        },
-        // hideAddForm() {
-        //     document.getElementById("overlay").style.display = "none";
-        // }
+        }
+    },
+    computed: {
+        showAddCollectionButton() {
+            let showForm;
+            showForm = !this.smallView
+            if (showForm){
+                showForm = (!!this.$store.state.user)
+            }
+            if (showForm){
+                showForm = (this.collections.length < 3 || this.$store.state.user.isPremium)
+                console.log(this.$store.state.user);
+            }
+            if (showForm) {
+                showForm = this.ownedByMe
+            }
+            
+            return showForm
+        }
     }
   
 }

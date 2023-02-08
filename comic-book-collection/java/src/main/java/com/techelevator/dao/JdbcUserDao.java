@@ -164,13 +164,17 @@ public class JdbcUserDao implements UserDao {
             friend.setUsername(results.getString("from_username"));
             friend.setId(results.getLong("from_id"));
             friend.setProfilePokemon(results.getString("from_pokemon"));
-            friends.add(friend);
+            if (friend.getId() != id) {
+                friends.add(friend);
+            }
 
             friend = new User();
             friend.setUsername(results.getString("to_username"));
             friend.setId(results.getLong("to_id"));
             friend.setProfilePokemon(results.getString("to_pokemon"));
-            friends.add(friend);
+            if (friend.getId() != id) {
+                friends.add(friend);
+            }
         }
         return friends;
     }

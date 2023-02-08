@@ -31,10 +31,10 @@
         </div>
         <div id="plans">
             <label for="memberPlan">Membership Plans*</label>
-            <input type="radio" id="standard" name="fav_plan" value="standard">
-            <label for="standard">Standard ($50/Year)</label>
-            <input type="radio" id="premium" name="fav_plan" value="premium">
-            <label for="premium">Premium ($100/year)</label>
+            <input v-model="premium" type="radio" id="standard" name="fav_plan" value="false">
+            <label for="standard">Standard</label>
+            <input v-model="premium" type="radio" id="premium" name="fav_plan" value="true">
+            <label for="premium">Premium ($5/Month)</label>
         </div>
         <label for="creditCard" id="cardNameLabel">Card Information*</label>
         <div id="cardInformation">
@@ -45,17 +45,36 @@
             <input placeholder="Billing Zip" type="text" id="billing">
         </div>
         <div id="buttons">
-            <button id="submit">Submit</button>
+            <button id="submit" @click="changePremiumStatus">Submit</button>
             <button id="cancel">Cancel</button>
         </div>
     </form>
 </template>
 
 <script>
+import userService from '../services/UserService'
 
-export default({
-    name: 'MembershipForm'
-})
+
+export default{
+    
+    name: 'MembershipForm',
+    data(){
+            return {
+                user: {},
+                premium: ''
+        }
+    },
+    created() {
+            this.user = this.$store.state.user
+    },
+    methods: {
+        changePremiumStatus() {
+            this.user.isPremium = this.premium;
+            userService.updateUserBio(this.user)
+            this.$store.commit('SET_USER', this.user)
+        }
+    }
+}
 </script>
 
 <style scoped>

@@ -16,7 +16,8 @@ export default {
     },
     data() {
         return {
-            editProfile: false
+            editProfile: false,
+            cards: []
         }
     }
 }

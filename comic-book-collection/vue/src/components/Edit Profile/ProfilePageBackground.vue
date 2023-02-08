@@ -3,10 +3,10 @@
       <div class="text-center page">
         <!-- card -->
         <div class="profile">
-            <profile-card :user="user" :badges="badges" class="card" />
+            <profile-card :user="user" :badges="badges" class="card" :cards='cards' />
         </div>
         <!-- features -->
-        <profile-features class="features" :badges="badges" />
+        <profile-features :cards='cards' class="features" :badges="badges" />
       </div>
   </div>
 </template>
@@ -22,22 +22,19 @@ export default {
         ProfileCard,
         ProfileFeatures
     },
-    props: [
-
-    ],
     data() {
     return {
         selectedPokemon: '',
         badges: [],
-        user: 'wait'
+        user: 'wait',
+        cards: []
     }
     },
     created() { 
         userService.getUserDetails(this.$route.params.id)
-                    .then(response => {
-                        console.log(response.data);
-                        this.user = response.data;
-                    });
+                    .then(response => this.user = response.data);
+        userService.getAllCardsForUser(this.$route.params.id)
+                    .then(response => this.cards = response.data);
     }
 };
 </script>
