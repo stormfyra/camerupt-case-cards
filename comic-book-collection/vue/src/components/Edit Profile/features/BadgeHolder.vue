@@ -39,13 +39,13 @@ export default {
 
 <style scoped>
 .badge {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
 }
 .small-badge {
     height: 30px;
     width: 30px;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 </style>

@@ -2,14 +2,14 @@
         <div :class="tiny-card ? 'tiny-card' : 'profile-card'" >
             <div class="user-header">
                 <div class="flexy">
-                    <!-- hard-coded; replace with data from database -->
+                    <!-- user membership type -->
                     <p v-if="!small" class="account-type">{{user.isPremium ? "Premium" : "Standard"}}</p>
                     <h2 class="user-name flexFont">{{user.username}}</h2>
                 </div>
 
                 <div class="flexy">
                     <p v-if="!small" class="cards">cards</p>
-                    <!-- hard-coded; replace with data from database -->
+                    <!-- number of cards -->
                     <h2 v-if="!small" class="card-count">{{numberOfCards}}</h2>
                     
                 </div>
@@ -23,13 +23,13 @@
             <div v-if="!small">
                 <h2 v-if="user.bio">Bio</h2>
                 <em><p class="bio"> {{user.bio}}</p></em>
-                <!-- to update: stats will go here -->
+                <!-- stats -->
                 <h2>User Stats</h2>
                 <p v-if="statistics.length == 0"><em>This user doesn't have any cards in public collections yet.</em></p>
                 <p v-for="statistic in statistics" :key="statistic"><em>{{statistic}}</em></p>
 
-                <!-- to update: badges will go here -->
-                <h2>Badges</h2>
+                <!-- badges -->
+                <h2 id="badges-label">Badges</h2>
             </div>
                 <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges' />
         </div>
@@ -116,12 +116,12 @@ export default {
     flex-direction: column;
     background-color: #d9d9d9;
     border-radius: .5em;
-    width: 80%;
+    width: 100%;
     justify-content: center;
     align-items: center;
     padding: 2%;
     align-self: center;
-    margin-top: 2%;
+    margin-top: 4%;
 }
 
 #pronouns{
@@ -141,11 +141,16 @@ export default {
     width: 80%;
     height: 85%;
     aspect-ratio: 3 / 2;
-    background-color: #e93d40;
     margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
     padding: 2% 5% 5% 5%;
+
+    background-image: url("../../../resources/texture.jpg");
+    /* background-color: #e93d40; */
+    background-color: #d83134;
+    background-blend-mode: overlay;
+    background-size: cover;
 }
 
 h2 {
@@ -197,10 +202,16 @@ p {
     font-weight: 600;
     color: #444;
     align-self: center;
+    padding-right: 6%;
 }
 .badge-holder {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
+}
+
+#badges-label {
+    margin-bottom: 10px;
 }
 
 /* .tiny-card {

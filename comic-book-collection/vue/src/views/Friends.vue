@@ -1,11 +1,12 @@
 <template>
     <div>
         <div v-if="pendingRequest">
-            <h1>Pending Friend Requests</h1>
             <friend-requests />
         </div>
-        <h1>Friends</h1>
-        <friends-page-background></friends-page-background>
+        <div v-if="!friends">
+            <h1>Friends</h1>
+            <friends-page-background></friends-page-background>
+        </div>
         <h1>All Users</h1>
         <div>
         <users-page-background></users-page-background>
