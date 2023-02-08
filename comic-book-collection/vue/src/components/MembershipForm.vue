@@ -69,9 +69,10 @@ export default{
     },
     methods: {
         changePremiumStatus() {
-            this.user.isPremium = this.premium;
-            userService.updateUserBio(this.user)
+            this.user.isPremium = this.premium == "true";
             this.$store.commit('SET_USER', this.user)
+            console.log(this.$store.state.user)
+            userService.updateUserBio(this.user)
         }
     }
 }

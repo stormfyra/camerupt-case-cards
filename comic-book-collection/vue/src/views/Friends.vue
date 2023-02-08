@@ -15,10 +15,10 @@
             <friend-requests />
         </div>
         <div v-if="!friends">
-            <h1>Your Friends</h1>
+            <h1>Friends</h1>
             <friends-page-background></friends-page-background>
         </div>
-        <h1>All Users</h1>
+        <h1>Rivals</h1>
         <div>
         <users-page-background></users-page-background>
         </div>

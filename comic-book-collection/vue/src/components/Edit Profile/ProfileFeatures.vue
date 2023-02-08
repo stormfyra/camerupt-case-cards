@@ -23,7 +23,7 @@
         </div>
         <div class="friends">
             <h3 v-if="friends.length != 0">Friends</h3>
-                <friends-grid :smallView='true' :tinyCard="true" :users="friends" />
+            <friends-grid id="tiny-friend-cards" :smallView='true' :tinyCard="true" :users="friends" />
         </div>
     </div>
   </div>
@@ -130,4 +130,10 @@ h3 {
     flex-wrap: wrap;
     gap: 1em;
 }
+
+#tiny-friend-cards {
+    margin-top: 2em;
+    margin-left: .5em;
+}
+
 </style>

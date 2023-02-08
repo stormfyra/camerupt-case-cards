@@ -71,18 +71,18 @@ import MembershipForm from './MembershipForm.vue';
 
     @media only screen and (max-width: 750px) {
         .scrolly-viewport {
+            width: 66%;
+            position: fixed;
+            left: 50%;
+            margin-left: -250px;
+        }
+    }
+    @media only screen and (max-width: 490px) {
+        .scrolly-viewport {
             width: 33%;
             position: fixed;
-            /* top: 50%; */
             left: 50%;
             margin-left: -100px;
         }
-        /* .scrolly {
-            position: fixed;
-            top: 0%;
-            left: 0%;
-            right: 0%;
-            width: 80%;
-        } */
     }
 </style>
