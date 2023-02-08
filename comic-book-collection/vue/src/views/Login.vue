@@ -118,7 +118,7 @@ export default {
   margin: 0 6%;
 
   display: flex;
-  margin-top: 50px;
+  margin-top: 6%;
 }
 h1 {
   margin-top: 10px;
