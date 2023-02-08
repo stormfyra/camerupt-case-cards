@@ -107,7 +107,7 @@ ul{
 
 .nav-logo{
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: black;
   display: flex;
   align-items: center;
