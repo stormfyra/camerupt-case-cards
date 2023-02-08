@@ -1,10 +1,9 @@
 <template>
-    <div id="add-collection">
-        <div class="form-popup" id="form">
+    <div>
+        <div>
             <form class="form-container">
                 <h1>Add A New Collection</h1>
                 <label for="title">Title</label>
-                <!-- title should be required, but won't close if it's set with "required" -->
                 <input 
                     type="text"
                     id="title"
@@ -18,26 +17,26 @@
                     placeholder="Description"
                     v-model="collection.description"
                 />
-                <div id="radioButton">
+                <div id="radio-buttons">
                     <label for="private">Private</label>
                     <input
                         type="radio"
-                        id="privacy"
+                        id="private"
                         name="privacy"
                         v-model="collection.privacy"
                         value="private"
                         checked
                     />
-                    <label for="private">Public</label>
+                    <label for="public">Public</label>
                     <input
                         type="radio"
-                        id="privacy"
+                        id="public"
                         name="privacy"
                         v-model="collection.privacy"
                         value="public"
                     />
                 </div>
-                <button id="submit" @click.prevent="onSubmit">Submit</button>
+                <button @click.prevent="onSubmit">Submit</button>
             </form>
         </div>
     </div>
@@ -74,19 +73,7 @@ export default{
 </script>
 
 <style scoped>
-
-.hide-form {
-    display: none;
-}
-
-.form-container {
-  max-width: 100%;
-  margin: 10px;
-  background-color: white;
-  border-radius: 10px;
-}
-
-input{
+input {
   width: 90%;
   height: 20%;
   padding: 15px;
@@ -95,7 +82,7 @@ input{
   background: #f1f1f1;
 }
 
-#radioButton{
+#radio-buttons {
     display: flex;
     justify-content: space-between;
 }
