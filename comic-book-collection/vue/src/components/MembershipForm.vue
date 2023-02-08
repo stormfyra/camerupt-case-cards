@@ -46,7 +46,6 @@
         </div>
         <div id="buttons">
             <button id="submit" @click="changePremiumStatus">Submit</button>
-            <button id="cancel">Cancel</button>
         </div>
     </form>
 </template>

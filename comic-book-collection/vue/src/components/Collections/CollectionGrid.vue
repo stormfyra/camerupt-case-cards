@@ -1,6 +1,10 @@
 <template>
     <div :class="smallView ? 'small-collection-container' : 'collection-container'">
         <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1>+</h1></button>
+        <button class="empty-card" @click="upgaradeToPremium" v-if="showUpgradeCard">
+            <h3>Standard accounts may only have 3 collections.</h3>
+            <button>Upgrade to premium</button>
+        </button>
         <div v-for="collection in collections" :key="collection.index"  :class="{ 'collection-image' : !smallView }">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
                 <p class="title">{{collection.title}}</p>
@@ -26,7 +30,11 @@ export default {
     ],
     methods: {
         showAddForm() {
-              this.$store.commit('CHANGE_SHOW_COLLECTION_FORM');
+            this.$store.commit('CHANGE_SHOW_COLLECTION_FORM');
+        },
+        upgaradeToPremium() {
+            this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
+            this.$store.commit('CHANGE_SHOW_PREMIUM_FORM');
         }
     },
     computed: {
@@ -45,6 +53,21 @@ export default {
             }
             
             return showForm
+        },
+        showUpgradeCard() {
+            let showForm;
+            showForm = !this.smallView
+            if (showForm){
+                showForm = (!!this.$store.state.user)
+            }
+            if (showForm){
+                showForm = (this.collections.length >= 3 && !(this.$store.state.user.isPremium))
+            }
+            if (showForm) {
+                showForm = this.ownedByMe
+            }
+            
+            return showForm
         }
     }
   
@@ -56,6 +79,10 @@ export default {
     justify-items: center;
     align-items: center;
     padding: 10px 12px;
+}
+
+h3 {
+    color: black;
 }
 
 .small-collection-container {
