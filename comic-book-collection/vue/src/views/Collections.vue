@@ -4,6 +4,21 @@
                 <h1>Want to add your own collection?</h1>
                 <button><router-link to="/register">Create an account now!</router-link></button>
         </div>
+        <!-- <div class="banner">
+            <img data-v-6e0e9e00 src="https://images.pokemontcg.io/bw11/25.png">
+        </div> -->
+        <div id="main-header">
+            <div id="banner">
+                <div id="banner-image">
+                    <img src="https://images.pokemontcg.io/bw11/25_hires.png" id="banner-image">
+                </div>
+
+                <div id="header-text" class="page-title">
+                    <h1>Collections</h1>
+                </div>
+            </div>
+        </div>
+
         <div v-if="username != ''">
             <h1>Your Collections</h1>
             <collection-grid :collections="personalCollections" :ownedByMe="true"></collection-grid>
@@ -63,7 +78,6 @@ export default {
     
 
 <style scoped>
-
 .form-container {
   max-width: 300px;
   padding: 10px;

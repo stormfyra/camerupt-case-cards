@@ -1,10 +1,21 @@
 <template>
     <div>
+        <div id="main-header">
+            <div id="banner">
+                <div id="banner-image">
+                    <img src="https://images.pokemontcg.io/swsh12pt5/130_hires.png" id="banner-image">
+                </div>
+
+                <div id="header-text" class="page-title">
+                    <h1>Friends</h1>
+                </div>
+            </div>
+        </div>
         <div v-if="pendingRequest">
             <friend-requests />
         </div>
         <div v-if="!friends">
-            <h1>Friends</h1>
+            <h1>Your Friends</h1>
             <friends-page-background></friends-page-background>
         </div>
         <h1>All Users</h1>
