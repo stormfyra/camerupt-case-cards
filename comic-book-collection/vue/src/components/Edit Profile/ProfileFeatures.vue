@@ -134,6 +134,9 @@ h3 {
 #tiny-friend-cards {
     margin-top: 2em;
     margin-left: .5em;
+    display: flex;
+    gap: 1.5em;
+    flex-wrap: wrap;
 }
 
 </style>

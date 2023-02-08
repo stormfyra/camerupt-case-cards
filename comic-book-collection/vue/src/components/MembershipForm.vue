@@ -90,7 +90,7 @@ p{
 #memberForm{
     background-color: white;
     border-radius: 50px;
-    width: 50%;
+    width: 80%;
 }
 
 #fullName{
