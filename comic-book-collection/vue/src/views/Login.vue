@@ -85,7 +85,7 @@ Nav {
   margin: 0 10%;
   border-bottom: 0px;
 }
-  body::v-deep {
+  body {
     margin: 0 !important;
   }
 
@@ -96,10 +96,12 @@ Nav {
   }
 
   #bg {
-  width: 100%;
+  width: 100vw;
   height: 100%;
+  margin-left: -10%;
+  margin-top: -30px;
   position: fixed;
-  background-image: url("../../resources/backgrounds/aggron.jpg");
+  background-image: url("../../resources/backgrounds/gardevoir.jpg");
   background-size: cover;
   background-position: 0 18%;
 }
