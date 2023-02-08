@@ -67,7 +67,6 @@ import MembershipForm from './MembershipForm.vue';
         width: 20px;
         height: 20px;
         align-self: flex-end;
-        /* margin-right: 20px; */
     }
 
 </style>

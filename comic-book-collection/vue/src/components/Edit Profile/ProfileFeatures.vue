@@ -4,7 +4,7 @@
         <div class="buttons-holder">
             <button v-if="$store.state.user.id == $route.params.id" @click="editProfile()">Edit Profile</button>
             <button v-if="$store.state.user.id == $route.params.id" @click="changePremiumStatus()">Change Membership</button>
-            <button v-if="!($store.state.user.id == $route.params.id)" @click="addFriend">Add Friend</button>
+            <button v-if="showAddFriend" @click="addFriend">Add Friend</button>
             <button v-if="!($store.state.user.id == $route.params.id)" @click="showGiveBadgeForm">Give Badge</button>
         </div>
         <div class="featured-cards-holder">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="friends">
-            <h3>Friends</h3>
+            <h3 v-if="friends.length != 0">Friends</h3>
                 <friends-grid :smallView='true' :tinyCard="true" :users="friends" />
         </div>
     </div>
@@ -40,13 +40,28 @@ export default {
     data() {
         return {
             publicCollections: {},
-            friends: []
+            friends: '',
+            buttonPushed: false
         }
     },
     props: [
         'badges',
         'cards'
     ],
+    computed: {
+        showAddFriend() {
+            if (this.$store.state.user.id == this.$route.params.id) { return false; }
+            for (let friend of this.friends) {
+                if (this.$store.state.user.id == friend.id) {
+                    return false;
+                }
+            }
+            if (this.buttonPushed) {
+                return false;
+            }
+            return true;
+        }
+    },
     components: {
         CollectionGrid,
         FriendsGrid
@@ -56,6 +71,7 @@ export default {
             this.$store.commit('CHANGE_SHOW_EDIT_PROFILE');
         },
         addFriend() {
+            this.buttonPushed = true;
             userService.addFriend({userFrom: this.$store.state.user.id, userTo: this.$route.params.id});
         },
         showGiveBadgeForm(){
