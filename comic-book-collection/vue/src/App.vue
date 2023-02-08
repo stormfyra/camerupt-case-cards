@@ -35,7 +35,7 @@ Nav {
 }
 
 body {
-  background-color: #F7F8F7;
+  background-color: #faf9f6;
   margin: 0 10%;
 }
 

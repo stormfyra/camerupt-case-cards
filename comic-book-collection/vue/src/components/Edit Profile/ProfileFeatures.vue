@@ -120,12 +120,14 @@ h3 {
     margin-top: 70px;
 }
 
+.small-collection-container {
+    padding: 0;
+}
+
 .featured-cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1em;
-    margin-left: 10px;
 }
-
 </style>

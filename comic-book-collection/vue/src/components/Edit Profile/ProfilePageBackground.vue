@@ -3,7 +3,9 @@
       <div class="text-center page">
         <!-- card -->
         <div class="profile">
+            <div class="card-holder">
             <profile-card :user="user" :badges="badges" class="card" :cards='cards' />
+        </div>
         </div>
         <!-- features -->
         <profile-features :cards='cards' class="features" :badges="badges" />
@@ -50,6 +52,9 @@ export default {
 
 .card {
     grid-area: card;
+}
+.card-holder {
+    margin: 60px 40px;
 }
 
 .features {
