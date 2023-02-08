@@ -57,7 +57,7 @@ import userService from '../services/UserService'
 
 export default{
     
-    name: 'MembershipForm',
+    name: 'membership-form',
     data(){
             return {
                 user: {},

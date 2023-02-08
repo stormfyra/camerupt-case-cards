@@ -48,7 +48,7 @@
 <script>
 import ProfileImage from './Edit Profile/ProfileImage.vue';
   export default {
-    name: 'Nav',
+    name: 'nav',
     data() {
       return {
         users: []

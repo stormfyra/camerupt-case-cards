@@ -7,6 +7,7 @@
 <script>
 
     export default {
+        name: "select-profile-pokemon",
         data() {
             return {
                 selectedPokemon: 'Camerupt',

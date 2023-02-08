@@ -10,7 +10,7 @@
 import ProfileCard from '../Edit Profile/ProfileCard.vue'
 
 export default {
-    name: 'FriendsGrid',
+    name: 'friends-grid',
     props: [
         'users',
         'smallView',

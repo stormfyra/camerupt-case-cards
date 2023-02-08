@@ -10,6 +10,7 @@ import MembershipForm from '../components/MembershipForm.vue';
 
 
 export default {
+    name: "membership-view",
     components: {
         MembershipForm
     }

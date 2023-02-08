@@ -33,7 +33,7 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account? Click here to log in!</router-link>
+      <router-link :to="{ name: 'login' }">Have an account? <div id="click-here-to-log-in">Click here to log in!</div></router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Register
       </button>
@@ -95,4 +95,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  #click-here-to-log-in {
+    display: inline-block;
+    color: var(--site-red);
+  }
+</style>

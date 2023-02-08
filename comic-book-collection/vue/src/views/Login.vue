@@ -32,7 +32,7 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account? Click here to register!</router-link>
+      <router-link :to="{ name: 'register' }">Need an account? <div id="click-here-to-register">Click here to register!</div></router-link>
       <button type="submit">Login</button>
     </form>
   </div>
@@ -112,6 +112,10 @@ export default {
     padding: 40px;
   } */
 
+#click-here-to-register {
+  display: inline-block;
+  color: var(--site-red)
+}
   #pokePic{
     display: grid;
     grid-area: pic;

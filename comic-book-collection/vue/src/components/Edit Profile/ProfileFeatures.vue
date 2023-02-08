@@ -9,12 +9,14 @@
         </div>
         <div class="featured-cards-holder">
             <h3>Featured Cards</h3>
+            <p v-if="cards.length == 0"><em>This user doesn't have any cards in public collections yet.</em></p>
             <div class="featured-cards">
                 <img v-for="card in cards.slice(0, 5)" :key="card" :src="card.images.small" style="width: 100px; height: 140px;" />
             </div>
         </div>
         <div class="public-collections">
             <h3>Public Collections</h3>
+            <p v-if="publicCollections.length == 0"><em>This user doesn't have any public collections yet.</em></p>
             <div>
                 <collection-grid :smallView="true" :collections="publicCollections"></collection-grid>
             </div>

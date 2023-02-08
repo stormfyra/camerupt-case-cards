@@ -20,6 +20,7 @@ import cardService from "../../services/CardService"
 import externalPokemonCardService from "../../services/ExternalPokemonCardService"
 
 export default {
+    name: "add-cards",
     data() {
         return {
             internalSearchParamater: '',
@@ -84,7 +85,9 @@ export default {
             this.selectedCards.push(card);
         },
         removeFromSelectedCards(card) {
-            this.selectedCards.pop(card);
+            this.selectedCards = this.selectedCards.filter(selectedCard => {
+                return selectedCard.id != card.id
+            });
         },
         addSelectedCards() {
             cardService.addCards(this.collectionId, this.selectedCards);

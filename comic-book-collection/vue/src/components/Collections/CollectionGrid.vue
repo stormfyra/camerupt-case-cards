@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: 'CollectionGrid',
+    name: 'collection-grid',
     props: [
         'collections',
         'ownedByMe',
