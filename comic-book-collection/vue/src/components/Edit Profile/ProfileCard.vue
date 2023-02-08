@@ -21,20 +21,17 @@
                 </div>
             </div>
             <div v-if="!small">
-                <h2>Bio</h2>
+                <h2 v-if="user.bio">Bio</h2>
                 <em><p class="bio"> {{user.bio}}</p></em>
                 <!-- to update: stats will go here -->
                 <h2>User Stats</h2>
-                <p v-if="statistics.length == 0"><em>This user doesn't have any cards in public collections yet</em></p>
-                <ul>
-                    <li v-for="statistic in statistics" :key="statistic">{{statistic}}</li>
-                </ul>
+                <p v-if="statistics.length == 0"><em>This user doesn't have any cards in public collections yet.</em></p>
+                <p v-for="statistic in statistics" :key="statistic"><em>{{statistic}}</em></p>
 
                 <!-- to update: badges will go here -->
                 <h2>Badges</h2>
-                <p v-if="badges.length == 0"><em>This user doesn't have any badges yet</em></p>
             </div>
-                <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges'/>
+                <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges' />
         </div>
 </template>
 
@@ -44,6 +41,7 @@ import BadgeHolder from './features/BadgeHolder.vue'
 
 
 export default {
+    name: "profile-card",
     props: [
         'user',
         'small',
@@ -100,7 +98,7 @@ export default {
 
             let statistics = []
             for(let i = 0; i < array.length; i++){
-                statistics.push(`Collected ${array[i].percentage}% of ${setIdsAndNames.get(array[i].cardSetId)}`)
+                statistics.push(`Collected ${array[i].percentage}% of the ${setIdsAndNames.get(array[i].cardSetId)} set.`)
             }
             
 

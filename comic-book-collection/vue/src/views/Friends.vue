@@ -1,6 +1,5 @@
 <template>
     <div>
-        
         <div v-if="pendingRequest">
             <h1>Pending Friend Requests</h1>
             <friend-requests />
@@ -21,6 +20,7 @@ import UserService from '../services/UserService';
 import UsersPageBackground from '../components/Friends/UsersPageBackground.vue';
 
 export default {
+    name: "friends",
     props:['friends'],
     components: {
         FriendsPageBackground,

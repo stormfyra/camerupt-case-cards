@@ -12,6 +12,7 @@
 import BadgeService from '../../../services/BadgeService'
 
 export default {
+    name: "give-badge",
     data() {
         return {
             badgesToGive: [],

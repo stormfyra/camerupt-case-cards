@@ -68,6 +68,7 @@ import UserService from '../services/UserService'
 import Overlay from '../components/Overlay.vue'
 
 export default {
+  name: "collection",
   components: {
       CardGrid,
       Overlay

@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div v-if="friendRequests.length > 0">
+        <h1>Pending Friend Requests</h1>
         <div id="individual-request" style="display: flex; flex-direction: row; gap: 20px;" v-for="friendRequest in friendRequests" :key="friendRequest.id">
             <p id="friend-requester-name">{{friendRequest.username}}</p>
             <button id="accept-friend-request" @click="accept(friendRequest.id)">&#x2713;</button>
@@ -11,7 +12,7 @@
 <script>
     import userService from '../../../services/UserService'
     export default {
-        name: 'FriendRequests',
+        name: 'friend-requests',
         data() {
             return {
                 friendRequests: []

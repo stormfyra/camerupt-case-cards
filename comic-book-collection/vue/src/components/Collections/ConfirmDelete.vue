@@ -13,7 +13,7 @@
 import collectionService from '../../services/CollectionService.js'
 
 export default {
-    name: 'edit-collection',
+    name: 'confirm-delete',
     props: [
         'collection'
     ],

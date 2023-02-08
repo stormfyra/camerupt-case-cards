@@ -20,6 +20,7 @@ import Overlay from '../components/Overlay.vue'
 import collectionService from "../services/CollectionService"
 
 export default {
+    name: "collections",
     components: {
         CollectionGrid,
         Overlay

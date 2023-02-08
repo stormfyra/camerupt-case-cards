@@ -45,6 +45,7 @@ import ProfileImage from './ProfileImage.vue'
 import SelectProfilePokemon from './SelectProfilePokemon.vue'
 
 export default {
+    name: "edit-profile",
     components: {
         SelectProfilePokemon,
         ProfileImage

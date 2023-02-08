@@ -2,7 +2,7 @@
   <div class="profile-page-background">
         <!-- grids -->
     <div :class="'collection-container text-center'">
-      <friends-grid :smallView='false' :tinyCard='false' :users='users' ></friends-grid>
+      <friends-grid :smallView='false' :tinyCard='false' :users='filteredUsers' ></friends-grid>
     </div>
 
   </div>
@@ -20,6 +20,7 @@ export default {
     data() {
     return {
         users: [],
+        friends: []
     }
     },
     created() {
@@ -27,7 +28,29 @@ export default {
                     .then(response => {
                         this.users = response.data;
                     });
+        UserService.getFriends(this.$store.state.user.id)
+                    .then(response => {
+                        this.friends = response.data;
+                    });
     },
+    computed: {
+        filteredUsers() {
+            if (!this.$store.state.user) {
+                return this.users;
+            }
+            return this.users.filter(user => {
+                if (user.id == this.$store.state.user.id) {
+                    return false;
+                }
+                for (let friend of this.friends) {
+                    if (user.id == friend.id) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+        }
+    }
     
     
 };

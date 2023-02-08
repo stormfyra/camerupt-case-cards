@@ -5,6 +5,7 @@
 <script>
 
 export default {
+    name: "profile-image",
     props: [
         'pokemon',
         'small'
