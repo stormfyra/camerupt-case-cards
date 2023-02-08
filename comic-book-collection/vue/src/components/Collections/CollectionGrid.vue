@@ -1,6 +1,6 @@
 <template>
     <div :class="smallView ? 'small-collection-container' : 'collection-container'">
-        <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1>+</h1></button>
+        <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1 id="add-collection-button-label">+</h1></button>
         <div v-for="collection in collections" :key="collection.index"  :class="{ 'collection-image' : !smallView }">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
                 <p class="title">{{collection.title}}</p>
@@ -68,6 +68,12 @@ export default {
     gap: 1em;
 }
 
+#add-collection-button-label {
+    font-size: 50pt;
+    font-weight: 500;
+    color: rgb(109, 109, 109);
+}
+
 .collection-image {
     width: 200px;
     height: 280px;
@@ -113,6 +119,14 @@ export default {
     border-radius:10px 10px  0 0;
 }
 
+.title {
+    font-weight: 600;
+}
+
+.collection-owner {
+    font-size: 9.5pt;
+}
+
 .card-back {
     position: absolute;
     top: 0;
@@ -131,24 +145,6 @@ export default {
     border-radius: 10px;
 }
 
-p {
-    margin: 5px;
-}
-
-button > h1 {
-    font-size: 50pt;
-    font-weight: 500;
-    color: rgb(109, 109, 109);
-}
-
-.title {
-    font-weight: 600;
-}
-
-.collection-owner {
-    font-size: 9.5pt;
-}
-
 .privacy-status {
     z-index: 3;
     color: white;
@@ -156,5 +152,9 @@ button > h1 {
     bottom: 0;
     right: 0;
     font-size: 9.5pt;
+}
+
+p {
+    margin: 5px;
 }
 </style>
