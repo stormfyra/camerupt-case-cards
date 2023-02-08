@@ -141,6 +141,32 @@ li {
   padding: 8px;
   height: 70%;
   font-weight: 600;
+  position:relative;
+}
+
+li:hover{
+  color:white;
+  cursor: pointer;
+}
+
+li:before{
+  transition: 0.5s all ease;
+  position: absolute;
+  top:0;
+  left:50%;
+  right:50%;
+  bottom: 0;
+  opacity: 0;
+  content: "";
+  background-color: #e93d40;
+}
+
+li:hover:before{
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  z-index: -1;
 }
 
 /* li:first-child {
