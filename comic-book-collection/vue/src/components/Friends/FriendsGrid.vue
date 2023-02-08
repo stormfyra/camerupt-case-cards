@@ -73,8 +73,7 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
-    gap: 2em;
-    /* margin-top: 2em; */
+    gap: 20px;
 }
 
 </style>

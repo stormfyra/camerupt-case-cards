@@ -113,7 +113,7 @@ button{
     display: flex;
     gap: 10px;
     justify-content: left;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 h3 {
@@ -127,6 +127,7 @@ h3 {
     height: 100%;
     justify-content: top;
     margin-top: 70px;
+    margin-bottom: 50px;
 }
 
 .small-collection-container {

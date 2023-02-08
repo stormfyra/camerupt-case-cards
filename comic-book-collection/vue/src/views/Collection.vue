@@ -4,6 +4,7 @@
       <div id="main-header">
         <div id="banner" v-for="(card, index) in cards.slice(0,1)" :key="index">
           <img :src="card.images.large" :alt="card.cardName" id="banner-image">
+          
         </div>    
         <div id="header-text">
           <h1 class="collection-title">{{title}}</h1>
@@ -55,7 +56,7 @@
         </div>
         <img id="caught-a-pokemon" v-if="showCaughtPokemon" :src="catchGifSource" alt="Caught a pokemon!">
         <!-- displays all cards in collection -->
-        <div id=cardSpread>
+        <div id="cardSpread">
           <card-grid :cards='cardsInFilteredSearch' @deletecard="deleteCard" :ownedByMe="$store.state.user.username == ownerUsername"/>
         </div>
     </div>
@@ -279,8 +280,6 @@ button{
   object-position: 10% 20%;
 }
 #header-text {
-  /* display: grid;
-  grid-area: banner; */
   z-index: 2;
   width: 80%;
   height: 300px;
