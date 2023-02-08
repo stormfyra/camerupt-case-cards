@@ -209,6 +209,7 @@ p {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin-top: 5px;
 }
 
 #badges-label {

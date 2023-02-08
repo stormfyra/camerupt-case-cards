@@ -45,7 +45,6 @@ export default {
 .small-badge {
     height: 30px;
     width: 30px;
-    margin-top: 10%;
 }
 
 </style>
