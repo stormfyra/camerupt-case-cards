@@ -56,7 +56,7 @@ export default {
 
 .collection-container {
     width: 100%;
-    display: grid;
+    display: flex;
     justify-items: center;
     align-items: center;
     background-color: #879fee;
@@ -66,6 +66,7 @@ export default {
     box-shadow:  0 0 3px -1px transparent, 0 0 2px 1px transparent
         , 0 0 5px 0px transparent, 0px 10px 15px -5px rgb(97, 94, 94)
         , 0 2px 20px -5px rgb(97, 94, 94), 0 0 20px 0px transparent;
+    flex-wrap: wrap;
 }
 
 .small-collection-container {

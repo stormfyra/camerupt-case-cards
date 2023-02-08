@@ -50,6 +50,18 @@ export default {
     gap: 50px;    
 }
 
+@media only screen and (max-width: 1000px) {
+    .page {
+        grid-template-columns: 1fr;
+        grid-template-areas: "card"
+                            "features";
+    }
+}
+
+.profile, .features {
+    flex-grow: 1;
+}
+
 .card {
     grid-area: card;
 }
