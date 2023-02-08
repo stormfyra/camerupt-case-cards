@@ -24,7 +24,7 @@ export default {
             return this.users.filter(user => {
                 return user.username != this.$store.state.user.username;
             })
-        }
+        },
     }
 }
 </script>

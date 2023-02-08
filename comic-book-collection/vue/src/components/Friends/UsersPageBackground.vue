@@ -13,27 +13,23 @@ import UserService from '../../services/UserService'
 import FriendsGrid from './FriendsGrid.vue';
 
 export default {
-  name: "friends-page-background",
+  name: "users-page-background",
     components: {
         FriendsGrid
     },
     data() {
     return {
-        users: []
+        users: [],
     }
     },
     created() {
-        // TO-DO: change this to show only user's friends; getAllUsers just for testing
-        UserService.getFriends(this.$store.state.user.id)
+        UserService.getAllUsers(this.$store.state.user.id)
                     .then(response => {
-                        // profile card details
                         this.users = response.data;
-
-                        // add pronouns, stats, and badges
-
-                        // add profile feature content: featured cards, public collections, and friends
                     });
-    }
+    },
+    
+    
 };
 </script>
 <style scoped>
@@ -64,6 +60,7 @@ export default {
     background-color: #879fee;
     height: auto;
     padding: 10px 12px;
+    margin-bottom: 30px;
     border-radius: 30px;
     box-shadow:  0 0 3px -1px transparent, 0 0 2px 1px transparent
         , 0 0 5px 0px transparent, 0px 10px 15px -5px rgb(97, 94, 94)
