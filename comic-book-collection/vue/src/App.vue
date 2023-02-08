@@ -17,8 +17,8 @@ export default{
 </script>
 
 <style>
-/* Main font: Montserrat */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+/* Main font: Montserrat: logo: Oswald */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald&display=swap');
 
 #app {
   --site-red: #E45052;
