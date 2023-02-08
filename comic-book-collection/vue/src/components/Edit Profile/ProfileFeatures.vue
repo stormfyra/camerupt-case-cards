@@ -74,7 +74,8 @@ export default {
 
 <style scoped>
 button{
-    width: 20%;
+    width: 30%;
+    font-size: small;
 }
 .empty-card {
     width: 100px;
@@ -85,7 +86,7 @@ button{
     display: flex;
     gap: 10px;
     justify-content: left;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 h3 {

@@ -2,21 +2,6 @@
     <div style="display: flex; flex-direction: column;">
         <input type="text" v-model="internalSearchParamater" id="searchbar" />
 
-        <!-- checkboxes for element types -->
-        <div class="element-checkboxes">
-            <input type="checkbox" name="colorless" value="colorless"> <label for="colorless">Colorless</label>
-            <input type="checkbox" name="darkness" value="darkness"> <label for="darkness">Darkness</label>
-            <input type="checkbox" name="dragon" value="dragon"> <label for="dragon">Dragon</label>
-            <input type="checkbox" name="fairy" value="fairy"> <label for="fairy">Fairy</label>
-            <input type="checkbox" name="fighting" value="fighting"> <label for="fighting">Fighting</label>
-            <input type="checkbox" name="fire" value="fire"> <label for="fire">Fire</label>
-            <input type="checkbox" name="grass" value="grass"> <label for="grass">Grass</label>
-            <input type="checkbox" name="lightning" value="lightning"> <label for="lightning">Lightning/Electric</label>
-            <input type="checkbox" name="metal" value="metal"> <label for="metal">Metal</label>
-            <input type="checkbox" name="psychic" value="psychic"> <label for="psychic">Psychic</label>
-            <input type="checkbox" name="water" value="water"> <label for="water">Water</label>
-        </div>
-
         <div id="button-bar">
             <button @click="addSelectedCards">Add selected</button>
             <label for="search-all-cards">Not finding the right card?

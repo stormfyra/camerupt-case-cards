@@ -131,6 +131,7 @@ li {
   align-items: center;
   padding: 8px;
   height: 70%;
+  font-weight: 600;
 }
 
 /* li:first-child {
