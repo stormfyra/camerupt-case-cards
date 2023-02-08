@@ -105,7 +105,7 @@ export default {
   width: 100vw;
   height: 90vh;
   margin-left: -10%;
-  margin-top: -30px;
+  margin-top: -33px;
   position: fixed;
   background-image: url("../../resources/backgrounds/gardevoir.jpg");
   background-size: cover;
@@ -131,7 +131,7 @@ export default {
   margin: 0 6%;
 
   display: flex;
-  margin-top: 7%;
+  margin-top: 160px;
 }
 h1 {
   margin-top: 10px;

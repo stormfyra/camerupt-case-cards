@@ -17,8 +17,8 @@ export default{
 </script>
 
 <style>
-/* Main font: Montserrat */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+/* Main font: Montserrat: logo: Oswald */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald&display=swap');
 
 #app {
   --site-red: #E45052;
@@ -30,6 +30,8 @@ export default{
 
 Nav {
   margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 body {
@@ -151,5 +153,38 @@ button {
     flex-direction: column;
     padding: 20px;
     gap: 5px;
+}
+#banner {
+  width: 100%;
+  height: 300px;
+  /* background-color: rgb(49, 49, 49); */
+
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  z-index: 1;
+}
+#banner-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: 10% 20%;
+}
+#header-text {
+  z-index: 2;
+  width: 80%;
+  height: 300px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.page-title {
+    text-align: center;
+    margin: 10px;
+    color: white;
 }
 </style>

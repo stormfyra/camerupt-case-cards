@@ -60,6 +60,8 @@ export default {
 
 .medium-card {
     height: 80%;
+    border-width: 9px;
+    border-radius: 10px;
 }
 .tiny-friend-card:hover,
 .medium-card:hover{
@@ -72,7 +74,7 @@ export default {
     flex-wrap: wrap;
     align-content: flex-start;
     gap: 2em;
-    margin-top: 2em;
+    /* margin-top: 2em; */
 }
 
 </style>
