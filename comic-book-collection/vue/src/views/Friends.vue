@@ -1,7 +1,8 @@
 <template>
     <div>
-        <h1>Pending Friend Request</h1>
+        
         <div v-if="pendingRequest">
+            <h1>Pending Friend Requests</h1>
             <friend-requests />
         </div>
         <h1>Friends</h1>
@@ -28,8 +29,8 @@ export default {
         
     },
     data(){
-        return{pendingRequest:''
-        ,
+        return{
+            pendingRequest: '',
         }
     },
     created(){

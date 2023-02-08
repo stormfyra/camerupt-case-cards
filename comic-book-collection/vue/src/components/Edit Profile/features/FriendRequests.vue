@@ -37,18 +37,18 @@
 
 <style scoped>
 p {
+    font-weight: 500;
     margin-left: 5%;
-    background-color: #bebebe; 
 }
 
 #individual-request {
     width: audto;
     display: flex;
     align-items: center;
-    background-color: #bebebe; 
+    background-color: #e0dede; 
     margin: 5px;
     border-radius: 10px;
-    border: solid rgb(109, 109, 109) 3px
+    border: solid rgb(156, 156, 156) 3px
 }
 
 #accept-friend-request {
