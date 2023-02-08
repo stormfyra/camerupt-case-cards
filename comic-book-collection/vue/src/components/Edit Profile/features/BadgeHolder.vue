@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p v-if="badges.length == 0 && !small"><em><strong>This user doesn't have any badges yet.</strong></em></p>
+        <p class="card-text" v-if="badges.length == 0 && !small"><em><strong>This user doesn't have any badges yet.</strong></em></p>
         <img v-for="badge in badges" :key="badge.id" :src="badgeSource(badge)" :alt="badge" :class="small ? 'small-badge' : 'badge'">
     </div>
     
@@ -38,6 +38,15 @@ export default {
 </script>
 
 <style scoped>
+.card-text {
+    margin-top: -.5em;
+    background-color: rgba(212, 40, 42, 0.5);
+    border-radius: .75em;
+    padding-left: .5em;
+    padding-right: .5em;
+    width: fit-content;
+    /* border: solid rgb(221, 47, 50, 0.5) .25em; */
+}
 .badge {
     height: 40px;
     width: 40px;

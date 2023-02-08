@@ -79,9 +79,9 @@ export default {
 
 <style scoped>
 .form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: white;
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
 }
 
 .call-to-action {
@@ -111,12 +111,12 @@ button > a {
 }
 
 input{
-    width: 90%;
-    height: 20%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
+  width: 90%;
+  height: 20%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
 }
 
 #radioButton{

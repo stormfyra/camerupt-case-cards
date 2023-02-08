@@ -22,16 +22,19 @@
         </div>
         <div v-if="!small">
             <h2 v-if="user.bio">Bio</h2>
-            <em><p class="bio">{{user.bio}}</p></em>
+            <em><p class="bio card-text">{{user.bio}}</p></em>
             <!-- stats -->
             <h2>User Stats</h2>
-            <p v-if="statistics.length == 0"><em><strong>This user doesn't have any cards in public collections yet.</strong></em></p>
-            <p v-for="statistic in statistics" :key="statistic" class="stat">{{statistic}}</p>
+            <div class="card-text">
+                <p v-if="statistics.length == 0"><em><strong>This user doesn't have any cards in public collections yet.</strong></em></p>
+                <em><p v-for="statistic in statistics" :key="statistic">{{statistic}}</p></em>
+            </div>
 
             <!-- badges -->
             <h2 id="badges-label">Badges</h2>
+
         </div>
-            <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" :badges='badges' />
+            <badge-holder v-if="user != 'wait' && !tinyCard" :small='small' :user='user' class="badge-holder" />
     </div>
 </template>
 
@@ -111,6 +114,14 @@ export default {
 </script>
 
 <style scoped>
+.card-text {
+    background-color: rgba(212, 40, 42, 0.5);
+    border-radius: .75em;
+    padding-left: .5em;
+    padding-right: .5em;
+    width: fit-content;
+    /* border: solid rgb(221, 47, 50, 0.5) .25em; */
+}
 #profile-image-and-pronouns {
     display: flex;
     flex-direction: column;
