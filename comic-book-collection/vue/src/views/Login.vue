@@ -114,6 +114,7 @@ export default {
   display: flex;
   gap: 20px;
   flex-direction: column;
+  justify-content: space-evenly;
   align-content: center;
   padding: 40px;
   margin: 0 3%;
@@ -124,7 +125,7 @@ export default {
   box-shadow: 0px 10px 10px rgb(0 0 0 / 20%);
   
   width: 430px;
-  height: 80%;
+  height: 530px;
   margin: 0 6%;
 
   display: flex;
@@ -180,7 +181,7 @@ a{
   gap: 5px;
 }
 
-@media (max-height: 575px) {
+@media (max-height: 650px) {
   .text-center{
     align-items: center;
     justify-content: center;
