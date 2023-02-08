@@ -1,43 +1,42 @@
 <template>
   <div id="loginPage">
-  <div id="login" class="text-center">
-    <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
-      <div
-        class="alert alert-danger"
-        role="alert"
-        v-if="invalidCredentials"
-      >Invalid username and password!</div>
-      <div
-        class="alert alert-success"
-        role="alert"
-        v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <router-link :to="{ name: 'register' }">Need an account? Click here to register!</router-link>
-      <button type="submit">Login</button>
-    </form>
-  </div>
-  <div id="pokePic">
-    <img src="camerupt-removebg-preview.png" alt="pokemon picture here">
+  <div id="bg">
+    <div id="login" class="text-center">
+      <form class="form-signin" @submit.prevent="login">
+        <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          v-if="invalidCredentials"
+        >Invalid username and password!</div>
+        <div
+          class="alert alert-success"
+          role="alert"
+          v-if="this.$route.query.registration"
+        >Thank you for registering, please sign in.</div>
+        <label for="username" class="sr-only">Username</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          placeholder="Username"
+          v-model="user.username"
+          required
+          autofocus
+        />
+        <label for="password" class="sr-only">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Password"
+          v-model="user.password"
+          required
+        />
+        <router-link :to="{ name: 'register' }">Need an account? Click here to register!</router-link>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   </div>
   </div>
 </template>
@@ -81,45 +80,54 @@ export default {
 };
 </script>
 
-<style>
-
-  #loginPage{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "form pic";
-
-    position: fixed;
-    top: 15%;
+<style scoped>
+Nav {
+  margin: 0 10%;
+  border-bottom: 0px;
+}
+  body::v-deep {
+    margin: 0 !important;
   }
 
-  /* .text-center{
-    border-radius: 12px;
-    box-shadow: 0px 20px 20px rgb(0 0 0 / 20%);
-    
-    width: 505px;
-    height: 700px;
-
-    display: grid;
-    grid-area: form;
-    justify-self: center;
-
-  } */
-
-  /* .form-register, .form-signin{
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    padding: 40px;
-  } */
-
-  #pokePic{
-    display: grid;
-    grid-area: pic;
-    align-items: center;
-    justify-self: center;
-    width: 120%;
-
+  #loginPage {
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
   }
+
+  #bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-image: url("../../resources/backgrounds/aggron.jpg");
+  background-size: cover;
+  background-position: 0 18%;
+}
+
+ form {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-content: center;
+
+  padding: 40px;
+  margin: 0 3%;
+}
+.text-center{
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0px 10px 10px rgb(0 0 0 / 20%);
+  
+  width: 380px;
+  height: 530px;
+  margin: 0 6%;
+
+  display: flex;
+  margin-top: 200px;
+}
+h1 {
+  margin-top: 10px;
+}
 
   a{
     text-decoration: none;
@@ -148,6 +156,7 @@ export default {
     outline: 0;
     box-shadow: 0 0 0 3px #E45052;
   }
+
 
 
 </style>

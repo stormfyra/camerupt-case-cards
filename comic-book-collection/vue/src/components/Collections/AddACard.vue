@@ -4,17 +4,17 @@
 
         <!-- checkboxes for element types -->
         <div class="element-checkboxes">
-            <input type="checkbox" name="colorless" value="colorless" checked> Colorless
-            <input type="checkbox" name="darkness" value="darkness"> Darkness
-            <input type="checkbox" name="dragon" value="dragon"> Dragon
-            <input type="checkbox" name="fairy" value="fairy"> Fairy
-            <input type="checkbox" name="fighting" value="fighting" checked> Fighting
-            <input type="checkbox" name="fire" value="fire"> Fire
-            <input type="checkbox" name="grass" value="grass"> Grass
-            <input type="checkbox" name="lightning" value="lightning"> Lightning/Electric
-            <input type="checkbox" name="metal" value="metal"> Metal
-            <input type="checkbox" name="psychic" value="psychic"> Psychic
-            <input type="checkbox" name="water" value="water"> Water
+            <input type="checkbox" name="colorless" value="colorless"> <label for="colorless">Colorless</label>
+            <input type="checkbox" name="darkness" value="darkness"> <label for="darkness">Darkness</label>
+            <input type="checkbox" name="dragon" value="dragon"> <label for="dragon">Dragon</label>
+            <input type="checkbox" name="fairy" value="fairy"> <label for="fairy">Fairy</label>
+            <input type="checkbox" name="fighting" value="fighting"> <label for="fighting">Fighting</label>
+            <input type="checkbox" name="fire" value="fire"> <label for="fire">Fire</label>
+            <input type="checkbox" name="grass" value="grass"> <label for="grass">Grass</label>
+            <input type="checkbox" name="lightning" value="lightning"> <label for="lightning">Lightning/Electric</label>
+            <input type="checkbox" name="metal" value="metal"> <label for="metal">Metal</label>
+            <input type="checkbox" name="psychic" value="psychic"> <label for="psychic">Psychic</label>
+            <input type="checkbox" name="water" value="water"> <label for="water">Water</label>
         </div>
 
         <div id="button-bar">
@@ -90,7 +90,8 @@ export default {
     },
     methods: {
         searchAllCards() {
-            externalPokemonCardService.getCardByNamePart(this.internalSearchParamater).then(response => this.externalCards = response.data.data);
+            externalPokemonCardService.getCardByNamePart(this.internalSearchParamater)
+                                      .then(response => this.externalCards = response.data.data);
         },
         off() {
             this.externalCards = [];
