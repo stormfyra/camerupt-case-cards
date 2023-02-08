@@ -1,61 +1,48 @@
 <template>
     <div id="edit-collection">
-        <scrolly :style="{ width: '600px', height: '450px' }">
-            <scrolly-viewport>
-                <form class="form-container">
-                    <div id="title-and-close">
-                      <h1 id="title">Edit Your Collection</h1>
-                    </div>
-                    <label for="title">Title</label>
-                    <input 
-                        type="text"
-                        name="title"
-                        placeholder="Title"
-                        v-model="updatedCollection.title"
-                    />
-                    <label for="description">Description</label>
-                    <input 
-                        type="text"
-                        id="description"
-                        placeholder="Description"
-                        v-model="updatedCollection.description"
-                    />
-                    <div class="switch-div">
-                        <p class="private-text" style="display: inline-block">public</p>
-                        <label class="switch">
-                            <input type="checkbox" v-model="updatedCollection.isPrivate" />
-                            <span class="slider round" />
-                        </label>
-                        <p class="private-text" style="display: inline-block">private</p>
-                    </div>
-                    <div class="button-holder">
-                      <button id="submit" @click.prevent="onSubmit">Submit</button>
-                      <button @click.prevent="showDeleteCollection" id="delete-button">Delete</button>
-                    </div>
-                    <div class="overlay" v-if="$store.state.showDeleteCollection">
-                      <confirm-delete class="overlay-form" :collection="collection" />
-                    </div>
-                </form>
-            </scrolly-viewport>
-            <scrolly-bar axis="y"></scrolly-bar>
-            <scrolly-bar axis="x"></scrolly-bar>
-            </scrolly>
-
-            
+              <form class="form-container">
+                  <div id="title-and-close">
+                    <h1 id="title">Edit Your Collection</h1>
+                  </div>
+                  <label for="title">Title</label>
+                  <input 
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      v-model="updatedCollection.title"
+                  />
+                  <label for="description">Description</label>
+                  <input 
+                      type="text"
+                      id="description"
+                      placeholder="Description"
+                      v-model="updatedCollection.description"
+                  />
+                  <div class="switch-div">
+                      <p class="private-text" style="display: inline-block">public</p>
+                      <label class="switch">
+                          <input type="checkbox" v-model="updatedCollection.isPrivate" />
+                          <span class="slider round" />
+                      </label>
+                      <p class="private-text" style="display: inline-block">private</p>
+                  </div>
+                  <div class="button-holder">
+                    <button id="submit" @click.prevent="onSubmit">Submit</button>
+                    <button @click.prevent="showDeleteCollection" id="delete-button">Delete</button>
+                  </div>
+                  <div class="overlay" v-if="$store.state.showDeleteCollection">
+                    <confirm-delete class="overlay-form" :collection="collection" />
+                  </div>
+              </form>
     </div>
 </template>
 
 <script>
-import collectionService from '../../services/CollectionService.js'
-import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly'
-import confirmDelete from './ConfirmDelete.vue'
-
-export default{
+import collectionService from '../../services/CollectionService.js';
+import confirmDelete from './ConfirmDelete.vue';
+export default {
   name: 'edit-collection',
   components: {
-      Scrolly,
-      ScrollyViewport,
-      ScrollyBar,
       confirmDelete
   },
   data() {
@@ -71,17 +58,15 @@ export default{
   },
   methods: {
       off() {
-          this.$store.commit('CHANGE_SHOW_COLLECTION_FORM')
+          this.$store.commit('CLOSE_OVERLAYS');
       },
       onSubmit() {
-        collectionService.updateCollection(
-              this.$route.params.collectionId, this.updatedCollection
-            );
+        collectionService.updateCollection(this.$route.params.collectionId, this.updatedCollection);
         this.off();
-        this.$router.go()
+        this.$router.go();
       },
       showDeleteCollection() {
-        this.$store.commit('CHANGE_SHOW_DELETE_COLLECTION')
+        this.$store.commit('CHANGE_SHOW_DELETE_COLLECTION');
       },
   },
 };

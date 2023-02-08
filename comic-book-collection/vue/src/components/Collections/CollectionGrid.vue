@@ -1,17 +1,16 @@
 <template>
     <div :class="smallView ? 'small-collection-container' : 'collection-container'">
         <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1>+</h1></button>
-
-        <div v-for="collection in collections" :key="collection.index"  :class="smallView ? 'smallCollectionImage' : 'collectionImage'">
+        <div v-for="collection in collections" :key="collection.index"  :class="{ 'collection-image' : !smallView }">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
                 <p class="title">{{collection.title}}</p>
                 <p v-if="!ownedByMe && !smallView" class="collection-owner"><em>Owner: {{collection.ownerUsername}}</em></p>
             </router-link>
             <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">    
-                <img src="../../../resources/backOfPokemonCard.jpg" alt="" :class="smallView ? 'smallCardBack' : 'cardBack'">
+                <img src="../../../resources/backOfPokemonCard.jpg" alt="" :class="smallView ? 'small-card-back' : 'card-back'">
             </router-link>
             <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">
-                <p class="privacyStatus" v-if="ownedByMe">{{ collection.private ? "private" : "public" }}</p>
+                <p class="privacy-status" v-if="ownedByMe">{{ collection.private ? "private" : "public" }}</p>
             </router-link>
         </div>
     </div>
@@ -53,7 +52,6 @@ export default {
 </script>
 
 <style scoped>
-
 .collection-container {
     width: 100%;
     display: flex;
@@ -79,7 +77,7 @@ export default {
     gap: 1em;
 }
 
-.collectionImage {
+.collection-image {
     width: 200px;
     height: 280px;
     border: 2px solid rgb(51, 51, 51);
@@ -89,37 +87,8 @@ export default {
     z-index: 1;
     display: flex;
     align-items: flex-end;
-
 }
 
-.cardBack {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 280px;
-    border-radius: 10px;
-}
-
-.smallCardBack {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 140px;
-    border-radius: 10px;
-}
-p {
-    margin: 5px;
-}
-.privacyStatus {
-    z-index: 3;
-    color: white;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    font-size: 9.5pt;
-}
 .title-holder {
     background-color: rgba(0, 0, 0, 0.85);
     color: white;
@@ -153,6 +122,28 @@ p {
     border-radius:10px 10px  0 0;
 }
 
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 280px;
+    border-radius: 10px;
+}
+
+.small-card-back {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 140px;
+    border-radius: 10px;
+}
+
+p {
+    margin: 5px;
+}
+
 button > h1 {
     font-size: 50pt;
     font-weight: 500;
@@ -167,35 +158,12 @@ button > h1 {
     font-size: 9.5pt;
 }
 
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 800px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 1200px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1400px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    }
+.privacy-status {
+    z-index: 3;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 9.5pt;
 }
 </style>

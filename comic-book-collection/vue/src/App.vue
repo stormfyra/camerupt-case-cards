@@ -109,16 +109,6 @@ button{
   margin: 10px;
 }
 
-#card-container {
-  width: 100%;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  background-color: #87CEEE;
-  height: auto + 40px;
-  padding: 10px 0px;
-}
-
 button {
   cursor: pointer;
   text-align: center;
@@ -154,6 +144,7 @@ button {
     padding: 20px;
     gap: 5px;
 }
+
 #banner {
   width: 100%;
   height: 300px;

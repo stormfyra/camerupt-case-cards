@@ -1,14 +1,13 @@
 <template>
-    <div style="display: flex; flex-direction: column;">
-        <input type="text" v-model="internalSearchParamater" id="searchbar" />
-
+    <div id="add-cards-container">
+        <input type="text" v-model="internalSearchParamater" id="search-bar" />
         <div id="button-bar">
             <button @click="addSelectedCards">Add selected</button>
             <label for="search-all-cards">Not finding the right card?
                 <button name="search-all-cards" @click="searchAllCards">Search all cards</button>
             </label>
         </div>
-        <div class="choose-a-card">
+        <div id="choose-a-card">
             <img class="card-image selected-card" v-for="card in selectedCards" :key="card.id" :src="card.images.small" @click="removeFromSelectedCards(card)" />
             <img class="card-image" v-for="card in filteredCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
             <img class="card-image" v-for="card in filteredExternalCards" :key="card.id" :src="card.images.small" @click="addToSelectedCards(card)" />
@@ -102,13 +101,24 @@ export default {
 </script>
 
 <style scoped>
-.element-checkboxes {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    margin: 10px;
+#add-cards-container {
+    display: flex;
+    flex-direction: column;
 }
-.choose-a-card {
+
+#search-bar {
+    width: 80%;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+#button-bar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+#choose-a-card {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -122,34 +132,11 @@ export default {
     margin: 5px;
 }
 
-.selected-card {
-    border: blue 10px solid;
-}
-
-scrolly:hover {
-    cursor: default;
-}
-
 .card-image:hover{
     cursor: pointer;
 }
 
-#close-add-card {
-    width: 20px;
-    height: 20px;
-    align-self: flex-end;
-    margin-right: 20px;
-}
-
-#searchbar {
-    width: 80%;
-    align-self: center;
-    margin-bottom: 20px;
-}
-
-#button-bar {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 10px;
+.selected-card {
+    border: blue 10px solid;
 }
 </style>
