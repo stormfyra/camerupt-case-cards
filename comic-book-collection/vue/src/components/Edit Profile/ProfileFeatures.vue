@@ -23,7 +23,7 @@
         </div>
         <div class="friends">
             <h3 v-if="friends.length != 0">Friends</h3>
-                <friends-grid :smallView='true' :tinyCard="true" :users="friends" />
+            <friends-grid :smallView='true' :tinyCard="true" :users="friends" />
         </div>
     </div>
   </div>

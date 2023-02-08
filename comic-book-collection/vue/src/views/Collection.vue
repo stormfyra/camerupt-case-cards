@@ -24,7 +24,7 @@
 
           <!-- filtering and stats -->
           <div class="filter-and-stats">
-            <select v-model="selectedFilterType">
+            <select v-model="selectedFilterType" @change="clearFilter">
               <option value="">No Filter</option>
               <option v-for='filterType in filterTypes' :key='filterType' :value='filterType'>{{filterType}}</option>
             </select>
@@ -239,6 +239,9 @@ export default {
                 .then(response => {
                   this.$router.push({name: 'profileWithId', params: {id: response.data}});
               })
+    },
+    clearFilter(){
+      this.selectedFilter = ''
     }
   }
 }
