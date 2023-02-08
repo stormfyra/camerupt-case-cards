@@ -168,6 +168,7 @@ p {
     margin-bottom: 1%;
 }
 
+
 .user-header {
     display: flex;
     justify-content: space-between;
@@ -208,6 +209,7 @@ p {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin-top: 5px;
 }
 
 #badges-label {
