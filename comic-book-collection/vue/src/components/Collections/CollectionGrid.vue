@@ -1,17 +1,16 @@
 <template>
     <div :class="smallView ? 'small-collection-container' : 'collection-container'">
-        <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1>+</h1></button>
-
-        <div v-for="collection in collections" :key="collection.index"  :class="smallView ? 'smallCollectionImage' : 'collectionImage'" class="hover-shake">
+        <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1 id="add-collection-button-label">+</h1></button>
+        <div v-for="collection in collections" :key="collection.index"  :class="{ 'collection-image' : !smallView }" class="hover-shake">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
                 <p class="title">{{collection.title}}</p>
                 <p v-if="!ownedByMe && !smallView" class="collection-owner"><em>Owner: {{collection.ownerUsername}}</em></p>
             </router-link>
             <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">    
-                <img src="../../../resources/backOfPokemonCard.jpg" alt="" :class="smallView ? 'smallCardBack' : 'cardBack'">
+                <img src="../../../resources/backOfPokemonCard.jpg" alt="" :class="smallView ? 'small-card-back' : 'card-back'">
             </router-link>
             <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">
-                <p class="privacyStatus" v-if="ownedByMe">{{ collection.private ? "private" : "public" }}</p>
+                <p class="privacy-status" v-if="ownedByMe">{{ collection.private ? "private" : "public" }}</p>
             </router-link>
         </div>
     </div>
@@ -27,7 +26,11 @@ export default {
     ],
     methods: {
         showAddForm() {
-              this.$store.commit('CHANGE_SHOW_COLLECTION_FORM');
+            this.$store.commit('CHANGE_SHOW_COLLECTION_FORM');
+        },
+        upgaradeToPremium() {
+            this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
+            this.$store.commit('CHANGE_SHOW_PREMIUM_FORM');
         }
     },
     computed: {
@@ -46,6 +49,21 @@ export default {
             }
             
             return showForm
+        },
+        showUpgradeCard() {
+            let showForm;
+            showForm = !this.smallView
+            if (showForm){
+                showForm = (!!this.$store.state.user)
+            }
+            if (showForm){
+                showForm = (this.collections.length >= 3 && !(this.$store.state.user.isPremium))
+            }
+            if (showForm) {
+                showForm = this.ownedByMe
+            }
+            
+            return showForm
         }
     }
   
@@ -53,6 +71,15 @@ export default {
 </script>
 
 <style scoped>
+.collection-container {
+    justify-items: center;
+    align-items: center;
+    padding: 10px 12px;
+}
+
+h3 {
+    color: black;
+}
 
 .small-collection-container {
     width: 100%;
@@ -64,7 +91,13 @@ export default {
     gap: 1em;
 }
 
-.collectionImage {
+#add-collection-button-label {
+    font-size: 50pt;
+    font-weight: 500;
+    color: rgb(109, 109, 109);
+}
+
+.collection-image {
     width: 200px;
     height: 280px;
     border: 2px solid rgb(51, 51, 51);
@@ -74,37 +107,8 @@ export default {
     z-index: 1;
     display: flex;
     align-items: flex-end;
-
 }
 
-.cardBack {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 280px;
-    border-radius: 10px;
-}
-
-.smallCardBack {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 140px;
-    border-radius: 10px;
-}
-p {
-    margin: 5px;
-}
-.privacyStatus {
-    z-index: 3;
-    color: white;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    font-size: 9.5pt;
-}
 .title-holder {
     background-color: rgba(0, 0, 0, 0.85);
     color: white;
@@ -138,12 +142,6 @@ p {
     border-radius:10px 10px  0 0;
 }
 
-button > h1 {
-    font-size: 50pt;
-    font-weight: 500;
-    color: rgb(109, 109, 109);
-}
-
 .title {
     font-weight: 600;
 }
@@ -152,35 +150,34 @@ button > h1 {
     font-size: 9.5pt;
 }
 
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 280px;
+    border-radius: 10px;
+}
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr;
-    }
+.small-card-back {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 140px;
+    border-radius: 10px;
 }
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr;
-    }
+
+.privacy-status {
+    z-index: 3;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 9.5pt;
 }
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 800px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 1200px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1400px) {
-    .collection-container {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    }
+
+p {
+    margin: 5px;
 }
 </style>

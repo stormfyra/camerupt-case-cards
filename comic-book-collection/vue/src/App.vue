@@ -73,7 +73,7 @@ input{
   height: 50px;
 }
 
-button{
+button {
   background-color: var(--site-red);
   border: none;
   border-radius: 8px;
@@ -83,7 +83,6 @@ button{
 
   font-size: 12pt;
   font-weight: 500;
-  
 }
 
 .empty-card {
@@ -108,16 +107,6 @@ button{
   border: 2px solid rgb(46, 46, 46);
   border-radius: 10px;
   margin: 10px;
-}
-
-#card-container {
-  width: 100%;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  background-color: #87CEEE;
-  height: auto + 40px;
-  padding: 10px 0px;
 }
 
 button {
@@ -155,6 +144,7 @@ button {
     padding: 20px;
     gap: 5px;
 }
+
 #banner {
   width: 100%;
   height: 300px;
