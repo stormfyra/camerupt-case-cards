@@ -49,11 +49,6 @@ export default {
   gap: 20px;
 }
 
-p {
-  font-weight: 500;
-  margin-left: 5%;
-}
-
 #accept-friend-request {
   background-color: rgb(75, 182, 75);
   height: 25px;
@@ -66,5 +61,10 @@ p {
   height: 25px;
   width: 25px;
   border-radius: 100%
+}
+
+p {
+  font-weight: 500;
+  margin-left: 5%;
 }
 </style>
