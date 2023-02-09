@@ -10,7 +10,7 @@
         <div id="main-header" v-if="isLoggedIn">
             <div id="banner">
                 <div id="banner-image">
-                    <img src="https://images.pokemontcg.io/bw11/25_hires.png" id="banner-image">
+                    <img src="https://images.pokemontcg.io/swsh12pt5/160_hires.png" id="banner-image">
                 </div>
 
                 <div id="header-text" class="page-title">
@@ -122,5 +122,9 @@ input{
 #radioButton{
     display: flex;
     justify-content: space-between;
+}
+
+#banner-image {
+    object-position: 10% 45%;
 }
 </style>

@@ -37,6 +37,7 @@ Nav {
 body {
   background-color: #faf9f6;
   margin: 0 10%;
+  margin-bottom: 2%;
 }
 
 form {
@@ -197,4 +198,20 @@ button {
         , 0 0 5px 0px transparent, 0px 10px 15px -5px rgb(97, 94, 94)
         , 0 2px 20px -5px rgb(97, 94, 94), 0 0 20px 0px transparent;
 }
+.hover-shake:hover{
+    animation: shake 1s;
+    animation-iteration-count: infinite;
+}
+@keyframes shake {
+  0% { transform: translate(0px, 1px) rotate(0deg); }
+  12.5% { transform: translate(-1px, -1px) rotate(-1deg); }
+  25% { transform: translate(-1px, 1px) rotate(1deg); }
+  37.5% { transform: translate(1px, 1px) rotate(0deg); }
+  50% { transform: translate(0px, -1px) rotate(1deg); }
+  62.5% { transform: translate(-1px, 1px) rotate(-1deg); }
+  75% { transform: translate(-1px, 1px) rotate(0deg); }
+  87.5% { transform: translate(1px, 0px) rotate(-1deg); }
+  100% { transform: translate(-1px, -1px) rotate(1deg); }
+}
+
 </style>

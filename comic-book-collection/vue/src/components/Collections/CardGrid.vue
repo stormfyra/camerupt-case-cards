@@ -1,14 +1,14 @@
 <template>
-<div class="collection-container">
-  <div v-for="(card, index) in cards" :key="index">
-    <img :src="card.images.small" :alt="card.cardName" class="card-image" />
-    <div id="quantity-div">
-      <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, -1)">-</button>
-      <p id="card-quantity"><strong>x{{card.quantity}}</strong></p>
-      <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, 1)">+</button>
+    <div class="collection-container">
+        <div v-for="(card, index) in cards" :key="index">
+            <img :src="card.images.small" :alt="card.cardName" class="card-image hover-shake" />
+            <div id="quantity-div">
+                <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, -1)">-</button>
+                <p id="card-quantity"><strong>x{{card.quantity}}</strong></p>
+                <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, 1)">+</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </template>
 
 <script>
@@ -65,13 +65,13 @@ export default {
     , 0 2px 15px -5px rgb(36, 35, 35), 0 0 20px 0px transparent;
   border: none;
 }
+/* 
+img:hover{
+    animation: shake 1s;
+    animation-iteration-count: infinite;
+} */
 
-img:hover {
-  animation: shake 1s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes shake {
+/* @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
   10% { transform: translate(-1px, -2px) rotate(-2deg); }
   20% { transform: translate(-3px, 0px) rotate(1deg); }
@@ -83,7 +83,7 @@ img:hover {
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(5px, 2px) rotate(0deg); }
   100% { transform: translate(5px, -2px) rotate(-1deg); }
-}
+} */
 
 #quantity-div {
   display: flex;

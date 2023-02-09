@@ -1,6 +1,6 @@
 <template>    
     <div id="tiny-friend-card-holder" >
-        <div v-for="user in users" v-bind:key="user.index" @click="goToProfile(user.id)" :class="tinyCard ? 'tinyCollectionImage' : 'collectionImage'">
+        <div v-for="user in users" v-bind:key="user.index" @click="goToProfile(user.id)" :class="tinyCard ? 'tinyCollectionImage' : 'collectionImage'" class="hover-shake">
             <profile-card :class="smallView ? 'tiny-friend-card' : 'medium-card'" :user='user' :small='true' :tinyCard='smallView' ></profile-card>
         </div>
     </div>

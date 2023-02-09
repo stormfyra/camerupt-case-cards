@@ -26,7 +26,6 @@ export default {
     },
     data() {
     return {
-        selectedPokemon: '',
         badges: [],
         user: 'wait',
         cards: []

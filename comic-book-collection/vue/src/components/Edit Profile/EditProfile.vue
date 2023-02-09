@@ -2,7 +2,7 @@
     <div id = "profile-page">
         <div id = "edit-profile">
             <div class="profile-pic">
-            <h1>Edit Profile</h1><profile-image :small="false" :pokemon="$store.state.user.profilePokemon" id="profile-pic" />
+            <h1>Edit Profile</h1><profile-image :small="false" :pokemon="newPokemon" id="profile-pic" />
             </div>
 
             <h2>Profile Information</h2>
@@ -12,7 +12,7 @@
                     <input v-model="user.username" id="username" name="username">
                 </label>
                 <label for="select-profile-pokemon" class="input-label">Profile Pokemon
-                    <select-profile-pokemon />
+                    <select-profile-pokemon @changeProfilePokemon="(selectedPokemon) => newPokemon = selectedPokemon"/>
                 </label>
                 <label for="pronouns" class="input-label">Pronouns
                     <input v-model="user.pronouns" id="pronouns">
@@ -52,19 +52,22 @@ export default {
     },
     data() {
         return{
-            user: {}
+            user: {},
+            newPokemon: ''
         }
     },
     props: [
         'cards'
     ],
     created() {
-            this.user = this.$store.state.user
+            this.user = this.$store.state.user;
+            this.newPokemon = this.user.profilePokemon
+            
     },
     methods: {
         updateProfile() {
+            this.user.profilePokemon = this.newPokemon
             this.$store.commit('SET_USER', this.user)
-            console.log(this.user);
             userService.updateUserBio(this.user)
             this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
             this.$router.go();

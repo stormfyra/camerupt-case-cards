@@ -1,5 +1,5 @@
 <template>
-<select name="pokemon-rep" v-model="selectedPokemon" @change="updateProfilePokemon">
+<select name="pokemon-rep" v-model="selectedPokemon" @change="changeProfilePokemon">
   <option v-for="pokemon in pokemons" :key="pokemon">{{pokemon}}</option>
 </select>
 </template>
@@ -27,8 +27,8 @@ export default {
     this.selectedPokemon = this.$store.state.user.profilePokemon;
   },
   methods: {
-    updateProfilePokemon() {
-      this.$store.commit('UPDATE_PROFILE_POKEMON', this.selectedPokemon);
+    changeProfilePokemon() {
+      this.$emit('changeProfilePokemon', this.selectedPokemon);
     }
   }
 }

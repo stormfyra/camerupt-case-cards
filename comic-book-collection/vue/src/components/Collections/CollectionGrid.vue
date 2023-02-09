@@ -1,19 +1,19 @@
 <template>
-<div :class="smallView ? 'small-collection-container' : 'collection-container'">
-  <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1 id="add-collection-button-label">+</h1></button>
-  <div v-for="collection in collections" :key="collection.index"  :class="{ 'collection-image' : !smallView }">
-    <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
-      <p class="title">{{collection.title}}</p>
-      <p v-if="!ownedByMe && !smallView" class="collection-owner"><em>Owner: {{collection.ownerUsername}}</em></p>
-    </router-link>
-    <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">    
-      <img src="../../../resources/backOfPokemonCard.jpg" alt="" :class="smallView ? 'small-card-back' : 'card-back'">
-    </router-link>
-    <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">
-      <p class="privacy-status" v-if="ownedByMe">{{ collection.private ? "private" : "public" }}</p>
-    </router-link>
-  </div>
-</div>
+    <div :class="smallView ? 'small-collection-container' : 'collection-container'">
+        <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1 id="add-collection-button-label">+</h1></button>
+        <div v-for="collection in collections" :key="collection.index"  :class="{ 'collection-image' : !smallView }" class="hover-shake">
+            <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
+                <p class="title">{{collection.title}}</p>
+                <p v-if="!ownedByMe && !smallView" class="collection-owner"><em>Owner: {{collection.ownerUsername}}</em></p>
+            </router-link>
+            <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">    
+                <img src="../../../resources/backOfPokemonCard.jpg" alt="" :class="smallView ? 'small-card-back' : 'card-back'">
+            </router-link>
+            <router-link :to="{name: 'collection', params: {collectionId: collection.collectionId}}">
+                <p class="privacy-status" v-if="ownedByMe">{{ collection.private ? "private" : "public" }}</p>
+            </router-link>
+        </div>
+    </div>
 </template>
 
 <script>
