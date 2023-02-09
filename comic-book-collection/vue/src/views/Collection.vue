@@ -37,10 +37,6 @@
               <option value="">All</option>
               <option v-for='subtype in subtypes' :key='subtype' :value='subtype'>{{subtype}}</option>
             </select>
-            <select v-if="selectedFilterType == 'Supertype'" v-model="selectedFilter">
-              <option value="">All</option>
-              <option v-for='supertype in supertypes' :key='supertype' :value='supertype'>{{supertype}}</option>
-            </select>
             <select v-if="selectedFilterType == 'Set Name'" v-model="selectedFilter">
               <option value="">All</option>
               <option v-for='set in setNames' :key='set' :value='set'>{{set}}</option>
@@ -81,9 +77,8 @@ export default {
       description: '',
       isPrivate: true,
       cards: [],
-      filterTypes: ['Supertype', 'Type', 'Subtype', 'Set Name', 'Rarity'],
+      filterTypes: ['Type', 'Subtype', 'Set Name', 'Rarity'],
       selectedFilterType: '',
-      supertypes: ['Pokémon', 'Trainer', 'Energy'],
       types: ['Fire', 'Water', 'Grass', 'Lightning', 'Fighting', 'Psychic','Colorless', 'Darkness', 'Metal', 'Dragon', 'Fairy'],
       selectedFilter: ''
     }
