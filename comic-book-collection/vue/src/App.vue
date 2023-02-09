@@ -101,7 +101,7 @@ button {
   color: var(--site-red);
 }
 
-.cardImage {
+.card-image {
   width: 200px;
   height: 280px;
   border: 2px solid rgb(46, 46, 46);

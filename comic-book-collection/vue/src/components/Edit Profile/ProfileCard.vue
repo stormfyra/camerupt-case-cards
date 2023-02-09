@@ -13,7 +13,7 @@
       </div>
     </div>
     <div id="profile-image-and-pronouns">
-      <profile-image class="profile-image" :small="false" :pokemon="$store.state.user.profilePokemon"></profile-image>
+      <profile-image class="profile-image" :small="false" :pokemon="user.profilePokemon"></profile-image>
       <div v-if="!small" id="pronouns">
         <p v-if="user.pronouns">Pronouns: {{user.pronouns}}</p>
       </div>
