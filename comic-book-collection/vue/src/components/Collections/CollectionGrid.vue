@@ -1,6 +1,11 @@
 <template>
     <div :class="smallView ? 'small-collection-container' : 'collection-container'">
         <button class="empty-card" v-on:click="showAddForm" v-if="showAddCollectionButton"><h1 id="add-collection-button-label">+</h1></button>
+        <button @click="upgradeToPremium" class="empty-card" v-if="showUpgradeCard"><h3>Standard users may only have three collections at a time 
+          <button>Upgrade to Premium</button>
+          </h3>
+        </button>
+        <overlay />
         <div v-for="collection in collections" :key="collection.index"  :class="{ 'collection-image' : !smallView }" class="hover-shake">
             <router-link :class="smallView ? 'small-title-holder' : 'title-holder'" :to="{name: 'collection', params: {collectionId: collection.collectionId}}"> 
                 <p class="title">{{collection.title}}</p>
@@ -17,6 +22,8 @@
 </template>
 
 <script>
+import Overlay from '../Overlay.vue'
+
 export default {
   name: 'collection-grid',
   props: [
@@ -24,12 +31,15 @@ export default {
     'ownedByMe',
     'smallView'
   ],
+  components: {
+    Overlay
+  },
   methods: {
     showAddForm() {
       this.$store.commit('CHANGE_SHOW_COLLECTION_FORM');
     },
-    upgaradeToPremium() {
-      this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}});
+    upgradeToPremium() {
+      // this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}});
       this.$store.commit('CHANGE_SHOW_PREMIUM_FORM');
     }
   },
