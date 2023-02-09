@@ -1,5 +1,5 @@
 <template>
-  <collection-grid :collections="personalCollections" :ownedByMe="true" />
+  <collection-grid :collections="personalCollections" :ownedByMe="true"></collection-grid>
 </template>
 
 <script>

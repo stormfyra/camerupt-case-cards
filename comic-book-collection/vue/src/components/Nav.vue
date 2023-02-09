@@ -74,7 +74,7 @@ import ProfileImage from './Edit Profile/ProfileImage.vue';
         this.$router.go();
       }
     }
-}
+  };
 </script>
 
 <style scoped>
@@ -113,8 +113,8 @@ ul {
 }
 
 .profile-icon-holder {
-  width: 42px;
-  height: 42px; 
+width: 42px;
+height: 42px; 
 }
 
 .profile-icon {
