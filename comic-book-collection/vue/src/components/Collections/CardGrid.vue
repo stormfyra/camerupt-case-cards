@@ -1,14 +1,14 @@
 <template>
-<div class="collection-container">
-  <div v-for="(card, index) in cards" :key="index">
-    <img :src="card.images.small" :alt="card.cardName" class="card-image hover-shake" />
-    <div id="quantity-div">
-      <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, -1)">-</button>
-      <p id="card-quantity"><strong>x{{card.quantity}}</strong></p>
-      <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, 1)">+</button>
+    <div class="collection-container">
+        <div v-for="(card, index) in cards" :key="index">
+            <img :src="card.images.small" :alt="card.cardName" class="card-image hover-shake" />
+            <div id="quantity-div">
+                <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, -1)">-</button>
+                <p id="card-quantity"><strong>x{{card.quantity}}</strong></p>
+                <button v-if="ownedByMe" class="change-quantity" @click="updateQuantity(card, 1)">+</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </template>
 
 <script>
@@ -39,6 +39,22 @@ export default {
 </script>
 
 <style scoped>
+#card-container {
+  width: 100%;
+  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #879fee;
+  height: auto + 40px;
+  padding: 10px 0px;
+  border-radius: 30px;
+  box-shadow:  0 0 3px -1px transparent, 0 0 2px 1px transparent
+    , 0 0 5px 0px transparent, 0px 10px 15px -5px rgb(97, 94, 94)
+    , 0 2px 20px -5px rgb(97, 94, 94), 0 0 20px 0px transparent;
+}
+
 .card-image {
   width: 200px;
   height: 280px;
@@ -49,6 +65,25 @@ export default {
     , 0 2px 15px -5px rgb(36, 35, 35), 0 0 20px 0px transparent;
   border: none;
 }
+/* 
+img:hover{
+    animation: shake 1s;
+    animation-iteration-count: infinite;
+} */
+
+/* @keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-2deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(3deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(5px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(5px, 2px) rotate(0deg); }
+  100% { transform: translate(5px, -2px) rotate(-1deg); }
+} */
 
 #quantity-div {
   display: flex;
