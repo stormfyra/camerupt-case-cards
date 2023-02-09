@@ -1,10 +1,10 @@
 <template>
-  <div :class="tiny-card ? 'tiny-card' : 'profile-card'" >
+  <div :class="{'tiny-card' : tinyCard, 'small-card' : small}" class="profile-card" >
     <div class="user-header">
-        <div class="flexy">
+        <div class="user-name flexy">
           <!-- user membership type -->
           <p v-if="!small" class="account-type">{{user.isPremium ? "Premium" : "Standard"}}</p>
-          <h2 class="user-name flexFont">{{user.username}}</h2>
+          <h2  class="user-name flexFont">{{user.username}}</h2>
         </div>
         <div class="flexy">
           <p v-if="!small" class="cards">cards</p>
@@ -110,6 +110,23 @@ export default {
 </script>
 
 <style scoped>
+.tiny-card .user-name {
+    
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.user-name {
+    white-space: nowrap;
+}
+
+.small-card {
+    white-space: nowrap;
+}
+/* .user-name{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+} */
 .card-text {
     background-color: rgba(212, 40, 42, 0.5);
     border-radius: .75em;
