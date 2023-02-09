@@ -1,5 +1,5 @@
 <template>
-<select name="pokemon-rep" v-model="selectedPokemon" @change="changeProfilePokemon">
+<select v-model="selectedPokemon" @change="changeProfilePokemon">
   <option v-for="pokemon in pokemons" :key="pokemon">{{pokemon}}</option>
 </select>
 </template>

@@ -1,136 +1,108 @@
 <template>
-    <div id = "profile-page">
-        <div id = "edit-profile">
-            <div class="profile-pic">
-            <h1>Edit Profile</h1><profile-image :small="false" :pokemon="newPokemon" id="profile-pic" />
-            </div>
-
-            <h2>Profile Information</h2>
-
-            <form action="">
-                <label for="username" class="input-label">Username
-                    <input v-model="user.username" id="username" name="username">
-                </label>
-                <label for="select-profile-pokemon" class="input-label">Profile Pokemon
-                    <select-profile-pokemon @changeProfilePokemon="(selectedPokemon) => newPokemon = selectedPokemon"/>
-                </label>
-                <label for="pronouns" class="input-label">Pronouns
-                    <input v-model="user.pronouns" id="pronouns">
-                </label>
-                <label for="bio" class="input-label">Bio
-                    <input v-model="user.bio" id="bio">
-                </label>
-
-                <h2>Shipping Information</h2>
-                <label for="fullName" class="input-label">Full Name
-                    <input v-model="user.fullName" type="text">
-                </label>
-
-                <label for="streetAddress" class="input-label">Full Address
-                    <input v-model="user.shippingAddress" type="text">
-                </label>
-                <div class="button-div">
-                    <button @click="updateProfile()" type="submit">Save</button>
-                </div>
-
-            </form>
-
-        </div>
+<div id="profile-page">
+  <div id="edit-profile">
+    <div class="profile-pic">
+      <h1>Edit Profile</h1>
+      <profile-image :small="false" :pokemon="newPokemon" />
     </div>
+    <h2>Profile Information</h2>
+    <form action="">
+      <label for="username" class="input-label">Username
+        <input v-model="user.username" id="username" name="username">
+      </label>
+      <label class="input-label">Profile Pokemon
+        <select-profile-pokemon @changeProfilePokemon="(selectedPokemon) => newPokemon = selectedPokemon" />
+      </label>
+      <label for="pronouns" class="input-label">Pronouns
+        <input v-model="user.pronouns" id="pronouns" />
+      </label>
+      <label for="bio" class="input-label">Bio
+        <input v-model="user.bio" id="bio" />
+      </label>
+      <h2>Shipping Information</h2>
+      <label for="full-name" class="input-label">Full Name
+        <input v-model="user.fullName" type="text" id="full-name" />
+      </label>
+      <label for="street-address" class="input-label">Full Address
+        <input v-model="user.shippingAddress" type="text" id="street-address">
+      </label>
+      <div class="button-div">
+        <button id="submit-button" @click="updateProfile()" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
 </template>
 
 <script>
-import userService from "../../services/UserService"
-import ProfileImage from './ProfileImage.vue'
-import SelectProfilePokemon from './SelectProfilePokemon.vue'
-
+import userService from "../../services/UserService";
+import ProfileImage from './ProfileImage.vue';
+import SelectProfilePokemon from './SelectProfilePokemon.vue';
 export default {
-    name: "edit-profile",
-    components: {
-        SelectProfilePokemon,
-        ProfileImage
-    },
-    data() {
-        return{
-            user: {},
-            newPokemon: ''
-        }
-    },
-    props: [
-        'cards'
-    ],
-    created() {
-            this.user = this.$store.state.user;
-            this.newPokemon = this.user.profilePokemon
-            
-    },
-    methods: {
-        updateProfile() {
-            this.user.profilePokemon = this.newPokemon
-            this.$store.commit('SET_USER', this.user)
-            userService.updateUserBio(this.user)
-            this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}})
-            this.$router.go();
-        }
+  name: "edit-profile",
+  components: {
+    SelectProfilePokemon,
+    ProfileImage
+  },
+  data() {
+    return{
+      user: {},
+      newPokemon: ''
     }
+  },
+  props: [
+    'cards'
+  ],
+  created() {
+    this.user = this.$store.state.user;
+    this.newPokemon = this.user.profilePokemon    
+  },
+  methods: {
+    updateProfile() {
+      this.user.profilePokemon = this.newPokemon;
+      this.$store.commit('SET_USER', this.user);
+      userService.updateUserBio(this.user);
+      this.$router.push({name: 'profileWithId', params: {id: this.$store.state.user.id}});
+      this.$router.go();
+    }
+  }
 }
 </script>
 
 <style scoped>
+#profile-page {
+  top: 15%;
+  align-items: center;
+}
 
-  #profile-page {
-    /* position: fixed; */
-    top: 15%;
-    align-items: center;
-  }
+#edit-profile {
+  padding: 5%;
+  margin-top: 5%;
+}
 
-  #edit-profile {
-      padding: 5%;
-      margin-top: 5%;
-  }
+form { 
+  padding: 0px;
+}
 
-  form { 
-    padding: 0px;
-  }
+.button-div {
+  display: flex;
+  gap: 15px;
+  text-align: center;
+}
 
-  #checkboxCity {
-      height: 20px;
-      width: 20px;
-  }
+#submit-button {
+  width: 100%;
+}
 
-  .text-center {
-      height: 100%;
-      width: 85%;  
-  }
+.profile-pic {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
 
-  .button-div {
-      display: flex;
-      gap: 15px;
-      text-align: center;
-  }
-
-    button {
-      width: 100%;
-  }
-
-  .profile-pic {
-      display: flex;
-      gap: 15px;
-      justify-content: space-between;
-  }
-
-  .featured-cards {
-      display: flex;
-      justify-content: space-between;
-  }
-
-  img {
-      width: 20%;
-  }
-
-  .input-label {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25em;
-  }
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
 </style>

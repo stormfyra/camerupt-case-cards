@@ -1,10 +1,10 @@
 <template>
 <div id="overall-badge-holder">
-<div id="give-badge-holder" v-for="badge in badgesToGive" :key="badge.id">
+  <div id="give-badge-holder" v-for="badge in badgesToGive" :key="badge.id">
     <img :src="badgeSource(badge)" :alt="badge" />
     <button :class="{ 'disabled' : badgesUserHas.includes(badge) }" @click="giveUserBadge(badge)">Give {{badge}}</button>
     <h3 id="given-away-all-badges" v-if="badgesToGive.size == 0">You have given away all of your badges</h3>
-</div>
+  </div>
 </div>
 </template>
 

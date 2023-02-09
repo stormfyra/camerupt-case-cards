@@ -1,6 +1,6 @@
 <template>
-  <div id="loginPage">
-    <div id="bg">
+<div id="loginPage">
+  <div id="bg">
     <div id="register" class="text-center">
       <form class="form-register" @submit.prevent="register">
         <h1 class="h3 mb-3 font-weight-normal">Create An Account</h1>
@@ -44,13 +44,12 @@
         </button>
       </form>
     </div>
-    </div>
   </div>
+</div>
 </template>
 
 <script>
 import authService from '../services/AuthService';
-
 export default {
   name: 'register',
   data() {
@@ -67,7 +66,7 @@ export default {
   },
   created() {
     if (this.$store.state.user.id) {
-      this.$router.push({ name: 'collections' })
+      this.$router.push({ name: 'collections' });
     }
   },
   methods: {
@@ -100,7 +99,7 @@ export default {
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
   },
-};
+}
 </script>
 
 <style scoped>
@@ -130,11 +129,8 @@ form {
   padding: 40px;
   margin: 0 3%;
 }
-.text-center{
-  background-color: #FFFFFF;
-  border-radius: 12px;
-  box-shadow: 0px 10px 10px rgb(0 0 0 / 20%);
 
+.text-center{
   width: 430px;
   height: 530px;
   margin: 0 6%;
@@ -142,11 +138,12 @@ form {
   display: flex;
   margin-top: 160px;
 }
+
 h1 {
   margin-top: 10px;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
   font-weight: bold;
@@ -161,17 +158,17 @@ a{
 
 #password:focus{
   outline: 0;
-  box-shadow: 0 0 0 3px #E45052;
+  box-shadow: 0 0 0 3px var(-site-red);
 }
 
 #username:focus{
   outline: 0;
-  box-shadow: 0 0 0 3px #E45052;
+  box-shadow: 0 0 0 3px var(--site-red);
 }
 
 #confirmPassword:focus{
   outline: 0;
-  box-shadow: 0 0 0 3px #E45052;
+  box-shadow: 0 0 0 3px var(--site-red);
 }
 
 
@@ -194,6 +191,7 @@ a{
     width: 85%;
     height: 35%;
   }
+
   form {
     flex-direction: row;
     justify-content: center;
