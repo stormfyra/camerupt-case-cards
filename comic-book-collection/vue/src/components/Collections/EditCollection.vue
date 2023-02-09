@@ -47,28 +47,28 @@ export default {
       confirmDelete
   },
   data() {
-      return {
-          updatedCollection: {},
-      }
+    return {
+      updatedCollection: {}
+    }
   },
   props: [
-      'collection'
+    'collection'
   ],
   created() {
-      this.updatedCollection = this.collection;
+    this.updatedCollection = this.collection;
   },
   methods: {
-      off() {
-          this.$store.commit('CLOSE_OVERLAYS');
-      },
-      onSubmit() {
-        collectionService.updateCollection(this.$route.params.collectionId, this.updatedCollection);
-        this.off();
-        this.$router.go();
-      },
-      showDeleteCollection() {
-        this.$store.commit('CHANGE_SHOW_DELETE_COLLECTION');
-      },
+    off() {
+        this.$store.commit('CLOSE_OVERLAYS');
+    },
+    onSubmit() {
+      collectionService.updateCollection(this.$route.params.collectionId, this.updatedCollection);
+      this.off();
+      this.$router.go();
+    },
+    showDeleteCollection() {
+      this.$store.commit('CHANGE_SHOW_DELETE_COLLECTION');
+    },
   },
 };
 </script>
